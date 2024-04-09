@@ -24,10 +24,6 @@ function SimpleDialog(props: SimpleDialogProps) {
     onClose(selectedValue);
   };
 
-  const handleListItemClick = (value: string) => {
-    onClose(value);
-  };
-
   return (
     <Dialog
       onClose={handleClose}
@@ -38,7 +34,7 @@ function SimpleDialog(props: SimpleDialogProps) {
     >
       <div className="d-flex align-items-center justify-content-center p-4 dialog-window">
         <Login />
-        <div className="h-75 border mx-5"></div>
+        <div className="h-75 border-end mx-5"></div>
         <SignUp />
       </div>
     </Dialog>

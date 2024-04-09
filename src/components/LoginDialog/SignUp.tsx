@@ -115,7 +115,11 @@ const SignUp = () => {
             type="password"
           />
         </Box>
-        <Button variant="contained" onClick={registerHandler} className="mt-auto mb-4">
+        <Button
+          variant="contained"
+          onClick={registerHandler}
+          className="mt-auto mb-4"
+        >
           Register
         </Button>
       </div>

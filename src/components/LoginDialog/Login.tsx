@@ -25,7 +25,13 @@ const Login = () => {
     });
   };
   const loginHandler = () => {
-    signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password);
+    signInWithEmailAndPassword(
+      auth,
+      loginInputs.email,
+      loginInputs.password
+    ).catch(() => {
+      console.log("Invalid login data");
+    });
   };
 
   return (
@@ -66,7 +72,11 @@ const Login = () => {
             type="password"
           />
         </Box>
-        <Button variant="contained" onClick={loginHandler} className="mt-auto mb-4">
+        <Button
+          variant="contained"
+          onClick={loginHandler}
+          className="mt-auto mb-4"
+        >
           Login
         </Button>
       </div>

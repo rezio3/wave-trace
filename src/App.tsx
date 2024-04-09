@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
-import VideoBG from "./components/VideoBG";
+import VideoBG from "./components/background/VideoBG";
 import MainUserPage from "./components/MainUserPage";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
@@ -16,6 +16,7 @@ function App() {
       mode: "dark",
     },
   });
+  // auth.invalidEmail();
 
   const dispatch = useDispatch();
   useEffect(() => {
