@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../features/userSlice";
+import { UserDetails, UserReturnState, logoutUser } from "../../features/userSlice";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import "./Dialog.scss";
@@ -59,10 +59,11 @@ export default function SimpleDialogDemo() {
     setOpen(false);
     setSelectedValue(value);
   };
-  const user = useSelector((state: any) => state.data.user);
+  const user = useSelector<UserReturnState, UserDetails>((state) => state.data.user.user);
+
   return (
     <div className="d-flex justify-content-end">
-      {user.user.username ? (
+      {user.userName ? (
         <Button variant="outlined" onClick={handleLogout}>
           Logout
         </Button>
