@@ -1,5 +1,5 @@
 import videoBg from "../video/waves-bg.mp4";
-import "../style/video-bg.css";
+import "../style/video-bg.scss";
 
 const VideoBG = () => {
   return (
