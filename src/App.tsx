@@ -6,7 +6,7 @@ import VideoBG from "./components/background/VideoBG";
 import MainUserPage from "./components/MainUserPage";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
-import { loginUser, setLoading } from "./features/userSlice";
+import { UserDetails, UserReturnState, loginUser, setLoading } from "./features/userSlice";
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -26,7 +26,7 @@ function App() {
         dispatch(
           loginUser({
             uid: authUser.uid,
-            username: authUser.displayName,
+            userName: authUser.displayName,
             email: authUser.email,
           })
         );
@@ -37,19 +37,25 @@ function App() {
     });
   }, []);
   // Any type to fix
-  const user = useSelector((state: any) => state.data.user);
-  const isLoading = useSelector((state: any) => state.data.user.isLoading);
-  console.log(isLoading === true);
+  const user = useSelector<UserReturnState, UserDetails>((state) => state.data.user.user);
+  const isLoading = useSelector<UserReturnState, Boolean>((state) => state.data.user.isLoading);
+  const currentUserName = () =>{
+    if(user.userName === null) {
+      return false
+    } else {
+      return user.userName;
+    }
+  }
   return (
     <ThemeProvider theme={darkTheme}>
-      <div className="App">
+      <div className="App position-absolute">
         {isLoading === true ? (
           <div className="loader-overlay">
             <div className="loader"></div>
           </div>
         ) : null}
 
-        {user.user.username ? (
+        {currentUserName() ? (
           <>
             <MainUserPage />
             <Navbar />

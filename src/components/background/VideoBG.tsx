@@ -12,8 +12,9 @@ const VideoBG = () => {
           loop
           id="myVideo"
           className="w-100 z-0 video"
-        ></video>
-        <div className="position-absolute top-0 w-100 h-100 video-bg-shadow z-index-0"></div>
+        >
+        </video>
+          <div className="position-absolute top-0 w-100 h-100 video-bg-shadow z-index-0" />
       </div>
     </>
   );

@@ -1,7 +1,8 @@
 .video-bg {
   z-index: -1;
   width: 100%;
-  overflow-x:hidden;
+  overflow: hidden;
+  height: 100vh;
 }
 .video-bg-shadow {
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
