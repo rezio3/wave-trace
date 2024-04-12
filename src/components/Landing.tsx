@@ -31,7 +31,6 @@ const Landing = () => {
             <img src={img6} alt="Obrazek 1" />
             <img src={img7} alt="Obrazek 1" />
           </div>
-          {/* <div className="carousel-bg"></div> */}
         </div>
       </div>
     </>
