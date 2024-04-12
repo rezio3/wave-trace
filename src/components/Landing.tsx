@@ -21,8 +21,8 @@ const Landing = () => {
         <Button variant="contained" className="mt-3">
           Get started
         </Button>
-        <div className="carousel-container mt-5">
-          <div className="carousel">
+        <div className="position-relative carousel-container mt-5">
+          <div className="carousel d-flex">
             <img src={img1} alt="Obrazek 1" />
             <img src={img2} alt="Obrazek 1" />
             <img src={img3} alt="Obrazek 1" />

@@ -3,22 +3,18 @@
 }
 
 .carousel-container {
-    position: relative;
     width: 400px;
     overflow: hidden;
   }
   
   .carousel {
     width: fit-content;
-    display: flex;
     animation: carousel-animation 20s ease-in-out infinite;
   }
   
   .carousel img {
     width: 100px;
     margin-right: 20px;
-    
-   
   }
   
   @keyframes carousel-animation {
