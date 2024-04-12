@@ -1,4 +1,4 @@
-import SimpleDialogDemo from "./loginDialog/Dialog";
+import SimpleDialogDemo from "./LoginDialog/Dialog";
 
 const Navbar = () => {
   return (
