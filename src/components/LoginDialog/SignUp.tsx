@@ -118,7 +118,7 @@ const SignUp = () => {
         <Button
           variant="contained"
           onClick={registerHandler}
-          className="mt-auto mb-4"
+          className="mt-3 mb-4"
         >
           Register
         </Button>

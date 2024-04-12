@@ -75,7 +75,7 @@ const Login = () => {
         <Button
           variant="contained"
           onClick={loginHandler}
-          className="mt-auto mb-4"
+          className="mt-3 mb-4"
         >
           Login
         </Button>

@@ -3,7 +3,7 @@ import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import VideoBG from "./components/background/VideoBG";
-import MainUserPage from "./components/MainUserPage";
+import UserPage from "./components/userPage/UserPage";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
 import {
@@ -59,7 +59,7 @@ function App() {
 
         {user.userName?.length ? (
           <>
-            <MainUserPage />
+            <UserPage />
             <Navbar />
             <VideoBG />
           </>

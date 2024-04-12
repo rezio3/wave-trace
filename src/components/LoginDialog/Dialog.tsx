@@ -63,11 +63,11 @@ export default function SimpleDialogDemo() {
   return (
     <div className="d-flex justify-content-end">
       {user.userName ? (
-        <Button variant="outlined" onClick={handleLogout}>
+        <Button variant="outlined" onClick={handleLogout} className="log-btn">
           Logout
         </Button>
       ) : (
-        <Button variant="outlined" onClick={handleClickOpen}>
+        <Button variant="outlined" onClick={handleClickOpen} className="log-btn">
           Login / Sign Up
         </Button>
       )}
