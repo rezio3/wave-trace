@@ -1,4 +1,4 @@
-import SimpleDialogDemo from "./loginDialog/Dialog";
+import SimpleDialogDemo from "./LoginDialog/Dialog";
 import { HeaderText } from "../styled components/HeaderText";
 import { GiSoundWaves } from "react-icons/gi";
 
