@@ -59,8 +59,8 @@ function App() {
 
         {user.userName?.length ? (
           <>
-            <UserPage />
             <Navbar />
+            <UserPage />
             <VideoBG />
           </>
         ) : (
