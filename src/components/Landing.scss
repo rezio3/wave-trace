@@ -5,10 +5,13 @@
 .carousel-container {
     width: 400px;
     overflow: hidden;
+    --webkit-mask-image: linear-gradient(to left,transparent, black 20%, black 80%, transparent 100%);
+    mask-image: linear-gradient(to left,transparent, black 10%, black 90%, transparent 100%);
   }
   
   .carousel {
     width: fit-content;
+    transform: translateX(10%);
     animation: carousel-animation 20s ease-in-out infinite;
   }
   
@@ -17,14 +20,16 @@
     margin-right: 20px;
   }
   
+
+
   @keyframes carousel-animation {
     0% {
-      transform: translateX(0);
+      transform: translateX(5%);
     }
     90% {
-      transform: translateX(-50%);
+      transform: translateX(-54%);
     }
     100% {
-      transform: translateX(0);
+      transform: translateX(5%);
     }
   }
