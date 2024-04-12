@@ -6,7 +6,12 @@ import VideoBG from "./components/background/VideoBG";
 import MainUserPage from "./components/MainUserPage";
 import { useDispatch, useSelector } from "react-redux";
 import { auth } from "./firebase";
-import { UserDetails, UserReturnState, loginUser, setLoading } from "./features/userSlice";
+import {
+  UserDetails,
+  UserReturnState,
+  loginUser,
+  setLoading,
+} from "./features/userSlice";
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
@@ -16,7 +21,6 @@ function App() {
       mode: "dark",
     },
   });
-  // auth.invalidEmail();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,16 +40,13 @@ function App() {
       }
     });
   }, []);
-  // Any type to fix
-  const user = useSelector<UserReturnState, UserDetails>((state) => state.data.user.user);
-  const isLoading = useSelector<UserReturnState, Boolean>((state) => state.data.user.isLoading);
-  const currentUserName = () =>{
-    if(user.userName === null) {
-      return false
-    } else {
-      return user.userName;
-    }
-  }
+  const user = useSelector<UserReturnState, UserDetails>(
+    (state) => state.data.user.user
+  );
+  const isLoading = useSelector<UserReturnState, Boolean>(
+    (state) => state.data.user.isLoading
+  );
+
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="App position-absolute">
@@ -55,7 +56,7 @@ function App() {
           </div>
         ) : null}
 
-        {currentUserName() ? (
+        {user.userName?.length ? (
           <>
             <MainUserPage />
             <Navbar />
