@@ -1,0 +1,35 @@
+.landing-header {
+    font-size: 45px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 400px;
+    overflow: hidden;
+  }
+  
+  .carousel {
+    width: fit-content;
+    display: flex;
+    animation: carousel-animation 20s ease-in-out infinite;
+  }
+  
+  .carousel img {
+    width: 100px;
+    margin-right: 20px;
+    
+   
+  }
+  
+  @keyframes carousel-animation {
+    0% {
+      transform: translateX(0);
+    }
+    90% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  

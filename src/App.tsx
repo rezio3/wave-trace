@@ -14,6 +14,7 @@ import {
 } from "./features/userSlice";
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Landing from "./components/Landing";
 
 function App() {
   const darkTheme = createTheme({
@@ -65,6 +66,9 @@ function App() {
         ) : (
           <>
             <Navbar />
+            <div className="container h-75">
+              <Landing />
+            </div>
             <VideoBG />
           </>
         )}
