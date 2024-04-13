@@ -18,7 +18,7 @@ export default function BasicList() {
               <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -26,7 +26,7 @@ export default function BasicList() {
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
-              <ListItemText primary="Drafts" />
+              <ListItemText primary="History" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -36,12 +36,12 @@ export default function BasicList() {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Trash" />
+              <ListItemText primary="Support" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#simple-list">
-              <ListItemText primary="Spam" />
+              <ListItemText primary="Logout" />
             </ListItemButton>
           </ListItem>
         </List>

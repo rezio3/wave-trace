@@ -15,6 +15,7 @@ import {
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const darkTheme = createTheme({
@@ -50,6 +51,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <div className="App position-absolute">
         {isLoading === true ? (
           <div className="loader-overlay">
