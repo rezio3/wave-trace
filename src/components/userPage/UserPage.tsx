@@ -1,10 +1,6 @@
 import BasicList from "./UserDashboard";
 // import UserDashboard from "./UserDashboard";
 
-const UserPage = () => {
-    return ( <>
-    <BasicList/>
-    </> );
-}
- 
+const UserPage = () => <BasicList />;
+
 export default UserPage;

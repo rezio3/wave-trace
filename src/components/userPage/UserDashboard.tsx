@@ -7,18 +7,29 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function BasicList() {
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} className="mt-5">
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} role="presentation" className="mt-5">
       <nav aria-label="main mailbox folders">
         <List>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
+                <AddIcon />
+              </ListItemIcon>
+              <ListItemText primary="New order" />
+              {/* STEPPER */}
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary="Dashboard" />
+              {/* TABS */}
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -26,7 +37,7 @@ export default function BasicList() {
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
-              <ListItemText primary="Drafts" />
+              <ListItemText primary="History" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -36,12 +47,12 @@ export default function BasicList() {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Trash" />
+              <ListItemText primary="Support" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#simple-list">
-              <ListItemText primary="Spam" />
+              <ListItemText primary="Logout" />
             </ListItemButton>
           </ListItem>
         </List>

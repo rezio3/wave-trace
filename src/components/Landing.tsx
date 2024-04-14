@@ -1,35 +1,33 @@
 import { Button } from "@mui/material";
 import "./Landing.scss";
-import { HeaderText } from "../styled components/HeaderText";
-import img1 from "../img/arturia.png";
-import img2 from "../img/cubase.png";
-import img3 from "../img/ew.png";
-import img4 from "../img/hz.png";
-import img5 from "../img/kontakt.png";
-import img6 from "../img/pigments.png";
-import img7 from "../img/spitfire.png";
+import arturiaLogo from "../img/arturia.png";
+import cubaseLogo from "../img/cubase.png";
+import ewLogo from "../img/ew.png";
+import hzLogo from "../img/hz.png";
+import kontaktLogo from "../img/kontakt.png";
+import pigmentsLogo from "../img/pigments.png";
+import spitfireLogo from "../img/spitfire.png";
 
 const Landing = () => {
-  
   return (
     <>
       <div className="h-100 d-flex flex-column justify-content-center align-items-start">
-        <HeaderText className="text-white w-50 landing-header">
+        <h2 className="text-white w-50 landing-header header-txt">
           Platform for bringing your musical visions and needs to life, using
           advanced production tools.
-        </HeaderText>
+        </h2>
         <Button variant="contained" className="mt-3">
           Get started
         </Button>
         <div className="position-relative carousel-container mt-5">
           <div className="carousel d-flex">
-            <img src={img1} alt="Obrazek 1" />
-            <img src={img2} alt="Obrazek 1" />
-            <img src={img3} alt="Obrazek 1" />
-            <img src={img4} alt="Obrazek 1" />
-            <img src={img5} alt="Obrazek 1" />
-            <img src={img6} alt="Obrazek 1" />
-            <img src={img7} alt="Obrazek 1" />
+            <img src={arturiaLogo} alt="arturia logo" />
+            <img src={cubaseLogo} alt="cubase logo" />
+            <img src={ewLogo} alt="east west logo" />
+            <img src={hzLogo} alt="hans zimmer strings logo" />
+            <img src={kontaktLogo} alt="kontakt logo" />
+            <img src={pigmentsLogo} alt="pigments logo" />
+            <img src={spitfireLogo} alt="spitfire logo" />
           </div>
         </div>
       </div>
