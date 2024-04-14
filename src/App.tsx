@@ -16,6 +16,7 @@ import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
 import CssBaseline from '@mui/material/CssBaseline';
+import "./style/global.scss";
 
 function App() {
   const darkTheme = createTheme({

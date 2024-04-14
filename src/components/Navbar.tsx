@@ -1,5 +1,4 @@
 import SimpleDialogDemo from "./loginDialog/Dialog";
-import { HeaderText } from "../styled components/HeaderText";
 import { GiSoundWaves } from "react-icons/gi";
 
 const Navbar = () => {
@@ -7,11 +6,10 @@ const Navbar = () => {
     <>
       <div className="d-flex justify-content-between text-primary position-relative container mt-3">
         <div className="d-flex">
-        <HeaderText className="text-white d-flex align-items-center mt-1 me-2">
-          Wavetrace
-        </HeaderText>
-        <GiSoundWaves className="display-3 text-secondary"/>
-
+          <h1 className="text-white d-flex align-items-center mt-1 me-2 header-txt">
+            Wavetrace
+          </h1>
+          <GiSoundWaves className="display-3 text-secondary" />
         </div>
         <SimpleDialogDemo />
       </div>
