@@ -14,7 +14,7 @@ const Navbar = () => {
         <SimpleDialogDemo />
       </div>
     </>
-  );
+  ); 
 };
 
 export default Navbar;
