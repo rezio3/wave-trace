@@ -15,7 +15,7 @@ import {
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from "@mui/material/CssBaseline";
 import "./style/global.scss";
 
 function App() {
@@ -24,10 +24,11 @@ function App() {
       mode: "dark",
     },
   });
-
+ 
   const dispatch = useDispatch();
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
+      console.log("authUser: ", authUser);
       dispatch(setLoading(false));
       if (authUser) {
         dispatch(
@@ -43,6 +44,7 @@ function App() {
       }
     });
   }, []);
+  
   const user = useSelector<UserReturnState, UserDetails>(
     (state) => state.data.user.user
   );
@@ -50,6 +52,7 @@ function App() {
     (state) => state.data.user.isLoading
   );
 
+  console.log(user.userName);
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -59,7 +62,6 @@ function App() {
             <div className="loader"></div>
           </div>
         ) : null}
-
         {user.userName?.length ? (
           <>
             <Navbar />
