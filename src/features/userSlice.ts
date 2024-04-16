@@ -36,6 +36,7 @@ export const userSlice = createSlice({
       state.isLoading = action.payload;
     },
   },
+  
 });
 
 export const {loginUser, logoutUser, setLoading} = userSlice.actions;
