@@ -17,6 +17,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./style/global.scss";
+import { loginAndRegisterUser } from "./services/loginAndRegisterUser";
 
 function App() {
   const darkTheme = createTheme({
@@ -24,27 +25,13 @@ function App() {
       mode: "dark",
     },
   });
- 
+
   const dispatch = useDispatch();
+
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      console.log("authUser: ", authUser);
-      dispatch(setLoading(false));
-      if (authUser) {
-        dispatch(
-          loginUser({
-            uid: authUser.uid,
-            userName: authUser.displayName,
-            email: authUser.email,
-          })
-        );
-        dispatch(setLoading(false));
-      } else {
-        console.log("User is not logged in");
-      }
-    });
+    loginAndRegisterUser(dispatch);
   }, []);
-  
+
   const user = useSelector<UserReturnState, UserDetails>(
     (state) => state.data.user.user
   );
@@ -52,6 +39,16 @@ function App() {
     (state) => state.data.user.isLoading
   );
 
+  useEffect(() => {
+    if (auth.currentUser) {
+      dispatch(
+        loginUser({
+          userName: auth.currentUser.displayName,
+        })
+      );
+      dispatch(setLoading(false));
+    }
+  }, [auth.currentUser?.displayName]);
   console.log(user.userName);
   return (
     <ThemeProvider theme={darkTheme}>
