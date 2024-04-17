@@ -1,5 +1,5 @@
 import { auth } from "../firebase";
-import { loginUser, setLoading } from "../slicesRedux/userSlice";
+import { loginUser, setLoading } from "../reducers/userSlice";
 import { AppDispatch } from "../types/types";
 
 export const loginAndRegisterUser = (dispatch: AppDispatch) => {

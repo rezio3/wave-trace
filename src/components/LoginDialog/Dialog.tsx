@@ -5,7 +5,7 @@ import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { UserDetails, UserReturnState } from "../../types/types";
-import { logoutUser } from "../../slicesRedux/userSlice";
+import { logoutUser } from "../../reducers/userSlice";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import "./Dialog.scss";
