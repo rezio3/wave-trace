@@ -5,18 +5,13 @@ import Navbar from "./components/Navbar";
 import VideoBG from "./components/background/VideoBG";
 import UserPage from "./components/userPage/UserPage";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "./firebase";
-import {
-  UserDetails,
-  UserReturnState,
-  loginUser,
-  setLoading,
-} from "./features/userSlice";
+import { UserDetails, UserReturnState } from "./features/userSlice";
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./style/global.scss";
+import { loginAndRegisterUser } from "./services/loginAndRegisterUser";
 
 function App() {
   const darkTheme = createTheme({
@@ -24,27 +19,12 @@ function App() {
       mode: "dark",
     },
   });
- 
+
   const dispatch = useDispatch();
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      console.log("authUser: ", authUser);
-      dispatch(setLoading(false));
-      if (authUser) {
-        dispatch(
-          loginUser({
-            uid: authUser.uid,
-            userName: authUser.displayName,
-            email: authUser.email,
-          })
-        );
-        dispatch(setLoading(false));
-      } else {
-        console.log("User is not logged in");
-      }
-    });
+    loginAndRegisterUser(dispatch);
   }, []);
-  
+
   const user = useSelector<UserReturnState, UserDetails>(
     (state) => state.data.user.user
   );
