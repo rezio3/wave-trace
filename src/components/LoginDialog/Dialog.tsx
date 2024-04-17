@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { UserDetails, UserReturnState} from "../../types/types";
+import { UserDetails, UserReturnState } from "../../types/types";
 import { logoutUser } from "../../slicesRedux/userSlice";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -45,6 +45,13 @@ function SimpleDialog(props: SimpleDialogProps) {
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const user = useSelector<UserReturnState, UserDetails>(
+    (state) => state.data.user.user
+  );
+
+  React.useEffect(() => {
+    setOpen(false);
+  }, [user.email]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -60,7 +67,6 @@ export default function SimpleDialogDemo() {
     setOpen(false);
     setSelectedValue(value);
   };
-  const user = useSelector<UserReturnState, UserDetails>((state) => state.data.user.user);
   return (
     <div className="d-flex justify-content-end">
       {user.email ? (
@@ -68,7 +74,11 @@ export default function SimpleDialogDemo() {
           Logout
         </Button>
       ) : (
-        <Button variant="outlined" onClick={handleClickOpen} className="log-btn">
+        <Button
+          variant="outlined"
+          onClick={handleClickOpen}
+          className="log-btn"
+        >
           Login / Sign Up
         </Button>
       )}
