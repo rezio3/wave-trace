@@ -41,16 +41,7 @@ const SignUp = () => {
       auth,
       newAccountInputs.email,
       newAccountInputs.password
-    ).then(() => {
-      if (auth.currentUser !== null) {
-        updateProfile(auth.currentUser, {
-          displayName: newAccountInputs.userName,
-        });
-        window.location.reload()
-      } else {
-        console.error("No current user.");
-      }
-    });
+    )
   };
 
   return (

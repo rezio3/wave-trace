@@ -63,7 +63,7 @@ export default function SimpleDialogDemo() {
   const user = useSelector<UserReturnState, UserDetails>((state) => state.data.user.user);
   return (
     <div className="d-flex justify-content-end">
-      {user.userName ? (
+      {user.email ? (
         <Button variant="outlined" onClick={handleLogout} className="log-btn">
           Logout
         </Button>

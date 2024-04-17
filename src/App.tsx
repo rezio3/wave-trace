@@ -32,7 +32,7 @@ function App() {
     (state) => state.data.user.isLoading
   );
 
-  console.log(user.userName);
+  // console.log(user);
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
@@ -42,7 +42,7 @@ function App() {
             <div className="loader"></div>
           </div>
         ) : null}
-        {user.userName?.length ? (
+        {user.email ? (
           <>
             <Navbar />
             <UserPage />
