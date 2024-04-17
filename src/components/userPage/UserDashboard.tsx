@@ -7,20 +7,19 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 export default function BasicList() {
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }} role="presentation" className="mt-5">
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'divider' }}>
       <nav aria-label="main mailbox folders">
         <List>
-          <ListItem disablePadding>
+        <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <AddIcon />
               </ListItemIcon>
               <ListItemText primary="New order" />
-              {/* STEPPER */}
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -29,7 +28,6 @@ export default function BasicList() {
                 <InboxIcon />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
-              {/* TABS */}
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
@@ -47,12 +45,12 @@ export default function BasicList() {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Support" />
+              <ListItemText primary="Trash" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#simple-list">
-              <ListItemText primary="Logout" />
+              <ListItemText primary="Spam" />
             </ListItemButton>
           </ListItem>
         </List>
