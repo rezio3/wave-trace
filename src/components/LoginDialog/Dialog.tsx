@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import { auth } from "../../firebase";
 import { signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
-import { UserDetails, UserReturnState, logoutUser } from "../../features/userSlice";
+import { UserDetails, UserReturnState, logoutUser } from "../../slicesRedux/userSlice";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import "./Dialog.scss";

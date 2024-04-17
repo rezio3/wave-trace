@@ -1,26 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export type UserReturnState = {
-  data: {
-    user: InitialState;
-  }
-}
-
-export type UserDetails = {
-  uid?: string
-  userName: string | null
-  email?: string | null
-}
-
-export type InitialState = {
-  user: UserDetails
-  isLoading: Boolean
-}
-
-const initialState: InitialState = {
-  user: {userName: ""},
-  isLoading: true,
-};
+import { initialState } from "../types/types";
 
 export const userSlice = createSlice({
   name: "user",
