@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import VideoBG from "./components/background/VideoBG";
 import UserPage from "./components/userPage/UserPage";
 import { useDispatch, useSelector } from "react-redux";
-import { UserDetails, UserReturnState } from "./types/types";
+import { UserDetails, UserReturnState } from "./types";
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
