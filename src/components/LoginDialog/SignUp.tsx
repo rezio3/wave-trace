@@ -47,7 +47,7 @@ const SignUp = () => {
     //     updateProfile(auth.currentUser, {
     //       displayName: newAccountInputs.userName,
     //     });
-    //     window.location.reload();
+    //     window.location.reload()
     //   } else {
     //     console.error("No current user.");
     //   }

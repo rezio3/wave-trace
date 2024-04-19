@@ -1,6 +1,6 @@
 import { auth } from "../firebase";
-import { loginUser, setLoading } from "../features/userSlice";
-import { AppDispatch } from "../types/types";
+import { loginUser, setLoading } from "../reducers/userSlice";
+import { AppDispatch } from "../types";
 
 export const loginAndRegisterUser = (dispatch: AppDispatch) => {
   auth.onAuthStateChanged((authUser) => {

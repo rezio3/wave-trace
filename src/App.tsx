@@ -5,13 +5,7 @@ import Navbar from "./components/Navbar";
 import VideoBG from "./components/background/VideoBG";
 import UserPage from "./components/userPage/UserPage";
 import { useDispatch, useSelector } from "react-redux";
-import { auth } from "./firebase";
-import {
-  UserDetails,
-  UserReturnState,
-  loginUser,
-  setLoading,
-} from "./features/userSlice";
+import { UserDetails, UserReturnState } from "./types";
 import "./Loader.scss";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Landing from "./components/Landing";
@@ -39,16 +33,6 @@ function App() {
     (state) => state.data.user.isLoading
   );
 
-  useEffect(() => {
-    if (auth.currentUser) {
-      dispatch(
-        loginUser({
-          userName: auth.currentUser.displayName,
-        })
-      );
-      dispatch(setLoading(false));
-    }
-  }, [auth.currentUser?.displayName]);
   console.log(user.userName);
   return (
     <ThemeProvider theme={darkTheme}>
@@ -59,7 +43,7 @@ function App() {
             <div className="loader"></div>
           </div>
         ) : null}
-        {user.userName?.length ? (
+        {user.email ? (
           <>
             <Navbar />
             <UserPage />
