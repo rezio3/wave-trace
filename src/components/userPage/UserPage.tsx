@@ -44,7 +44,7 @@ const UserPage = () => {
     <>
       <BasicList />
       <input type="text" value={input} onChange={inputHandler} />
-      <button onClick={placeOrderHandler}>Place na order</button>
+      <button onClick={placeOrderHandler}>Place an order</button>
       <button onClick={showOrderHandler}>Show orders</button>
       <div>
         {orders.length > 0
