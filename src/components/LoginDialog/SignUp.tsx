@@ -2,8 +2,6 @@ import * as React from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import Box from "@mui/material/Box";

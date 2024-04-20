@@ -19,7 +19,6 @@ export type InitialState = {
   isLoading: Boolean;
 };
 
-export const initialState: InitialState = {
-  user: { userName: "" },
-  isLoading: true,
+export type UserOrders = {
+  userOrder: string;
 };

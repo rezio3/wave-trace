@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initialState } from "../types";
+import { InitialState } from "../types";
+
+const initialState: InitialState = {
+  user: { userName: "" },
+  isLoading: true,
+};
 
 export const userSlice = createSlice({
   name: "user",
@@ -9,13 +14,12 @@ export const userSlice = createSlice({
       state.user = action.payload;
     },
     logoutUser: (state) => {
-      state.user = {userName: ""};
+      state.user = { userName: "" };
     },
     setLoading: (state, action) => {
       state.isLoading = action.payload;
     },
   },
-  
 });
 
-export const {loginUser, logoutUser, setLoading} = userSlice.actions;
+export const { loginUser, logoutUser, setLoading } = userSlice.actions;

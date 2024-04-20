@@ -32,8 +32,6 @@ function App() {
   const isLoading = useSelector<UserReturnState, Boolean>(
     (state) => state.data.user.isLoading
   );
-
-  console.log(user.userName);
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
