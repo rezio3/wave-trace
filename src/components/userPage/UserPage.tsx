@@ -1,10 +1,12 @@
 import { useState } from "react";
-import BasicList from "./UserDashboard";
+import BasicList from "./UserNav";
 import { getDatabase, ref, set, push, get } from "firebase/database";
 import { app } from "../../firebase";
 import { UserOrders } from "../../types";
 import { useSelector } from "react-redux";
 import { UserDetails, UserReturnState } from "../../types";
+import UserDashboard from "./UserDashboard";
+import "./dashboard.scss";
 
 const UserPage = () => {
   const [input, setInput] = useState("");
@@ -41,19 +43,22 @@ const UserPage = () => {
   };
 
   return (
-    <>
+    <div className="d-flex align-items-center justify-content-between w-100">
       <BasicList />
-      <input type="text" value={input} onChange={inputHandler} />
+
+      {/* <input type="text" value={input} onChange={inputHandler} />
       <button onClick={placeOrderHandler}>Place an order</button>
       <button onClick={showOrderHandler}>Show orders</button>
       <div>
         {orders.length > 0
-          ? orders.map((e) => {
-              return <p>{e.userOrder}</p>;
+          ? orders.map((order) => {
+              return <p>{order.userOrder}</p>;
             })
           : null}
-      </div>
-    </>
+      </div> */}
+      <UserDashboard />
+      <div className="dashboard-spacer"></div>
+    </div>
   );
 };
 

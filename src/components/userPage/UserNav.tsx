@@ -11,7 +11,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 export default function BasicList() {
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'divider' }}>
+    <Box sx={{ width: '100%', maxWidth: 360, height: '80%', marginTop: "10px", bgcolor: 'divider' }}>
       <nav aria-label="main mailbox folders">
         <List>
         <ListItem disablePadding>
