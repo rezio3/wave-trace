@@ -22,3 +22,11 @@ export type InitialState = {
 export type UserOrders = {
   userOrder: string;
 };
+
+export type DashboardListItemType = {
+  orderName: string;
+  orderDescription: string;
+  orderPrice: string;
+  orderDate: string
+  orderStatus: string;
+};

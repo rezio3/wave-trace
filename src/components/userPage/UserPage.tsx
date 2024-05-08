@@ -43,7 +43,7 @@ const UserPage = () => {
   };
 
   return (
-    <div className="d-flex align-items-center justify-content-between w-100">
+    <div className="d-flex align-items-start justify-content-between w-100">
       <BasicList />
 
       {/* <input type="text" value={input} onChange={inputHandler} />
