@@ -1,20 +1,39 @@
-import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
+import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import InboxIcon from "@mui/icons-material/Inbox";
+import DraftsIcon from "@mui/icons-material/Drafts";
 import AddIcon from "@mui/icons-material/Add";
+import React from "react";
 
-export default function BasicList() {
+type UserNavProps = {
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const UserNav: React.FC<UserNavProps> = (props) => {
+  const newOrderHandler = () => {
+    props.setPage(1);
+  };
+  const dashboardHandler = () => {
+    props.setPage(0);
+  };
   return (
-    <Box sx={{ width: '100%', maxWidth: 360, height: '80%', marginTop: "10px", bgcolor: 'divider' }}>
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: 360,
+        height: "80%",
+        marginTop: "10px",
+        bgcolor: "divider",
+      }}
+    >
       <nav aria-label="main mailbox folders">
         <List>
-        <ListItem disablePadding>
+          <ListItem disablePadding onClick={newOrderHandler}>
             <ListItemButton>
               <ListItemIcon>
                 <AddIcon />
@@ -22,7 +41,7 @@ export default function BasicList() {
               <ListItemText primary="New order" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={dashboardHandler}>
             <ListItemButton>
               <ListItemIcon>
                 <InboxIcon />
@@ -57,4 +76,5 @@ export default function BasicList() {
       </nav>
     </Box>
   );
-}
+};
+export default UserNav;
