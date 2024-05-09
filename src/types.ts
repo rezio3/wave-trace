@@ -24,9 +24,9 @@ export type UserOrders = {
 };
 
 export type DashboardListItemType = {
-  orderName: string;
+  orderTitle: string;
   orderDescription: string;
-  orderPrice: string;
-  orderDate: string
-  orderStatus: string;
+  // orderPrice: string;
+  // orderDate: string
+  // orderStatus: string;
 };

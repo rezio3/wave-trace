@@ -1,8 +1,59 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import "./createOrder.scss";
+import { useState } from "react";
+import { getDatabase, push, ref, set, get } from "firebase/database";
+import { app } from "../../firebase";
+import { useSelector } from "react-redux";
+import { UserReturnState, UserDetails } from "../../types";
 
 const CreateOrder = () => {
+  const [order, setOrder] = useState({
+    title: "",
+    description: "",
+  });
+
+  const titleInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOrder({
+      ...order,
+      title: e.target.value,
+    });
+  };
+  const descriptionInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOrder({
+      ...order,
+      description: e.target.value,
+    });
+  };
+
+  const currentUser = useSelector<UserReturnState, UserDetails>(
+    (state) => state.data.user.user
+  );
+
+  const sendRequestButtonHandler = () => {
+    const db = getDatabase(app);
+    const newDocRef = push(ref(db, `${currentUser.uid}/orders`));
+    set(newDocRef, {
+      orderTitle: order.title,
+      orderDescription: order.description,
+    })
+      .then(() => {
+        alert("Order placed successfully");
+      })
+      .catch((error) => {
+        alert("error" + error);
+      });
+    setOrder({
+      title: "",
+      description: "",
+    });
+  };
+
+
+
+
   return (
     <Box
       sx={{
@@ -20,9 +71,12 @@ const CreateOrder = () => {
             id="outlined-basic"
             label="Order name / Title"
             variant="outlined"
+            onChange={titleInputHandler}
+            value={order.title}
           />
-          <p className="ms-5 mb-0">
-          Przykład: "Muzyka do musicalu o rozstaniu".
+          <ArrowLeftIcon className="ms-4 text-secondary" />
+          <p className="mb-0 text-secondary">
+            Przykład: "Muzyka do musicalu o rozstaniu".
           </p>
         </div>
         <div className="mt-4 w-100 d-flex align-items-center">
@@ -31,15 +85,22 @@ const CreateOrder = () => {
             label="Description"
             multiline
             rows={8}
-            //   defaultValue="Description"
+            onChange={descriptionInputHandler}
+            value={order.description}
             className="w-50"
           />
-          <p className="w-25 ms-5 mb-0">
-            Nazwa twojego zamówienia. Może być to ogólny skrócony opis muzyki,
-            którą zamawiasz. Przykład: "Muzyka do musicalu o rozstaniu".
+          <ArrowLeftIcon className="ms-4 text-secondary" />
+          <p className="w-25 mb-0 text-secondary">
+            Opis tego co potrzebujesz. Może być to ogólny skrócony zarys sceny,
+            postaci, fabuły. Przykład: "habababa baba baa ba abbbababaaa
+            hababbahahabab ab ab abbababbabab ha ah ".
           </p>
         </div>
-        <Button variant="contained" className="mt-4 font-weight-bold">
+        <Button
+          variant="contained"
+          className="mt-4 font-weight-bold"
+          onClick={sendRequestButtonHandler}
+        >
           Send request
         </Button>
       </div>
