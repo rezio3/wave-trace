@@ -15,14 +15,17 @@ const Login:React.FC<loginViewType> = (props) => {
     email: "",
     password: "",
   });
+  const [isAlert, setIsAlert] = React.useState(false);
 
   const emailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAlert(false);
     setLoginInputs({
       ...loginInputs,
       email: e.target.value,
     });
   };
   const passwordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAlert(false);
     setLoginInputs({
       ...loginInputs,
       password: e.target.value,
@@ -34,6 +37,7 @@ const Login:React.FC<loginViewType> = (props) => {
       loginInputs.email,
       loginInputs.password
     ).catch(() => {
+      setIsAlert(true);
       console.log("Invalid login data");
     });
   };
@@ -85,6 +89,7 @@ const Login:React.FC<loginViewType> = (props) => {
             onKeyDown={enterKey}
           />
         </Box>
+        {!isAlert ? null : <span className="alert-notification">Incorrect email or password</span>}
         <Button
           variant="contained"
           onClick={loginHandler}

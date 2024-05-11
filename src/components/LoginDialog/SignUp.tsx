@@ -15,9 +15,11 @@ const SignUp: React.FC<loginViewType> = (props) => {
     password: "",
     confirmPassword: "",
   });
+  const [isPasswordAlert, setIsPasswordAlert] = React.useState(false);
   const [isAlert, setIsAlert] = React.useState(false);
 
   const newUserNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAlert(false);
     setNewAccountInputs({
       ...newAccountInputs,
       userName: e.target.value,
@@ -25,12 +27,14 @@ const SignUp: React.FC<loginViewType> = (props) => {
   };
 
   const newEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAlert(false);
     setNewAccountInputs({
       ...newAccountInputs,
       email: e.target.value,
     });
   };
   const newPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsPasswordAlert(false);
     setIsAlert(false);
     setNewAccountInputs({
       ...newAccountInputs,
@@ -38,6 +42,7 @@ const SignUp: React.FC<loginViewType> = (props) => {
     });
   };
   const confirmPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsPasswordAlert(false);
     setIsAlert(false);
     setNewAccountInputs({
       ...newAccountInputs,
@@ -45,24 +50,30 @@ const SignUp: React.FC<loginViewType> = (props) => {
     });
   };
   const registerHandler = () => {
-    const {password, confirmPassword} = newAccountInputs;
-    if(password !== confirmPassword) {
+    const { password, confirmPassword, userName, email } = newAccountInputs;
+    if (
+      (userName && email && password && confirmPassword) === "" ||
+      !email.includes("@")
+    ) {
       setIsAlert(true);
+      return;
+    } else if (password !== confirmPassword) {
+      setIsPasswordAlert(true);
       return;
     }
     createUserWithEmailAndPassword(
       auth,
       newAccountInputs.email,
       newAccountInputs.password
-    );
+    ).catch(() => {});
   };
 
-const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
-  if(event.key === "Enter") {
-    event.preventDefault();
-    registerHandler();
-  }
-}
+  const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      registerHandler();
+    }
+  };
 
   return (
     <>
@@ -121,7 +132,6 @@ const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
             type="password"
             onKeyDown={enterKey}
           />
-         
         </Box>
         <Box
           component="form"
@@ -131,7 +141,7 @@ const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
           noValidate
           autoComplete="off"
         >
-         <TextField
+          <TextField
             onChange={confirmPasswordHandler}
             value={newAccountInputs.confirmPassword}
             id="outlined-basic"
@@ -140,9 +150,14 @@ const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
             type="password"
             onKeyDown={enterKey}
           />
-          </Box>
-          {!isAlert ? null : <span className="alert-notification">Passwords do not match</span>}
-          
+        </Box>
+        {!isAlert ? null : (
+          <span className="alert-notification">Invalid data</span>
+        )}
+        {!isPasswordAlert ? null : (
+          <span className="alert-notification">Passwords do not match</span>
+        )}
+
         <Button
           variant="contained"
           onClick={registerHandler}
@@ -150,7 +165,10 @@ const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
         >
           Register
         </Button>
-        <ChangeDialogWindowBtn loginViewHandler={props.loginViewHandler} isLoginView={props.isLoginView}/>
+        <ChangeDialogWindowBtn
+          loginViewHandler={props.loginViewHandler}
+          isLoginView={props.isLoginView}
+        />
       </div>
     </>
   );
