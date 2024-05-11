@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
-import { loginViewType } from "../../types";
+import { LoginViewType } from "../../types";
 
-const ChangeDialogWindowBtn: React.FC<loginViewType> = ({loginViewHandler, isLoginView}) => {
+const ChangeDialogWindowBtn: React.FC<LoginViewType> = ({loginViewHandler, isLoginView}) => {
     const handleChangeLoginWindowBtn = ()=>{
         loginViewHandler()
     }

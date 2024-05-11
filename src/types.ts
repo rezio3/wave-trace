@@ -28,7 +28,10 @@ export type DashboardListItemType = {
   orderDescription: string;
 };
 
-export type loginViewType = {
-  loginViewHandler: () => void;
+export type LoginViewType = {
   isLoginView: boolean;
-}
+  loginViewHandler: () => void;
+};
+export type ManageRoadMapProps = {
+ handleGetStartedBtn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};

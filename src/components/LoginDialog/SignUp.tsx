@@ -5,10 +5,10 @@ import { auth } from "../../firebase";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { loginViewType } from "../../types";
+import { LoginViewType } from "../../types";
 import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
 
-const SignUp: React.FC<loginViewType> = (props) => {
+const SignUp: React.FC<LoginViewType> = (props) => {
   const [newAccountInputs, setNewAccountInputs] = React.useState({
     userName: "",
     email: "",

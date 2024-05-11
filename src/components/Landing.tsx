@@ -7,29 +7,40 @@ import hzLogo from "../img/hz.png";
 import kontaktLogo from "../img/kontakt.png";
 import pigmentsLogo from "../img/pigments.png";
 import spitfireLogo from "../img/spitfire.png";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { gsap } from "gsap";
 import RoadMap from "./roadMap/RoadMap";
 
 const Landing = () => {
-  const [isRoadMap, setIsRoadMap] = useState(false);
-  const roadMapRef = useRef(null);
 
-  const handleGetStartedBtn = () => {
-    gsap.to(".landing-container", {
+  const handleGetStartedBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    let toShow: ".landing-container" | ".road-map-wrapper";
+    let toHide: ".landing-container" | ".road-map-wrapper";
+    if ((e.target as HTMLButtonElement).name === "back") {
+      toShow = ".landing-container";
+      toHide = ".road-map-wrapper";
+    } else {
+      toShow = ".road-map-wrapper";
+      toHide = ".landing-container";
+    }
+    gsap.to(toHide, {
       opacity: 0,
       scale: 0.5,
       duration: 0.5,
-      ease: "power2",
+      ease: "expo",
+    });
+    gsap.to(toHide, {
       display: "none",
+      delay: 0.3,
     });
     setTimeout(() => {
-      gsap.to(".road-map-wrapper", {
+      gsap.to(toShow, {
         opacity: 1,
         scale: 1,
         duration: 0.3,
-        display: "block",
-        ease: "power2",
+        display: "flex",
+        ease: "expo",
+        delay: .3
       });
     }, 500);
   };
@@ -37,10 +48,10 @@ const Landing = () => {
   return (
     <>
       <div className="road-map-wrapper">
-        <RoadMap />
+        <RoadMap handleGetStartedBtn={handleGetStartedBtn} />
       </div>
 
-      <div className="h-100 d-flex flex-column justify-content-center align-items-start landing-container">
+      <div className="h-100 flex-column justify-content-center align-items-start landing-container">
         <h2 className="text-white w-50 landing-header header-txt">
           Platform for bringing your musical visions and needs to life, using
           advanced production tools.
@@ -48,6 +59,7 @@ const Landing = () => {
         <Button
           variant="contained"
           className="mt-3"
+          name="get-started"
           onClick={handleGetStartedBtn}
         >
           Get started

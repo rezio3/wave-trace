@@ -5,12 +5,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
-import { loginViewType } from "../../types";
+import { LoginViewType } from "../../types";
 import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
 
 
 
-const Login:React.FC<loginViewType> = (props) => {
+const Login:React.FC<LoginViewType> = (props) => {
   const [loginInputs, setLoginInputs] = React.useState({
     email: "",
     password: "",
