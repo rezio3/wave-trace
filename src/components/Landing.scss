@@ -1,35 +1,51 @@
 .landing-header {
-    font-size: 45px;
+  font-size: 45px;
 }
 
 .carousel-container {
-    width: 400px;
-    overflow: hidden;
-    --webkit-mask-image: linear-gradient(to left,transparent, black 20%, black 80%, transparent 100%);
-    mask-image: linear-gradient(to left,transparent, black 10%, black 90%, transparent 100%);
-  }
-  
-  .carousel {
-    width: fit-content;
-    transform: translateX(10%);
-    animation: carousel-animation 20s ease-in-out infinite;
-  }
-  
-  .carousel img {
-    width: 100px;
-    margin-right: 20px;
-  }
-  
+  width: 400px;
+  overflow: hidden;
+  --webkit-mask-image: linear-gradient(
+    to left,
+    transparent,
+    black 20%,
+    black 80%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to left,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
 
+.carousel {
+  width: fit-content;
+  transform: translateX(10%);
+  animation: carousel-animation 20s ease-in-out infinite;
+}
 
-  @keyframes carousel-animation {
-    0% {
-      transform: translateX(5%);
-    }
-    90% {
-      transform: translateX(-54%);
-    }
-    100% {
-      transform: translateX(5%);
-    }
+.carousel img {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.road-map-wrapper {
+  opacity: 0;
+  scale: 50%;
+  display: none;
+}
+
+@keyframes carousel-animation {
+  0% {
+    transform: translateX(5%);
   }
+  90% {
+    transform: translateX(-54%);
+  }
+  100% {
+    transform: translateX(5%);
+  }
+}
