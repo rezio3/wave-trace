@@ -38,8 +38,11 @@ const Login:React.FC<loginViewType> = (props) => {
     });
   };
 
-  const handleChangeLoginWindowBtn = ()=>{
-    props.loginViewHandler();
+  const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
+    if(event.key === "Enter") {
+      event.preventDefault();
+      loginHandler();
+    }
   }
 
   return (
@@ -61,6 +64,7 @@ const Login:React.FC<loginViewType> = (props) => {
             label="Email"
             variant="outlined"
             type="email"
+            onKeyDown={enterKey}
           />
         </Box>
         <Box
@@ -78,6 +82,7 @@ const Login:React.FC<loginViewType> = (props) => {
             label="Password"
             variant="outlined"
             type="password"
+            onKeyDown={enterKey}
           />
         </Box>
         <Button

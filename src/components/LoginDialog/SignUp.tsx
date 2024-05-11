@@ -57,6 +57,13 @@ const SignUp: React.FC<loginViewType> = (props) => {
     );
   };
 
+const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
+  if(event.key === "Enter") {
+    event.preventDefault();
+    registerHandler();
+  }
+}
+
   return (
     <>
       <div className="d-flex flex-column align-items-center h-100">
@@ -76,6 +83,7 @@ const SignUp: React.FC<loginViewType> = (props) => {
             label="Full name"
             variant="outlined"
             type="text"
+            onKeyDown={enterKey}
           />
         </Box>
         <Box
@@ -93,6 +101,7 @@ const SignUp: React.FC<loginViewType> = (props) => {
             label="Email"
             variant="outlined"
             type="email"
+            onKeyDown={enterKey}
           />
         </Box>
         <Box
@@ -110,6 +119,7 @@ const SignUp: React.FC<loginViewType> = (props) => {
             label="Password"
             variant="outlined"
             type="password"
+            onKeyDown={enterKey}
           />
          
         </Box>
@@ -128,6 +138,7 @@ const SignUp: React.FC<loginViewType> = (props) => {
             label="Confirm password"
             variant="outlined"
             type="password"
+            onKeyDown={enterKey}
           />
           </Box>
           {!isAlert ? null : <span className="alert-notification">Passwords do not match</span>}
