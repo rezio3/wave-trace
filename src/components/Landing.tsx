@@ -31,7 +31,6 @@ const Landing = () => {
         display: "block",
         ease: "power2",
       });
-     
     }, 500);
   };
 
