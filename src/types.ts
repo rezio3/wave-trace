@@ -26,7 +26,9 @@ export type UserOrders = {
 export type DashboardListItemType = {
   orderTitle: string;
   orderDescription: string;
-  // orderPrice: string;
-  // orderDate: string
-  // orderStatus: string;
 };
+
+export type loginViewType = {
+  loginViewHandler: () => void;
+  isLoginView: boolean;
+}

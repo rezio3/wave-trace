@@ -5,8 +5,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
+import { loginViewType } from "../../types";
+import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
 
-const Login = () => {
+
+
+const Login:React.FC<loginViewType> = (props) => {
   const [loginInputs, setLoginInputs] = React.useState({
     email: "",
     password: "",
@@ -33,6 +37,10 @@ const Login = () => {
       console.log("Invalid login data");
     });
   };
+
+  const handleChangeLoginWindowBtn = ()=>{
+    props.loginViewHandler();
+  }
 
   return (
     <>
@@ -79,6 +87,8 @@ const Login = () => {
         >
           Login
         </Button>
+        <ChangeDialogWindowBtn loginViewHandler={props.loginViewHandler} isLoginView={props.isLoginView}/>
+        
       </div>
     </>
   );

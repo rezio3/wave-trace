@@ -74,9 +74,9 @@ const CreateOrder = () => {
             onChange={titleInputHandler}
             value={order.title}
           />
-          <ArrowLeftIcon className="ms-4 text-secondary" />
-          <p className="mb-0 text-secondary">
-            Przykład: "Muzyka do musicalu o rozstaniu".
+          <ArrowLeftIcon className="ms-4 arrow-icon" />
+          <p className="mb-0">
+            Przykład: "Muzyka do musicalu".
           </p>
         </div>
         <div className="mt-4 w-100 d-flex align-items-center">
@@ -89,11 +89,11 @@ const CreateOrder = () => {
             value={order.description}
             className="w-50"
           />
-          <ArrowLeftIcon className="ms-4 text-secondary" />
-          <p className="w-25 mb-0 text-secondary">
+          <ArrowLeftIcon className="ms-4 arrow-icon" />
+          <p className="w-25 mb-0">
             Opis tego co potrzebujesz. Może być to ogólny skrócony zarys sceny,
             postaci, fabuły. Przykład: "habababa baba baa ba abbbababaaa
-            hababbahahabab ab ab abbababbabab ha ah ".
+            hababbahahabab ab ab abbababbabab haba ".
           </p>
         </div>
         <Button

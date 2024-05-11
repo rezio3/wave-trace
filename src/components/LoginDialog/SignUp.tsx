@@ -1,19 +1,21 @@
 import * as React from "react";
 import DialogTitle from "@mui/material/DialogTitle";
-import {
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { loginViewType } from "../../types";
+import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
 
-const SignUp = () => {
+const SignUp: React.FC<loginViewType> = (props) => {
   const [newAccountInputs, setNewAccountInputs] = React.useState({
     userName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
+  const [isAlert, setIsAlert] = React.useState(false);
 
   const newUserNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewAccountInputs({
@@ -29,27 +31,30 @@ const SignUp = () => {
     });
   };
   const newPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAlert(false);
     setNewAccountInputs({
       ...newAccountInputs,
       password: e.target.value,
     });
   };
+  const confirmPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAlert(false);
+    setNewAccountInputs({
+      ...newAccountInputs,
+      confirmPassword: e.target.value,
+    });
+  };
   const registerHandler = () => {
+    const {password, confirmPassword} = newAccountInputs;
+    if(password !== confirmPassword) {
+      setIsAlert(true);
+      return;
+    }
     createUserWithEmailAndPassword(
       auth,
       newAccountInputs.email,
       newAccountInputs.password
-    )
-    // .then(() => {
-    //   if (auth.currentUser !== null) {
-    //     updateProfile(auth.currentUser, {
-    //       displayName: newAccountInputs.userName,
-    //     });
-    //     window.location.reload()
-    //   } else {
-    //     console.error("No current user.");
-    //   }
-    // });
+    );
   };
 
   return (
@@ -106,7 +111,27 @@ const SignUp = () => {
             variant="outlined"
             type="password"
           />
+         
         </Box>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+         <TextField
+            onChange={confirmPasswordHandler}
+            value={newAccountInputs.confirmPassword}
+            id="outlined-basic"
+            label="Confirm password"
+            variant="outlined"
+            type="password"
+          />
+          </Box>
+          {!isAlert ? null : <span className="alert-notification">Passwords do not match</span>}
+          
         <Button
           variant="contained"
           onClick={registerHandler}
@@ -114,6 +139,7 @@ const SignUp = () => {
         >
           Register
         </Button>
+        <ChangeDialogWindowBtn loginViewHandler={props.loginViewHandler} isLoginView={props.isLoginView}/>
       </div>
     </>
   );

@@ -20,23 +20,24 @@ export interface SimpleDialogProps {
 
 function SimpleDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props;
+  const [loginView, setLoginView] = React.useState(true);
 
   const handleClose = () => {
     onClose(selectedValue);
   };
 
+  const handleChangeLoginWindow = ()=>{
+    setLoginView(!loginView);
+  }
+
   return (
     <Dialog
       onClose={handleClose}
       open={open}
-      fullWidth={true}
-      maxWidth={"md"}
       className="dialog-parent"
     >
       <div className="d-flex align-items-center justify-content-center p-4 dialog-window">
-        <Login />
-        <div className="h-75 border-end mx-5"></div>
-        <SignUp />
+        {loginView ? <Login loginViewHandler={handleChangeLoginWindow} isLoginView={loginView}/> : <SignUp loginViewHandler={handleChangeLoginWindow} isLoginView={loginView}/>}
       </div>
     </Dialog>
   );

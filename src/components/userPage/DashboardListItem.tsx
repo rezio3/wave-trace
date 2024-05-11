@@ -24,7 +24,7 @@ const DashboardListItem: React.FC<DashboardListItemType> = (props) => {
           ? description
           : props.orderDescription}
       </TableCell>
-      <TableCell align="left">askdlaksd</TableCell>
+      <TableCell align="left">0.00$</TableCell>
       <TableCell align="left">05.05.2024</TableCell>
       <TableCell align="left">In progress...</TableCell>
       <TableCell align="right">
