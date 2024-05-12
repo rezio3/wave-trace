@@ -50,8 +50,8 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     width: 350px;
-    max-width: 350px;
     min-width: 350px;
+    max-width: 350px;
     min-height: 180px;
     height: 180px;
     margin-top: 10px;
@@ -62,4 +62,17 @@
 }
 .back-button{
     left: 0;
+}
+
+@media (max-width: 1750px) {
+    .features-card{
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        min-height: 150px;
+        height: 150px;
+    }
+    .feature-header {
+        font-size: 16px;
+      }
 }

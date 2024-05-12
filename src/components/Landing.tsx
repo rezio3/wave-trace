@@ -7,12 +7,11 @@ import hzLogo from "../img/hz.png";
 import kontaktLogo from "../img/kontakt.png";
 import pigmentsLogo from "../img/pigments.png";
 import spitfireLogo from "../img/spitfire.png";
-import { useState } from "react";
 import { gsap } from "gsap";
 import RoadMap from "./roadMap/RoadMap";
+import Footer from "./footer/Footer";
 
 const Landing = () => {
-
   const handleGetStartedBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     let toShow: ".landing-container" | ".road-map-wrapper";
     let toHide: ".landing-container" | ".road-map-wrapper";
@@ -28,10 +27,11 @@ const Landing = () => {
       scale: 0.5,
       duration: 0.5,
       ease: "power1",
+      delay: 0.2,
     });
     gsap.to(toHide, {
       display: "none",
-      delay: .5,
+      delay: 0.5,
     });
     setTimeout(() => {
       gsap.to(toShow, {
@@ -40,7 +40,7 @@ const Landing = () => {
         duration: 0.3,
         display: "flex",
         ease: "power1",
-        delay: .5
+        delay: 0.5,
       });
     }, 500);
   };
@@ -76,6 +76,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
