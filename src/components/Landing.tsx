@@ -27,11 +27,11 @@ const Landing = () => {
       opacity: 0,
       scale: 0.5,
       duration: 0.5,
-      ease: "expo",
+      ease: "power1",
     });
     gsap.to(toHide, {
       display: "none",
-      delay: 0.3,
+      delay: .5,
     });
     setTimeout(() => {
       gsap.to(toShow, {
@@ -39,15 +39,15 @@ const Landing = () => {
         scale: 1,
         duration: 0.3,
         display: "flex",
-        ease: "expo",
-        delay: .3
+        ease: "power1",
+        delay: .5
       });
     }, 500);
   };
 
   return (
     <>
-      <div className="road-map-wrapper">
+      <div className="h-100 road-map-wrapper flex-column justify-content-start align-items-start">
         <RoadMap handleGetStartedBtn={handleGetStartedBtn} />
       </div>
 
@@ -59,10 +59,10 @@ const Landing = () => {
         <Button
           variant="contained"
           className="mt-3"
-          name="get-started"
+          name="learn-more"
           onClick={handleGetStartedBtn}
         >
-          Get started
+          Learn more
         </Button>
         <div className="position-relative carousel-container mt-5">
           <div className="carousel d-flex">

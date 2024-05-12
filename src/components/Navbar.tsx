@@ -4,7 +4,7 @@ import { GiSoundWaves } from "react-icons/gi";
 const Navbar = () => {
   return (
     <>
-      <div className="d-flex justify-content-between text-primary position-relative container mt-3">
+      <div className="d-flex justify-content-between text-primary container mt-3">
         <div className="d-flex">
           <h1 className="text-white d-flex align-items-center mt-1 me-2 header-txt">
             Wavetrace

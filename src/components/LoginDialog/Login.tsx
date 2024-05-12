@@ -3,14 +3,16 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../../firebase";
 import { LoginViewType } from "../../types";
 import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
+import GoogleIcon from '@mui/icons-material/Google';
+import { loginWithGoogleHandler } from "./loginWithGoogle";
 
-
-
-const Login:React.FC<LoginViewType> = (props) => {
+const Login: React.FC<LoginViewType> = (props) => {
   const [loginInputs, setLoginInputs] = React.useState({
     email: "",
     password: "",
@@ -42,12 +44,14 @@ const Login:React.FC<LoginViewType> = (props) => {
     });
   };
 
-  const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event)=>{
-    if(event.key === "Enter") {
+
+
+  const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+    if (event.key === "Enter") {
       event.preventDefault();
       loginHandler();
     }
-  }
+  };
 
   return (
     <>
@@ -89,7 +93,11 @@ const Login:React.FC<LoginViewType> = (props) => {
             onKeyDown={enterKey}
           />
         </Box>
-        {!isAlert ? null : <span className="alert-notification">Incorrect email or password</span>}
+        {!isAlert ? null : (
+          <span className="alert-notification">
+            Incorrect email or password
+          </span>
+        )}
         <Button
           variant="contained"
           onClick={loginHandler}
@@ -97,8 +105,14 @@ const Login:React.FC<LoginViewType> = (props) => {
         >
           Login
         </Button>
-        <ChangeDialogWindowBtn loginViewHandler={props.loginViewHandler} isLoginView={props.isLoginView}/>
-        
+        <Button variant="outlined" onClick={loginWithGoogleHandler}>
+        <GoogleIcon className="me-2"/> 
+        Login with Google
+        </Button>
+        <ChangeDialogWindowBtn
+          loginViewHandler={props.loginViewHandler}
+          isLoginView={props.isLoginView}
+        />
       </div>
     </>
   );

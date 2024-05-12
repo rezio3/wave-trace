@@ -7,6 +7,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { LoginViewType } from "../../types";
 import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
+import { loginWithGoogleHandler } from "./loginWithGoogle";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const SignUp: React.FC<LoginViewType> = (props) => {
   const [newAccountInputs, setNewAccountInputs] = React.useState({
@@ -157,13 +159,16 @@ const SignUp: React.FC<LoginViewType> = (props) => {
         {!isPasswordAlert ? null : (
           <span className="alert-notification">Passwords do not match</span>
         )}
-
         <Button
           variant="contained"
           onClick={registerHandler}
           className="mt-3 mb-4"
         >
           Register
+        </Button>
+        <Button variant="outlined" onClick={loginWithGoogleHandler}>
+          <GoogleIcon className="me-2" />
+          Login with Google
         </Button>
         <ChangeDialogWindowBtn
           loginViewHandler={props.loginViewHandler}

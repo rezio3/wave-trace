@@ -33,5 +33,11 @@ export type LoginViewType = {
   loginViewHandler: () => void;
 };
 export type ManageRoadMapProps = {
- handleGetStartedBtn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleGetStartedBtn: (e: React.MouseEvent<HTMLButtonElement>) => void;
+};
+
+export type StepBoxProps = {
+  number: string;
+  header: string;
+  txt: string;
 };
