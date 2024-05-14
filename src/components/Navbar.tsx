@@ -1,8 +1,5 @@
 import SimpleDialogDemo from "./loginDialog/Dialog";
 import { GiSoundWaves } from "react-icons/gi";
-import "./Navbar.scss";
-import GraphicEqIcon from "@mui/icons-material/GraphicEq";
-import PlaylistAddCheckCircleIcon from "@mui/icons-material/PlaylistAddCheckCircle";
 
 const Navbar = () => {
   return (

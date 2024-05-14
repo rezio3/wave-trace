@@ -3,13 +3,11 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-import {
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { LoginViewType } from "../../types";
 import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
-import GoogleIcon from '@mui/icons-material/Google';
+import GoogleIcon from "@mui/icons-material/Google";
 import { loginWithGoogleHandler } from "./loginWithGoogle";
 
 const Login: React.FC<LoginViewType> = (props) => {
@@ -44,15 +42,15 @@ const Login: React.FC<LoginViewType> = (props) => {
     });
   };
 
-
-
   const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       loginHandler();
     }
   };
-
+  const forgetPasswordHandler = () => {
+    console.log("");
+  };
   return (
     <>
       <div className="d-flex flex-column align-items-center h-100">
@@ -105,9 +103,16 @@ const Login: React.FC<LoginViewType> = (props) => {
         >
           Login
         </Button>
-        <Button variant="outlined" onClick={loginWithGoogleHandler}>
-        <GoogleIcon className="me-2"/> 
-        Login with Google
+        <Button variant="outlined" onClick={loginWithGoogleHandler} className="mb-3">
+          <GoogleIcon className="me-2" />
+          Login with Google
+        </Button>
+        <Button
+          variant="text"
+          className="p-2 login-link-button"
+          onClick={forgetPasswordHandler}
+        >
+          Forgot password
         </Button>
         <ChangeDialogWindowBtn
           loginViewHandler={props.loginViewHandler}

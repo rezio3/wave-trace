@@ -1,7 +1,5 @@
 import * as React from "react";
 import CardContent from "@mui/material/CardContent";
-import Icon from "@mui/material";
-import { IconTypeMap } from "@mui/material";
 
 type FeaturesProps = {
   header: string;

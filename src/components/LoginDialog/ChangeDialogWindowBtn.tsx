@@ -8,7 +8,7 @@ const ChangeDialogWindowBtn: React.FC<LoginViewType> = ({loginViewHandler, isLog
   return (
     <Button
       variant="text"
-      className="mt-3 p-2 login-link-button"
+      className="p-2 login-link-button"
       onClick={handleChangeLoginWindowBtn}
     >
         {isLoginView ? "Don't have an account yet?" : "Already have an account?"}

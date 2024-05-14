@@ -166,7 +166,7 @@ const SignUp: React.FC<LoginViewType> = (props) => {
         >
           Register
         </Button>
-        <Button variant="outlined" onClick={loginWithGoogleHandler}>
+        <Button variant="outlined" onClick={loginWithGoogleHandler} className="mb-3">
           <GoogleIcon className="me-2" />
           Login with Google
         </Button>

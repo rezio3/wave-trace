@@ -1,4 +1,3 @@
-// import { DashboardListItem } from '../../types';
 import * as React from "react";
 import { DashboardListItemType } from "../../types";
 import TableCell from "@mui/material/TableCell";

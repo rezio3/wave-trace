@@ -73,7 +73,7 @@ const RoadMap: React.FC<ManageRoadMapProps> = (props) => {
       <div className="w-100 position-relative mb-5 d-flex justify-content-center">
         <Button
           variant="text"
-          className="position-absolute back-button"
+          className="position-absolute start-0"
           name="back"
           onClick={handleBackButton}
         >
