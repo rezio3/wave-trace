@@ -12,6 +12,8 @@ import Landing from "./components/Landing";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./style/global.scss";
 import { loginAndRegisterUser } from "./services/loginAndRegisterUser";
+import Footer from "./components/footer/Footer";
+import "./components/footer/Footer.scss";
 
 function App() {
   const darkTheme = createTheme({
@@ -45,6 +47,7 @@ function App() {
           <>
             <Navbar />
             <UserPage />
+            <Footer />
             <VideoBG />
           </>
         ) : (
@@ -53,10 +56,18 @@ function App() {
             <div className="container h-75">
               <Landing />
             </div>
+            <Footer />
             <VideoBG />
           </>
         )}
       </div>
+        <div className="small-screen-alert">
+          <span>
+            This is a desktop application. <br/>Please open the page on a larger
+            screen.
+          </span>
+        <VideoBG />
+        </div>
     </ThemeProvider>
   );
 }

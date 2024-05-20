@@ -9,7 +9,6 @@ import pigmentsLogo from "../img/pigments.png";
 import spitfireLogo from "../img/spitfire.png";
 import { gsap } from "gsap";
 import RoadMap from "./roadMap/RoadMap";
-import Footer from "./footer/Footer";
 
 const Landing = () => {
   const handleGetStartedBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -76,7 +75,6 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

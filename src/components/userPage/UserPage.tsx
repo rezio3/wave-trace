@@ -8,6 +8,7 @@ import UserDashboard from "./UserDashboard";
 import "./dashboard.scss";
 import CreateOrder from "./CreateOrder";
 import UserNav from "./UserNav";
+import "./userPage.scss";
 
 const UserPage = () => {
   const [page, setPage] = useState(0);
@@ -15,10 +16,10 @@ const UserPage = () => {
   const pages = [<UserDashboard />, <CreateOrder />];
 
   return (
-    <div className="d-flex align-items-start justify-content-between w-100">
+    <div className="w-100 user-page-container">
       <UserNav setPage={setPage} />
       {pages[page]}
-      <div className="dashboard-spacer"></div>
+      {/* <div className="dashboard-spacer"></div> */}
     </div>
   );
 };

@@ -24,8 +24,8 @@ export type UserOrders = {
 };
 
 export type DashboardListItemType = {
-  orderTitle: string;
-  orderDescription: string;
+  title: string;
+  description: string;
 };
 
 export type LoginViewType = {

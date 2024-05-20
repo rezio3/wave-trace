@@ -107,13 +107,13 @@ const Login: React.FC<LoginViewType> = (props) => {
           <GoogleIcon className="me-2" />
           Login with Google
         </Button>
-        <Button
+        {/* <Button
           variant="text"
           className="p-2 login-link-button"
           onClick={forgetPasswordHandler}
         >
           Forgot password
-        </Button>
+        </Button> */}
         <ChangeDialogWindowBtn
           loginViewHandler={props.loginViewHandler}
           isLoginView={props.isLoginView}

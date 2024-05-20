@@ -9,6 +9,7 @@ import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
+import "./userNav.scss";
 
 type UserNavProps = {
   setPage: React.Dispatch<React.SetStateAction<number>>;
@@ -24,12 +25,13 @@ const UserNav: React.FC<UserNavProps> = (props) => {
   return (
     <Box
       sx={{
-        width: "100%",
+        width: "12%",
         maxWidth: 360,
-        height: "80%",
+        height: "fit-content",
         marginTop: "10px",
         bgcolor: "divider",
       }}
+      className="position-absolute nav-box"
     >
       <nav aria-label="main mailbox folders">
         <List>
@@ -54,7 +56,7 @@ const UserNav: React.FC<UserNavProps> = (props) => {
               <ListItemIcon>
                 <DraftsIcon />
               </ListItemIcon>
-              <ListItemText primary="History" />
+              <ListItemText primary="Tickets" />
             </ListItemButton>
           </ListItem>
         </List>
