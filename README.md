@@ -14,7 +14,7 @@ Wavetrace is a platform that supports the fulfillment of music orders for person
 
 - State management: <b>Redux</b>
 
-<i>Only desktop version. Project is still in progres...</i>
+<i>Only desktop version. Project is still in progress...</i>
 
 ## Getting Started with Create React App
 
