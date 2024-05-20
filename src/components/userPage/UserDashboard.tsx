@@ -32,11 +32,11 @@ const UserDashboard = () => {
   useEffect(() => {
     const showOrderHandler = async () => {
       const db = getFirestore(app);
-      const querySnapshot = await getDocs(collection(db, "orders")).catch(
-        () => {
-          return;
-        }
-      );
+      const querySnapshot = await getDocs(
+        collection(db, `orders_${currentUser.email}`)
+      ).catch(() => {
+        return;
+      });
       let tempArr: any[] = [];
       if (querySnapshot) {
         querySnapshot.forEach((doc) => {
@@ -45,6 +45,8 @@ const UserDashboard = () => {
           setLoading(false);
         });
       }
+      setLoading(false);
+
       // const db = getDatabase(app);
       // const dbRef = ref(db, `${currentUser.uid}/orders`);
       // const snapshot = await get(dbRef);

@@ -41,13 +41,17 @@ const CreateOrder = () => {
       const docRef = await addDoc(
         collection(db, `orders_${currentUser.email}`),
         {
-          // userId: currentUser.uid,
-          // userEmail: currentUser.email,
+          userId: currentUser.uid,
+          userEmail: currentUser.email,
           title: order.title,
           description: order.description,
         }
       );
       console.log("Document written with ID: ", docRef.id);
+      setOrder({
+        title: "",
+        description: "",
+      });
     } catch (e) {
       console.error("Error adding document: ", e);
     }
