@@ -10,7 +10,7 @@ Wavetrace is a platform that supports the fulfillment of music orders for person
 
 - <b>SASS</b> preprocessor, <b>Bootstrap</b>, and <b>Material UI</b> for some ready-made components were used for styling.
 
-- Animations were implemented using the <b>GSAP</b> library by GreenSock.
+- Animations were implemented using the <b><u>GSAP</u></b> library by GreenSock.
 
 - State management: Redux
 
