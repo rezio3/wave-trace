@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# About the project
+
+Wavetrace is a platform that supports the fulfillment of music orders for personal use, along with the transfer of copyright. The user creates an account and fills out an order form, detailing the type of music they need or its intended use. After 24 hours, the user receives a freshly composed 1-minute version of the music with a watermark in the dashboard on their profile. If the user likes the composed music, they can proceed with the payment process. Upon payment, the track is available for download in high-quality audio without the watermark. There is also an option to edit the composed track for a smaller fee or to extend the 1-minute version to, for example, a 5-minute version for a higher fee.
+
+## Technologies
+
+- Authorization management, music storage, and other data handling were implemented using Firebase services, including Firebase Auth, Firestore, and Realtime Database.
+
+- The project was created in TypeScript using the React.js library.
+
+- <b>SASS</b> preprocessor, <b>Bootstrap</b>, and <b>Material UI</b> for some ready-made components were used for styling.
+
+- Animations were implemented using the <b>GSAP</b> library by GreenSock.
+
+- State management: Redux
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
