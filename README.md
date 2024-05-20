@@ -4,15 +4,17 @@ Wavetrace is a platform that supports the fulfillment of music orders for person
 
 ## Technologies
 
-- Authorization management, music storage, and other data handling were implemented using Firebase services, including Firebase Auth, Firestore, and Realtime Database.
+- Authorization management, music storage, and other data handling were implemented using <b>Firebase</b> services, including Firebase <b>Auth</b>, <b>Firestore</b>, and <b>Realtime Database</b>.
 
-- The project was created in TypeScript using the React.js library.
+- The project was created in <b>TypeScript</b> using the <b>React.js</b> library.
 
 - <b>SASS</b> preprocessor, <b>Bootstrap</b>, and <b>Material UI</b> for some ready-made components were used for styling.
 
-- Animations were implemented using the <b><u>GSAP</u></b> library by GreenSock.
+- Animations were implemented using the <b>GSAP</b> library by GreenSock.
 
-- State management: Redux
+- State management: <b>Redux</b>
+
+<i>Only desktop version. Project is still in progres...</i>
 
 ## Getting Started with Create React App
 
