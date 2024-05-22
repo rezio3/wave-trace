@@ -5,6 +5,7 @@ import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
+import { Tooltip } from "@mui/material";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const name = props.title.slice(0, 26) + "...";
@@ -18,20 +19,27 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         {props.title.length > 26 ? name : props.title}
       </TableCell>
       <TableCell align="left" title={props.description}>
-        {props.description.length > 26
-          ? description
-          : props.description}
+        {props.description.length > 26 ? description : props.description}
       </TableCell>
       <TableCell align="left">0.00$</TableCell>
       <TableCell align="left">05.05.2024</TableCell>
       <TableCell align="left">In progress...</TableCell>
       <TableCell align="right">
-        <Button variant="text">
-          <EditIcon className="text-white" />
-        </Button>
-        <Button variant="text" onClick={()=>{props.deleteOrder(props.orderId)}}>
-          <DeleteIcon className="text-white" />
-        </Button>
+        <Tooltip title="Edit">
+          <Button variant="text">
+            <EditIcon className="text-white" />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Delete">
+          <Button
+            variant="text"
+            onClick={() => {
+              props.deleteOrder(props.orderId);
+            }}
+          >
+            <DeleteIcon className="text-white" />
+          </Button>
+        </Tooltip>
       </TableCell>
     </TableRow>
   );
