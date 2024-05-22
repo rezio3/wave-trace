@@ -56,7 +56,6 @@ const CreateOrder = () => {
       console.error("Error adding document: ", e);
     }
   };
-// po pierwszym zamowieniu nie zamawia się kolejne
   return (
     <div className="container create-order-container">
       <Box
