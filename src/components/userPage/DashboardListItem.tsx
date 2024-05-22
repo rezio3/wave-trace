@@ -1,16 +1,15 @@
 import * as React from "react";
-import { DashboardListItemType } from "../../types";
+import { DashboardListItemProps } from "../../types";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 
-const DashboardListItem: React.FC<DashboardListItemType> = (props) => {
+const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   console.log(props);
   const name = props.title.slice(0, 26) + "...";
   const description = props.description.slice(0, 26) + "...";
-
   return (
     <TableRow
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -31,7 +30,7 @@ const DashboardListItem: React.FC<DashboardListItemType> = (props) => {
         <Button variant="text">
           <EditIcon className="text-white" />
         </Button>
-        <Button variant="text">
+        <Button variant="text" onClick={()=>{props.deleteOrder(props.orderId)}}>
           <DeleteIcon className="text-white" />
         </Button>
       </TableCell>

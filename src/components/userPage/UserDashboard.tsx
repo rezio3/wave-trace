@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DashboardListItem from "./DashboardListItem";
 import { v4 as uuidv4 } from "uuid";
-import { getDatabase, ref, get } from "firebase/database";
+import { Order } from "../../types";
 import {
   UserReturnState,
   UserDetails,
@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { app } from "../../firebase";
 import { useEffect, useState } from "react";
 import "../../Loader.scss";
-import { doc, getFirestore } from "firebase/firestore";
+import { doc, getFirestore, deleteDoc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
 
 const UserDashboard = () => {
@@ -28,41 +28,34 @@ const UserDashboard = () => {
   const currentUser = useSelector<UserReturnState, UserDetails>(
     (state) => state.data.user.user
   );
+  const db = getFirestore(app);
 
-  useEffect(() => {
-    const showOrderHandler = async () => {
-      const db = getFirestore(app);
-      const querySnapshot = await getDocs(
-        collection(db, `orders_${currentUser.email}`)
-      ).catch(() => {
-        return;
+  const showOrderHandler = async () => {
+    setLoading(true);
+    const querySnapshot = await getDocs(
+      collection(db, `orders_${currentUser.email}`)
+    ).catch(() => {
+      return;
+    });
+    let tempArr: Order[] = [];
+    if (querySnapshot) {
+      querySnapshot.forEach((doc) => {
+        tempArr.push(doc.data() as Order);
+        setOrders(tempArr);
+        setLoading(false);
       });
-      let tempArr: any[] = [];
-      if (querySnapshot) {
-        querySnapshot.forEach((doc) => {
-          tempArr.push(doc.data());
-          setOrders(tempArr);
-          setLoading(false);
-        });
-      }
-      setLoading(false);
-
-      // const db = getDatabase(app);
-      // const dbRef = ref(db, `${currentUser.uid}/orders`);
-      // const snapshot = await get(dbRef);
-      // if (snapshot.exists()) {
-      //   setOrders(Object.values(snapshot.val()));
-      //   setLoading(false);
-      // } else if (snapshot.val() === null) {
-      //   setLoading(false);
-      // } else {
-      //   alert("error");
-      // }
-      // console.log(orders);
-    };
+    }
+    setLoading(false);
+  };
+  useEffect(() => {
     showOrderHandler();
   }, []);
-
+  const deleteOrder = async (id: string) => {
+    await deleteDoc(doc(db, `orders_${currentUser.email}`, id));
+    showOrderHandler();
+  };
+  console.log(orders);
+  // ????????????????????????????????????
   return (
     <>
       <CssBaseline />
@@ -92,7 +85,9 @@ const UserDashboard = () => {
                         <DashboardListItem
                           title={e.title}
                           description={e.description}
+                          orderId={e.orderId}
                           key={uuidv4()}
+                          deleteOrder={deleteOrder}
                         />
                       ))}
                     </TableBody>

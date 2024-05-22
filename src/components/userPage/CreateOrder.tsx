@@ -4,17 +4,18 @@ import Button from "@mui/material/Button";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import "./createOrder.scss";
 import { useState } from "react";
-import { getDatabase, push, ref, set, get } from "firebase/database";
 import { app } from "../../firebase";
 import { useSelector } from "react-redux";
 import { UserReturnState, UserDetails } from "../../types";
-import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateOrder = () => {
   const [order, setOrder] = useState({
     title: "",
     description: "",
+    orderId: uuidv4(),
   });
 
   const titleInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,42 +39,24 @@ const CreateOrder = () => {
     const db = getFirestore(app);
     console.log(currentUser);
     try {
-      const docRef = await addDoc(
-        collection(db, `orders_${currentUser.email}`),
-        {
-          userId: currentUser.uid,
-          userEmail: currentUser.email,
-          title: order.title,
-          description: order.description,
-        }
-      );
-      console.log("Document written with ID: ", docRef.id);
+      await setDoc(doc(db, `orders_${currentUser.email}`, order.orderId), {
+        userId: currentUser.uid,
+        userEmail: currentUser.email,
+        title: order.title,
+        description: order.description,
+        orderId: order.orderId,
+      });
+
       setOrder({
+        ...order,
         title: "",
         description: "",
       });
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-
-    // const db = getDatabase(app);
-    // const newDocRef = push(ref(db, `${currentUser.uid}/orders`));
-    // set(newDocRef, {
-    //   title: order.title,
-    //   description: order.description,
-    // })
-    //   .then(() => {
-    //     alert("Order placed successfully");
-    //   })
-    //   .catch((error) => {
-    //     alert("error" + error);
-    //   });
-    // setOrder({
-    //   title: "",
-    //   description: "",
-    // });
   };
-
+// po pierwszym zamowieniu nie zamawia się kolejne
   return (
     <div className="container create-order-container">
       <Box

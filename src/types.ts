@@ -26,6 +26,13 @@ export type UserOrders = {
 export type DashboardListItemType = {
   title: string;
   description: string;
+  orderId: string,
+};
+export type DashboardListItemProps = {
+  title: string;
+  description: string;
+  orderId: string,
+  deleteOrder: (orderId: string)=> void;
 };
 
 export type LoginViewType = {
@@ -40,4 +47,12 @@ export type StepBoxProps = {
   number: string;
   header: string;
   txt: string;
+};
+
+export type Order = {
+  userId: string;
+  description: string;
+  userEmail: string;
+  title: string;
+  orderId: string;
 };
