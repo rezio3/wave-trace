@@ -7,7 +7,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
-  console.log(props);
   const name = props.title.slice(0, 26) + "...";
   const description = props.description.slice(0, 26) + "...";
   return (

@@ -32,6 +32,7 @@ const UserDashboard = () => {
 
   const showOrderHandler = async () => {
     setLoading(true);
+
     const querySnapshot = await getDocs(
       collection(db, `orders_${currentUser.email}`)
     ).catch(() => {
@@ -39,11 +40,17 @@ const UserDashboard = () => {
     });
     let tempArr: Order[] = [];
     if (querySnapshot) {
-      querySnapshot.forEach((doc) => {
-        tempArr.push(doc.data() as Order);
-        setOrders(tempArr);
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data());
+          tempArr.push(doc.data() as Order);
+          setOrders(tempArr);
+          setLoading(false);
+        });
+      } else {
+        setOrders([]);
         setLoading(false);
-      });
+      }
     }
     setLoading(false);
   };
@@ -54,7 +61,6 @@ const UserDashboard = () => {
     await deleteDoc(doc(db, `orders_${currentUser.email}`, id));
     showOrderHandler();
   };
-  console.log(orders);
   // ????????????????????????????????????
   return (
     <>
