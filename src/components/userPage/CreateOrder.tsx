@@ -37,7 +37,6 @@ const CreateOrder = () => {
 
   const sendRequestButtonHandler = async () => {
     const db = getFirestore(app);
-    console.log(currentUser);
     try {
       await setDoc(doc(db, `orders_${currentUser.email}`, order.orderId), {
         userId: currentUser.uid,

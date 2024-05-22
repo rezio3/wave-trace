@@ -42,7 +42,6 @@ const UserDashboard = () => {
     if (querySnapshot) {
       if (!querySnapshot.empty) {
         querySnapshot.forEach((doc) => {
-          console.log(doc.data());
           tempArr.push(doc.data() as Order);
           setOrders(tempArr);
           setLoading(false);
