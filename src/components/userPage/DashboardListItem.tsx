@@ -15,12 +15,48 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
       className="dashboard-order-item"
     >
-      <TableCell component="th" scope="row" title={props.title}>
-        {props.title.length > 26 ? name : props.title}
-      </TableCell>
-      <TableCell align="left" title={props.description}>
-        {props.description.length > 26 ? description : props.description}
-      </TableCell>
+      <Tooltip
+        title={props.title}
+        placement="bottom-start"
+        slotProps={{
+          popper: {
+            modifiers: [
+              {
+                name: "offset",
+
+                options: {
+                  offset: [10, -30],
+                },
+              },
+            ],
+          },
+        }}
+      >
+        <TableCell component="th" scope="row">
+          {props.title.length > 26 ? name : props.title}
+        </TableCell>
+      </Tooltip>
+      <Tooltip
+        title={props.description}
+        placement="bottom-start"
+        slotProps={{
+          popper: {
+            modifiers: [
+              {
+                name: "offset",
+
+                options: {
+                  offset: [10, -30],
+                },
+              },
+            ],
+          },
+        }}
+      >
+        <TableCell align="left">
+          {props.description.length > 26 ? description : props.description}
+        </TableCell>
+      </Tooltip>
       <TableCell align="left">0.00$</TableCell>
       <TableCell align="left">05.05.2024</TableCell>
       <TableCell align="left">In progress...</TableCell>
