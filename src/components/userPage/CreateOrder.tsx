@@ -47,7 +47,7 @@ const CreateOrder = () => {
       });
 
       setOrder({
-        ...order,
+        orderId: uuidv4(),
         title: "",
         description: "",
       });
