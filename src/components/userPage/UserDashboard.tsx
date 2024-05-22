@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import "../../Loader.scss";
 import { doc, getFirestore, deleteDoc } from "firebase/firestore";
 import { collection, getDocs } from "firebase/firestore";
+import LoadingOverlay from "../ButtonLoading";
 
 const UserDashboard = () => {
   const [orders, setOrders] = useState<DashboardListItemType[]>([]);
@@ -57,6 +58,7 @@ const UserDashboard = () => {
     showOrderHandler();
   }, []);
   const deleteOrder = async (id: string) => {
+    setLoading(true);
     await deleteDoc(doc(db, `orders_${currentUser.email}`, id));
     showOrderHandler();
   };

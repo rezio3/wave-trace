@@ -9,3 +9,19 @@ p {
 .create-order-container {
     padding-top: 10px;
 }
+.button-and-alert-height{
+    height: 50px;
+}
+.success-alert{
+    opacity: 0;
+    animation: success-alert .5s ease-out forwards;
+}
+
+@keyframes success-alert {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

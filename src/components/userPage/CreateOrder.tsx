@@ -10,6 +10,8 @@ import { UserReturnState, UserDetails } from "../../types";
 import { doc, setDoc } from "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import ButtonLoading from "../ButtonLoading";
+import { Alert } from "@mui/material";
 
 const CreateOrder = () => {
   const [order, setOrder] = useState({
@@ -17,6 +19,8 @@ const CreateOrder = () => {
     description: "",
     orderId: uuidv4(),
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const titleInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrder({
@@ -37,6 +41,7 @@ const CreateOrder = () => {
 
   const sendRequestButtonHandler = async () => {
     const db = getFirestore(app);
+    setIsLoading(true);
     try {
       await setDoc(doc(db, `orders_${currentUser.email}`, order.orderId), {
         userId: currentUser.uid,
@@ -51,8 +56,15 @@ const CreateOrder = () => {
         title: "",
         description: "",
       });
+      setIsLoading(false);
+      setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 2000);
     } catch (e) {
       console.error("Error adding document: ", e);
+      alert("Something went wrong. Try again.");
+      setIsLoading(false);
     }
   };
   return (
@@ -96,13 +108,25 @@ const CreateOrder = () => {
               abbbababaaa hababbahahabab ab ab abbababbabab haba ".
             </p>
           </div>
-          <Button
-            variant="contained"
-            className="mt-4 font-weight-bold"
-            onClick={sendRequestButtonHandler}
-          >
-            Send request
-          </Button>
+          <div className="d-flex align-items-end mt-4">
+            <Button
+              variant="contained"
+              className="font-weight-bold button-and-alert-height"
+              onClick={sendRequestButtonHandler}
+            >
+              Send request
+              {isLoading ? <ButtonLoading /> : null}
+            </Button>
+            {success ? (
+              <Alert
+                variant="outlined"
+                severity="success"
+                className="ms-4 button-and-alert-height success-alert"
+              >
+                Order placed successfully!
+              </Alert>
+            ) : null}
+          </div>
         </div>
       </Box>
     </div>
