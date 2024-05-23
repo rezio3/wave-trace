@@ -21,6 +21,7 @@ const CreateOrder = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
   const titleInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrder({
@@ -40,6 +41,11 @@ const CreateOrder = () => {
   );
 
   const sendRequestButtonHandler = async () => {
+    if (order.title === "" || order.description === "") {
+      setError(true);
+      return;
+    }
+    setError(false);
     const db = getFirestore(app);
     setIsLoading(true);
     try {
@@ -63,7 +69,7 @@ const CreateOrder = () => {
       }, 2000);
     } catch (e) {
       console.error("Error adding document: ", e);
-      alert("Something went wrong. Try again.");
+      alert("Something went wrong. Please try again.");
       setIsLoading(false);
     }
   };
@@ -78,7 +84,7 @@ const CreateOrder = () => {
         }}
         className="p-5 d-flex flex-column align-items-start my-0"
       >
-        <h4>Place an order</h4>
+        <h4 className="mb-4">Place an order</h4>
         <div className="w-100 d-flex flex-column align-items-start">
           <div className="w-100 d-flex align-items-center">
             <TextField
@@ -124,6 +130,15 @@ const CreateOrder = () => {
                 className="ms-4 button-and-alert-height success-alert"
               >
                 Order placed successfully!
+              </Alert>
+            ) : null}
+            {error ? (
+              <Alert
+                variant="outlined"
+                severity="error"
+                className="ms-4 button-and-alert-height succes-alert"
+              >
+                Fields cannot be empty!
               </Alert>
             ) : null}
           </div>
