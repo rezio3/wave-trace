@@ -26,13 +26,13 @@ export type UserOrders = {
 export type DashboardListItemType = {
   title: string;
   description: string;
-  orderId: string,
+  orderId: string;
 };
 export type DashboardListItemProps = {
   title: string;
   description: string;
-  orderId: string,
-  deleteOrder: (orderId: string)=> void;
+  orderId: string;
+  deleteOrder: (orderId: string) => void;
 };
 
 export type LoginViewType = {
@@ -55,4 +55,11 @@ export type Order = {
   userEmail: string;
   title: string;
   orderId: string;
+};
+
+export type EditOrderProps = {
+  openEditDialog: boolean;
+  setOpenEditDialog: (openEditDialog: boolean) => void;
+  title: string;
+  description: string;
 };

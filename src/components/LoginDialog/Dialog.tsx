@@ -26,18 +26,24 @@ function SimpleDialog(props: SimpleDialogProps) {
     onClose(selectedValue);
   };
 
-  const handleChangeLoginWindow = ()=>{
+  const handleChangeLoginWindow = () => {
     setLoginView(!loginView);
-  }
+  };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      open={open}
-      className="dialog-parent"
-    >
+    <Dialog onClose={handleClose} open={open} className="dialog-parent">
       <div className="d-flex align-items-center justify-content-center p-4 dialog-window">
-        {loginView ? <Login loginViewHandler={handleChangeLoginWindow} isLoginView={loginView}/> : <SignUp loginViewHandler={handleChangeLoginWindow} isLoginView={loginView}/>}
+        {loginView ? (
+          <Login
+            loginViewHandler={handleChangeLoginWindow}
+            isLoginView={loginView}
+          />
+        ) : (
+          <SignUp
+            loginViewHandler={handleChangeLoginWindow}
+            isLoginView={loginView}
+          />
+        )}
       </div>
     </Dialog>
   );
@@ -49,6 +55,14 @@ export default function SimpleDialogDemo() {
   const user = useSelector<UserReturnState, UserDetails>(
     (state) => state.data.user.user
   );
+  const userEmail = user.email;
+  const getUserName = () => {
+    if (userEmail) {
+      return userEmail.split("@")[0];
+    } else {
+      return false;
+    }
+  };
 
   React.useEffect(() => {
     setOpen(false);
@@ -69,7 +83,11 @@ export default function SimpleDialogDemo() {
     setSelectedValue(value);
   };
   return (
-    <div className="d-flex justify-content-end">
+    <div className="d-flex justify-content-end align-items-center">
+      {getUserName() ? (
+        <span className="me-3 welcome-nav-text text-secondary">Logged in as {getUserName()}</span>
+      ) : null}
+
       {user.email ? (
         <Button variant="outlined" onClick={handleLogout} className="log-btn">
           Logout
