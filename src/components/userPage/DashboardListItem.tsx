@@ -5,10 +5,39 @@ import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-import { Tooltip } from "@mui/material";
+import { Paper, Tooltip, paperClasses } from "@mui/material";
 import EditOrderDialog from "./EditOrderDialog";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import { WidthNormal, WidthWide } from "@mui/icons-material";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
+  const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
+    null
+  );
+  const [anchorElDescription, setAnchorElDescription] =
+    React.useState<HTMLElement | null>(null);
+
+  const handlePopoverTitleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElTitle(event.currentTarget);
+  };
+
+  const handlePopoverTitleClose = () => {
+    setAnchorElTitle(null);
+  };
+  const handlePopoverDescriptionOpen = (
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    setAnchorElDescription(event.currentTarget);
+  };
+
+  const handlePopoverDescriptionClose = () => {
+    setAnchorElDescription(null);
+  };
+
+  const openTitle = Boolean(anchorElTitle);
+  const openDescription = Boolean(anchorElDescription);
+
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
   const handleClickEdit = () => {
     setOpenEditDialog(true);
@@ -22,48 +51,68 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         className="dashboard-order-item"
       >
-        <Tooltip
-          title={props.title}
-          placement="bottom-start"
-          slotProps={{
-            popper: {
-              modifiers: [
-                {
-                  name: "offset",
-
-                  options: {
-                    offset: [10, -30],
-                  },
-                },
-              ],
-            },
+        <TableCell
+          component="th"
+          scope="row"
+          onMouseEnter={handlePopoverTitleOpen}
+          onMouseLeave={handlePopoverTitleClose}
+        >
+          {props.title.length > 26 ? name : props.title}
+        </TableCell>
+        <Popover
+          id="mouse-over-popover"
+          sx={{
+            pointerEvents: "none",
+          }}
+          open={openTitle}
+          anchorEl={anchorElTitle}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: 10,
+            horizontal: "left",
+          }}
+          onClose={handlePopoverTitleClose}
+          disableRestoreFocus
+          PaperProps={{
+            style: { maxWidth: "300px" },
           }}
         >
-          <TableCell component="th" scope="row">
-            {props.title.length > 26 ? name : props.title}
-          </TableCell>
-        </Tooltip>
-        <Tooltip
-          title={props.description}
-          placement="bottom-start"
-          slotProps={{
-            popper: {
-              modifiers: [
-                {
-                  name: "offset",
+          <Typography sx={{ p: 3 }}>{props.title}</Typography>
+        </Popover>
 
-                  options: {
-                    offset: [10, -30],
-                  },
-                },
-              ],
-            },
+        <TableCell
+          align="left"
+          onMouseEnter={handlePopoverDescriptionOpen}
+          onMouseLeave={handlePopoverDescriptionClose}
+        >
+          {props.description.length > 26 ? description : props.description}
+        </TableCell>
+        <Popover
+          id="mouse-over-popover"
+          sx={{
+            pointerEvents: "none",
+          }}
+          open={openDescription}
+          anchorEl={anchorElDescription}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: 10,
+            horizontal: "left",
+          }}
+          onClose={handlePopoverTitleClose}
+          disableRestoreFocus
+          PaperProps={{
+            style: { maxWidth: "500px" },
           }}
         >
-          <TableCell align="left">
-            {props.description.length > 26 ? description : props.description}
-          </TableCell>
-        </Tooltip>
+          <Typography sx={{ p: 3 }}>{props.description}</Typography>
+        </Popover>
         <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">05.05.2024</TableCell>
         <TableCell align="left">In progress...</TableCell>
