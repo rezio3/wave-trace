@@ -38,11 +38,11 @@ const EditOrderDialog: React.FC<EditOrderProps> = (props) => {
           },
         }}
       >
-        <DialogTitle>{props.title}</DialogTitle>
+        <DialogTitle className="mb-2">{props.title}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            Change description of your order. Remember that you have 2 hours for
-            change description since you place an order.
+          <DialogContentText className="mb-4">
+            Change the description of your order. Remember that you can change
+            the description within 2 hours of placing the order.
           </DialogContentText>
           <TextField
             autoFocus
