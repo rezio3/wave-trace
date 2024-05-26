@@ -66,3 +66,9 @@ export type EditOrderProps = {
   orderId: string;
   showOrderHandler: () => void;
 };
+
+export type OrderForm = {
+  title: string;
+  description: string;
+  orderId: string;
+}

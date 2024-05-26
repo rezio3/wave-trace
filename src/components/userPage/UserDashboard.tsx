@@ -36,7 +36,6 @@ const UserDashboard = () => {
     showOrderHandler();
   }, []);
   const deleteOrder = async (id: string) => {
-    setLoading(true);
     await deleteDoc(doc(db, `orders_${currentUser.email}`, id));
     showOrderHandler();
   };

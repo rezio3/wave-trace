@@ -4,14 +4,12 @@ import Button from "@mui/material/Button";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import "./createOrder.scss";
 import { useState } from "react";
-import { app } from "../../firebase";
 import { useSelector } from "react-redux";
 import { UserReturnState, UserDetails } from "../../types";
-import { doc, setDoc } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import ButtonLoading from "../ButtonLoading";
 import { Alert } from "@mui/material";
+import { createOrder } from "./ordersManagement/createOrder";
 
 const CreateOrderForm = () => {
   const [order, setOrder] = useState({
@@ -41,37 +39,14 @@ const CreateOrderForm = () => {
   );
 
   const sendRequestButtonHandler = async () => {
-    if (order.title === "" || order.description === "") {
-      setError(true);
-      return;
-    }
-    setError(false);
-    const db = getFirestore(app);
-    setIsLoading(true);
-    try {
-      await setDoc(doc(db, `orders_${currentUser.email}`, order.orderId), {
-        userId: currentUser.uid,
-        userEmail: currentUser.email,
-        title: order.title,
-        description: order.description,
-        orderId: order.orderId,
-      });
-
-      setOrder({
-        orderId: uuidv4(),
-        title: "",
-        description: "",
-      });
-      setIsLoading(false);
-      setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-      }, 2000);
-    } catch (e) {
-      console.error("Error adding document: ", e);
-      alert("Something went wrong. Please try again.");
-      setIsLoading(false);
-    }
+    createOrder(
+      setIsLoading,
+      setSuccess,
+      setError,
+      order,
+      setOrder,
+      currentUser
+    );
   };
   return (
     <div className="container create-order-container">
