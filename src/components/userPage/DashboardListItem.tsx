@@ -5,11 +5,10 @@ import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Button from "@mui/material/Button";
-import { Paper, Tooltip, paperClasses } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import EditOrderDialog from "./EditOrderDialog";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import { WidthNormal, WidthWide } from "@mui/icons-material";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
@@ -139,6 +138,8 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         setOpenEditDialog={setOpenEditDialog}
         title={props.title}
         description={props.description}
+        orderId={props.orderId}
+        showOrderHandler={props.showOrderHandler}
       />
     </>
   );

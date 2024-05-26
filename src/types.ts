@@ -33,6 +33,7 @@ export type DashboardListItemProps = {
   description: string;
   orderId: string;
   deleteOrder: (orderId: string) => void;
+  showOrderHandler: () => void;
 };
 
 export type LoginViewType = {
@@ -62,4 +63,6 @@ export type EditOrderProps = {
   setOpenEditDialog: (openEditDialog: boolean) => void;
   title: string;
   description: string;
+  orderId: string;
+  showOrderHandler: () => void;
 };

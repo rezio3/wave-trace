@@ -93,6 +93,7 @@ const UserDashboard = () => {
                           orderId={e.orderId}
                           key={uuidv4()}
                           deleteOrder={deleteOrder}
+                          showOrderHandler={showOrderHandler}
                         />
                       ))}
                     </TableBody>

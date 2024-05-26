@@ -7,16 +7,33 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { EditOrderProps } from "../../types";
+import { getFirestore, updateDoc, doc } from "firebase/firestore";
+import { app } from "../../firebase";
+import { useSelector } from "react-redux";
+import { UserReturnState, UserDetails } from "../../types";
 
 const EditOrderDialog: React.FC<EditOrderProps> = (props) => {
   const [editValue, setEditValue] = React.useState<string>();
+  const db = getFirestore(app);
+  const currentUser = useSelector<UserReturnState, UserDetails>(
+    (state) => state.data.user.user
+  );
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditValue(e.target.value);
   };
   const handleClose = () => {
     props.setOpenEditDialog(false);
   };
-
+  const handleSave = async () => {
+    const updatedOrder = {
+      description: editValue,
+    };
+    await updateDoc(
+      doc(db, `orders_${currentUser.email}`, props.orderId),
+      updatedOrder
+    );
+    props.showOrderHandler();
+  };
   React.useEffect(() => {
     setEditValue(props.description);
   }, []);
@@ -61,7 +78,9 @@ const EditOrderDialog: React.FC<EditOrderProps> = (props) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Save</Button>
+          <Button type="submit" onClick={handleSave}>
+            Save
+          </Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
