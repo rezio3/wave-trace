@@ -8,7 +8,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DashboardListItem from "./DashboardListItem";
 import { v4 as uuidv4 } from "uuid";
-import { Order } from "../../types";
 import {
   UserReturnState,
   UserDetails,
@@ -19,7 +18,7 @@ import { app } from "../../firebase";
 import { useEffect, useState } from "react";
 import "../../Loader.scss";
 import { doc, getFirestore, deleteDoc } from "firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
+import { updateOrdersView } from "./ordersManagement/updateOrderView";
 
 const UserDashboard = () => {
   const [orders, setOrders] = useState<DashboardListItemType[]>([]);
@@ -31,27 +30,7 @@ const UserDashboard = () => {
   const db = getFirestore(app);
 
   const showOrderHandler = async () => {
-    setLoading(true);
-
-    const querySnapshot = await getDocs(
-      collection(db, `orders_${currentUser.email}`)
-    ).catch(() => {
-      return;
-    });
-    let tempArr: Order[] = [];
-    if (querySnapshot) {
-      if (!querySnapshot.empty) {
-        querySnapshot.forEach((doc) => {
-          tempArr.push(doc.data() as Order);
-          setOrders(tempArr);
-          setLoading(false);
-        });
-      } else {
-        setOrders([]);
-        setLoading(false);
-      }
-    }
-    setLoading(false);
+    updateOrdersView(setLoading, setOrders, currentUser)
   };
   useEffect(() => {
     showOrderHandler();
