@@ -1,9 +1,4 @@
 import { useState } from "react";
-import { getDatabase, ref, set, push, get } from "firebase/database";
-import { app } from "../../firebase";
-import { UserOrders } from "../../types";
-import { useSelector } from "react-redux";
-import { UserDetails, UserReturnState } from "../../types";
 import UserDashboard from "./UserDashboard";
 import "./dashboard.scss";
 import CreateOrderForm from "./CreateOrderForm";
