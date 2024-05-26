@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from "uuid";
 import ButtonLoading from "../ButtonLoading";
 import { Alert } from "@mui/material";
 
-const CreateOrder = () => {
+const CreateOrderForm = () => {
   const [order, setOrder] = useState({
     title: "",
     description: "",
@@ -148,4 +148,4 @@ const CreateOrder = () => {
   );
 };
 
-export default CreateOrder;
+export default CreateOrderForm;
