@@ -72,3 +72,7 @@ export type OrderForm = {
   description: string;
   orderId: string;
 }
+
+export type UserNavProps = {
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+};

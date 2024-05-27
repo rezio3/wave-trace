@@ -19,8 +19,11 @@ import { useEffect, useState } from "react";
 import "../../Loader.scss";
 import { doc, getFirestore, deleteDoc } from "firebase/firestore";
 import { updateOrdersView } from "./ordersManagement/updateOrderView";
+import { Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { UserNavProps } from "../../types";
 
-const UserDashboard = () => {
+const UserDashboard: React.FC<UserNavProps> = (props) => {
   const [orders, setOrders] = useState<DashboardListItemType[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +33,7 @@ const UserDashboard = () => {
   const db = getFirestore(app);
 
   const showOrderHandler = async () => {
-    updateOrdersView(setLoading, setOrders, currentUser)
+    updateOrdersView(setLoading, setOrders, currentUser);
   };
   useEffect(() => {
     showOrderHandler();
@@ -38,6 +41,10 @@ const UserDashboard = () => {
   const deleteOrder = async (id: string) => {
     await deleteDoc(doc(db, `orders_${currentUser.email}`, id));
     showOrderHandler();
+  };
+
+  const placeAnOrderHandler = () => {
+    props.setPage(1);
   };
   return (
     <>
@@ -77,9 +84,18 @@ const UserDashboard = () => {
                     </TableBody>
                   </Table>
                 ) : (
-                  <>
-                    <h1>No content</h1>
-                  </>
+                  <div className="d-flex flex-column align-items-center">
+                    <span className="text-secondary">
+                      You don't have any orders yet.
+                    </span>
+                    <Button
+                      variant="text"
+                      className="mt-4"
+                      onClick={placeAnOrderHandler}
+                    >
+                      Place an order <AddIcon className="ms-2"/>
+                    </Button>
+                  </div>
                 )}
               </>
             )}

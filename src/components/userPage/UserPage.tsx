@@ -8,7 +8,7 @@ import "./userPage.scss";
 const UserPage = () => {
   const [page, setPage] = useState(0);
 
-  const pages = [<UserDashboard />, <CreateOrderForm />];
+  const pages = [<UserDashboard setPage={setPage}/>, <CreateOrderForm />];
 
   return (
     <div className="w-100 user-page-container">

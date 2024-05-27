@@ -10,10 +10,7 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "./userNav.scss";
-
-type UserNavProps = {
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-};
+import { UserNavProps } from "../../types";
 
 const UserNav: React.FC<UserNavProps> = (props) => {
   const newOrderHandler = () => {
