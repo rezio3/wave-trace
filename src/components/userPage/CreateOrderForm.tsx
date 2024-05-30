@@ -87,9 +87,9 @@ const CreateOrderForm = () => {
             <p className="w-25 mb-0">
               A detailed description of the music you need. You can describe the
               scene, character, mood, emotions, instruments to be used,
-              electronic ambiences, reverberation, etc. Remember that the more
+              electronic ambiences, reverberation, etc. <u>Remember that the more
               precisely you describe what you need, the more accurately your
-              piece will be composed. <br />If you're inspired by other music or want
+              piece will be composed.</u> <br />If you're inspired by other music or want
               something similar to an existing one, <u>please add a link from
               Spotify, YouTube, SoundCloud</u>, or any other platform so that we can
               also take it into consideration.

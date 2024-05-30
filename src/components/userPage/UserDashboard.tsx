@@ -66,6 +66,7 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                         <TableCell align="left">Description</TableCell>
                         <TableCell align="left">Price</TableCell>
                         <TableCell align="left">Created</TableCell>
+                        <TableCell align="left"></TableCell>
                         <TableCell align="left">Status</TableCell>
                         <TableCell align="left"></TableCell>
                       </TableRow>

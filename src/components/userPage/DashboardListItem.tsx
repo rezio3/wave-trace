@@ -10,6 +10,8 @@ import EditOrderDialog from "./EditOrderDialog";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { checkTimeDifference } from "./ordersManagement/editCapability";
+import InfoIcon from "@mui/icons-material/Info";
+import "./dashboard.scss";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
@@ -17,7 +19,11 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   );
   const [anchorElDescription, setAnchorElDescription] =
     React.useState<HTMLElement | null>(null);
+  const [anchorElDate, setAnchorElDate] = React.useState<HTMLElement | null>(
+    null
+  );
   const [isEditable, setIsEditable] = React.useState(true);
+
   const handlePopoverTitleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElTitle(event.currentTarget);
   };
@@ -34,9 +40,17 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const handlePopoverDescriptionClose = () => {
     setAnchorElDescription(null);
   };
+  const handlePopoverDateOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElDate(event.currentTarget);
+  };
+
+  const handlePopoverDateClose = () => {
+    setAnchorElDate(null);
+  };
 
   const openTitle = Boolean(anchorElTitle);
   const openDescription = Boolean(anchorElDescription);
+  const openDate = Boolean(anchorElDate);
 
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
   const handleClickEdit = () => {
@@ -116,6 +130,40 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         </Popover>
         <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">{props.createdDate}</TableCell>
+        <TableCell
+          align="left"
+          onMouseEnter={handlePopoverDateOpen}
+          onMouseLeave={handlePopoverDateClose}
+        >
+          <InfoIcon className="ms-2" />
+        </TableCell>
+        <Popover
+          id="mouse-over-popover"
+          sx={{
+            pointerEvents: "none",
+          }}
+          open={openDate}
+          anchorEl={anchorElDate}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: 10,
+            horizontal: "right",
+          }}
+          onClose={handlePopoverTitleClose}
+          disableRestoreFocus
+          PaperProps={{
+            style: { maxWidth: "500px" },
+          }}
+        >
+          <Typography sx={{ p: 3 }} variant="body2" className="pop-over-typography">
+            Your composition will be ready within 24 hours of placing the order.
+            Editing capability for the description will be disabled after 2
+            hours.
+          </Typography>
+        </Popover>
         <TableCell align="left">In progress...</TableCell>
         <TableCell align="right">
           <Tooltip title="Edit">
