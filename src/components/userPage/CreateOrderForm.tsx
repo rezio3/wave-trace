@@ -3,24 +3,26 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import "./createOrder.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { UserReturnState, UserDetails } from "../../types";
+import { UserReturnState, UserDetails, Order } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 import ButtonLoading from "../ButtonLoading";
 import { Alert } from "@mui/material";
 import { createOrder } from "./ordersManagement/createOrder";
+import { checkOrderLimit } from "./ordersManagement/checkOrderLimit";
 
 const CreateOrderForm = () => {
   const [order, setOrder] = useState({
     title: "",
     description: "",
     orderId: uuidv4(),
-    createdDate: ""
+    createdDate: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [isLimit, setIsLimit] = useState(false);
 
   const titleInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOrder({
@@ -40,15 +42,22 @@ const CreateOrderForm = () => {
   );
 
   const sendRequestButtonHandler = async () => {
-    createOrder(
-      setIsLoading,
-      setSuccess,
-      setError,
-      order,
-      setOrder,
-      currentUser
-    );
+    checkOrderLimit(currentUser, setIsLimit);
+    if (!isLimit) {
+      createOrder(
+        setIsLoading,
+        setSuccess,
+        setError,
+        order,
+        setOrder,
+        currentUser
+      );
+    }
   };
+
+  useEffect(() => {
+    checkOrderLimit(currentUser, setIsLimit);
+  }, []);
   return (
     <div className="container create-order-container">
       <Box
@@ -87,12 +96,16 @@ const CreateOrderForm = () => {
             <p className="w-25 mb-0">
               A detailed description of the music you need. You can describe the
               scene, character, mood, emotions, instruments to be used,
-              electronic ambiences, reverberation, etc. <u>Remember that the more
-              precisely you describe what you need, the more accurately your
-              piece will be composed.</u> <br />If you're inspired by other music or want
-              something similar to an existing one, <u>please add a link from
-              Spotify, YouTube, SoundCloud</u>, or any other platform so that we can
-              also take it into consideration.
+              electronic ambiences, reverberation, etc.{" "}
+              <u>
+                Remember that the more precisely you describe what you need, the
+                more accurately your piece will be composed.
+              </u>
+              <br />
+              If you're inspired by other music or want something similar to an
+              existing one,{" "}
+              <u>please add a link from Spotify, YouTube, SoundCloud</u>, or any
+              other platform so that we can also take it into consideration.
             </p>
           </div>
           <div className="d-flex align-items-end mt-4">
@@ -117,9 +130,19 @@ const CreateOrderForm = () => {
               <Alert
                 variant="outlined"
                 severity="error"
-                className="ms-4 button-and-alert-height succes-alert"
+                className="ms-4 button-and-alert-height success-alert"
               >
                 Fields cannot be empty!
+              </Alert>
+            ) : null}
+            {isLimit ? (
+              <Alert
+                variant="outlined"
+                severity="info"
+                className="ms-4 button-and-alert-height success-alert"
+              >
+                You have reached the limit of 3 orders per day. Please come back
+                tomorrow.
               </Alert>
             ) : null}
           </div>

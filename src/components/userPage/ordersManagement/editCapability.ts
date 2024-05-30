@@ -14,7 +14,6 @@ export const checkTimeDifference = (
 
   const timeDifference = currentDateTime.getTime() - stateDateTime.getTime();
   const hoursDifference = timeDifference / (1000 * 60 * 60);
-  console.log(hoursDifference);
 
   if (hoursDifference >= 2) {
     setIsEditable(false);
