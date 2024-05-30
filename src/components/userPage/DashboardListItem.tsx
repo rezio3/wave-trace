@@ -9,6 +9,7 @@ import { Tooltip } from "@mui/material";
 import EditOrderDialog from "./EditOrderDialog";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
+import { checkTimeDifference } from "./ordersManagement/editCapability";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
@@ -16,7 +17,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   );
   const [anchorElDescription, setAnchorElDescription] =
     React.useState<HTMLElement | null>(null);
-
+  const [isEditable, setIsEditable] = React.useState(true);
   const handlePopoverTitleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElTitle(event.currentTarget);
   };
@@ -39,6 +40,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
 
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
   const handleClickEdit = () => {
+    checkTimeDifference(props.createdDate, setIsEditable);
     setOpenEditDialog(true);
   };
 
@@ -113,7 +115,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
           <Typography sx={{ p: 3 }}>{props.description}</Typography>
         </Popover>
         <TableCell align="left">0.00$</TableCell>
-        <TableCell align="left">05.05.2024</TableCell>
+        <TableCell align="left">{props.createdDate}</TableCell>
         <TableCell align="left">In progress...</TableCell>
         <TableCell align="right">
           <Tooltip title="Edit">
@@ -140,6 +142,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         description={props.description}
         orderId={props.orderId}
         showOrderHandler={props.showOrderHandler}
+        isEditable={isEditable}
       />
     </>
   );

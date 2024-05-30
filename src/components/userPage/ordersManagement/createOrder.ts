@@ -17,6 +17,8 @@ export const createOrder = async (
     return;
   }
   setError(false);
+  const now = new Date();
+  const dateOfOrder = now.toLocaleString(); 
   const db = getFirestore(app);
   setIsLoading(true);
   try {
@@ -26,12 +28,14 @@ export const createOrder = async (
       title: order.title,
       description: order.description,
       orderId: order.orderId,
+      createdDate: dateOfOrder,
     });
 
     setOrder({
       orderId: uuidv4(),
       title: "",
       description: "",
+      createdDate: "",
     });
     setIsLoading(false);
     setSuccess(true);

@@ -27,11 +27,13 @@ export type DashboardListItemType = {
   title: string;
   description: string;
   orderId: string;
+  createdDate: string;
 };
 export type DashboardListItemProps = {
   title: string;
   description: string;
   orderId: string;
+  createdDate: string;
   deleteOrder: (orderId: string) => void;
   showOrderHandler: () => void;
 };
@@ -56,6 +58,7 @@ export type Order = {
   userEmail: string;
   title: string;
   orderId: string;
+  createdDate: string;
 };
 
 export type EditOrderProps = {
@@ -65,13 +68,15 @@ export type EditOrderProps = {
   description: string;
   orderId: string;
   showOrderHandler: () => void;
+  isEditable: boolean;
 };
 
 export type OrderForm = {
   title: string;
   description: string;
   orderId: string;
-}
+  createdDate: string;
+};
 
 export type UserNavProps = {
   setPage: React.Dispatch<React.SetStateAction<number>>;

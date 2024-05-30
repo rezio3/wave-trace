@@ -76,6 +76,7 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                           title={e.title}
                           description={e.description}
                           orderId={e.orderId}
+                          createdDate={e.createdDate}
                           key={uuidv4()}
                           deleteOrder={deleteOrder}
                           showOrderHandler={showOrderHandler}
@@ -93,7 +94,7 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                       className="mt-4"
                       onClick={placeAnOrderHandler}
                     >
-                      Place an order <AddIcon className="ms-2"/>
+                      Place an order <AddIcon className="ms-2" />
                     </Button>
                   </div>
                 )}

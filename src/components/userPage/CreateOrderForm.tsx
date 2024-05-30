@@ -16,6 +16,7 @@ const CreateOrderForm = () => {
     title: "",
     description: "",
     orderId: uuidv4(),
+    createdDate: ""
   });
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -70,7 +71,7 @@ const CreateOrderForm = () => {
               value={order.title}
             />
             <ArrowLeftIcon className="ms-4 arrow-icon" />
-            <p className="mb-0">Przykład: "Muzyka do musicalu".</p>
+            <p className="mb-0">Example: "Music for a fight scene"</p>
           </div>
           <div className="mt-4 w-100 d-flex align-items-center">
             <TextField
@@ -84,9 +85,14 @@ const CreateOrderForm = () => {
             />
             <ArrowLeftIcon className="ms-4 arrow-icon" />
             <p className="w-25 mb-0">
-              Opis tego co potrzebujesz. Może być to ogólny skrócony zarys
-              sceny, postaci, fabuły. Przykład: "habababa baba baa ba
-              abbbababaaa hababbahahabab ab ab abbababbabab haba ".
+              A detailed description of the music you need. You can describe the
+              scene, character, mood, emotions, instruments to be used,
+              electronic ambiences, reverberation, etc. Remember that the more
+              precisely you describe what you need, the more accurately your
+              piece will be composed. <br />If you're inspired by other music or want
+              something similar to an existing one, <u>please add a link from
+              Spotify, YouTube, SoundCloud</u>, or any other platform so that we can
+              also take it into consideration.
             </p>
           </div>
           <div className="d-flex align-items-end mt-4">
