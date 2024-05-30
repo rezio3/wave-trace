@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/wave-trace/static/css/main.69dd99fa.css",
-    "main.js": "/wave-trace/static/js/main.f70fae57.js",
+    "main.css": "/wave-trace/static/css/main.0b15de11.css",
+    "main.js": "/wave-trace/static/js/main.80ec42cb.js",
     "static/media/waves-bg.mp4": "/wave-trace/static/media/waves-bg.3cb6d0662abd47e052a4.mp4",
     "static/media/hz.png": "/wave-trace/static/media/hz.549d19ce4948e08f72d7.png",
     "static/media/pigments.png": "/wave-trace/static/media/pigments.08431fe5642a472a8507.png",
     "index.html": "/wave-trace/index.html",
-    "main.69dd99fa.css.map": "/wave-trace/static/css/main.69dd99fa.css.map",
-    "main.f70fae57.js.map": "/wave-trace/static/js/main.f70fae57.js.map"
+    "main.0b15de11.css.map": "/wave-trace/static/css/main.0b15de11.css.map",
+    "main.80ec42cb.js.map": "/wave-trace/static/js/main.80ec42cb.js.map"
   },
   "entrypoints": [
-    "static/css/main.69dd99fa.css",
-    "static/js/main.f70fae57.js"
+    "static/css/main.0b15de11.css",
+    "static/js/main.80ec42cb.js"
   ]
 }
