@@ -6,7 +6,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
+import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "./userNav.scss";
@@ -51,9 +51,9 @@ const UserNav: React.FC<UserNavProps> = (props) => {
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <DraftsIcon />
+                <DeleteIcon />
               </ListItemIcon>
-              <ListItemText primary="Tickets" />
+              <ListItemText primary="Trash" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -63,12 +63,17 @@ const UserNav: React.FC<UserNavProps> = (props) => {
         <List>
           <ListItem disablePadding>
             <ListItemButton>
-              <ListItemText primary="Trash" />
+              <ListItemText primary="Pricing" />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
             <ListItemButton component="a" href="#simple-list">
-              <ListItemText primary="Spam" />
+              <ListItemText primary="FAQ" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemText primary="Support" />
             </ListItemButton>
           </ListItem>
         </List>
