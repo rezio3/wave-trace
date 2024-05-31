@@ -6,7 +6,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import DashboardListItem from "./DashboardListItem";
 import { v4 as uuidv4 } from "uuid";
 import {
   UserReturnState,
@@ -19,9 +18,6 @@ import { useEffect, useState } from "react";
 import "../../Loader.scss";
 import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { updateOrdersView } from "./ordersManagement/updateOrderView";
-import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
-import { UserNavProps } from "../../types";
 import DeletedListItem from "./DeletedListItem";
 
 const DeletedOrders = () => {
