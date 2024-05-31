@@ -26,12 +26,18 @@ export const checkOrderLimit = async (
       year: "numeric",
     })
     .replace(/\//g, ".");
-
   const parseDate = (dateTimeString: string): string => {
     const [datePart] = dateTimeString.split(", ");
-    return datePart;
+    const [day, month, year] = datePart.split(".");
+    const formattedDay = day.padStart(2, "0");
+    const formattedMonth = month.padStart(2, "0");
+
+    return `${formattedDay}.${formattedMonth}.${year}`;
   };
   const todayCount = tempArr.filter(
+    (item) => parseDate(item.createdDate) === formattedToday
+  ).length;
+  const halo = tempArr.filter(
     (item) => parseDate(item.createdDate) === formattedToday
   ).length;
   setIsLimit(todayCount >= 3);
