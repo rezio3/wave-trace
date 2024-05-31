@@ -18,12 +18,12 @@ export const updateOrdersView = async (
   ).catch(() => {
     return;
   });
-  let tempArr: Order[] = [];
+  let orderList: Order[] = [];
   if (querySnapshot) {
     if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
-        tempArr.push(doc.data() as Order);
-        setOrders(tempArr);
+        orderList.push(doc.data() as Order);
+        setOrders(orderList);
         setLoading(false);
       });
     } else {

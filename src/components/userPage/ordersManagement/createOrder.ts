@@ -29,6 +29,7 @@ export const createOrder = async (
       description: order.description,
       orderId: order.orderId,
       createdDate: dateOfOrder,
+      deleted: false,
     });
 
     setOrder({

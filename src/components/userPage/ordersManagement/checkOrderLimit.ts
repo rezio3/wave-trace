@@ -12,10 +12,10 @@ export const checkOrderLimit = async (
   ).catch(() => {
     return;
   });
-  let tempArr: Order[] = [];
+  let orderList: Order[] = [];
   if (querySnapshot) {
     querySnapshot.forEach((doc) => {
-      tempArr.push(doc.data() as Order);
+      orderList.push(doc.data() as Order);
     });
   }
   const today = new Date();
@@ -34,10 +34,10 @@ export const checkOrderLimit = async (
 
     return `${formattedDay}.${formattedMonth}.${year}`;
   };
-  const todayCount = tempArr.filter(
+  const todayCount = orderList.filter(
     (item) => parseDate(item.createdDate) === formattedToday
   ).length;
-  const halo = tempArr.filter(
+  const halo = orderList.filter(
     (item) => parseDate(item.createdDate) === formattedToday
   ).length;
   setIsLimit(todayCount >= 3);

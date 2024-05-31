@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 import { app } from "../../firebase";
 import { useEffect, useState } from "react";
 import "../../Loader.scss";
-import { doc, getFirestore, deleteDoc } from "firebase/firestore";
+import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { updateOrdersView } from "./ordersManagement/updateOrderView";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -39,7 +39,13 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
     showOrderHandler();
   }, []);
   const deleteOrder = async (id: string) => {
-    await deleteDoc(doc(db, `orders_${currentUser.email}`, id));
+    const deleted = {
+      deleted: true
+    }
+    await updateDoc(
+      doc(db, `orders_${currentUser.email}`, id),
+      deleted
+    );
     showOrderHandler();
   };
 
