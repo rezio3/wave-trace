@@ -8,10 +8,10 @@ const db = getFirestore(app);
 export const updateOrdersView = async (
   setLoading: (value: boolean) => void,
   setOrders: (value: Order[]) => void,
-  currentUser: UserDetails
+  currentUser: UserDetails,
+  page: string
 ) => {
   setLoading(true);
-  console.log(currentUser);
 
   const querySnapshot = await getDocs(
     collection(db, `orders_${currentUser.email}`)
@@ -19,10 +19,21 @@ export const updateOrdersView = async (
     return;
   });
   let orderList: Order[] = [];
+
   if (querySnapshot) {
     if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
-        orderList.push(doc.data() as Order);
+        const singularOrder = doc.data() as Order;
+        let pageCondition;
+        if (page === "dashboard") {
+          pageCondition = !singularOrder.deleted;
+        } else if (page === "deletedOrders") {
+          pageCondition = singularOrder.deleted;
+        }
+        if (pageCondition) {
+          console.log(singularOrder)
+          orderList.push(singularOrder);
+        }
         setOrders(orderList);
         setLoading(false);
       });

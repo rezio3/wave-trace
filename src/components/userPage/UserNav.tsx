@@ -6,18 +6,21 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import InboxIcon from "@mui/icons-material/Inbox";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 import "./userNav.scss";
 import { UserNavProps } from "../../types";
 
 const UserNav: React.FC<UserNavProps> = (props) => {
+  const dashboardHandler = () => {
+    props.setPage(0);
+  };
   const newOrderHandler = () => {
     props.setPage(1);
   };
-  const dashboardHandler = () => {
-    props.setPage(0);
+  const trashHandler = () => {
+    props.setPage(2);
   };
   return (
     <Box
@@ -53,7 +56,7 @@ const UserNav: React.FC<UserNavProps> = (props) => {
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>
-              <ListItemText primary="Trash" />
+              <ListItemText primary="Trash" onClick={trashHandler} />
             </ListItemButton>
           </ListItem>
         </List>

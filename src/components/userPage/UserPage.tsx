@@ -4,11 +4,12 @@ import "./dashboard.scss";
 import CreateOrderForm from "./CreateOrderForm";
 import UserNav from "./UserNav";
 import "./userPage.scss";
+import DeletedOrders from "./DeletedOrders";
 
 const UserPage = () => {
   const [page, setPage] = useState(0);
 
-  const pages = [<UserDashboard setPage={setPage}/>, <CreateOrderForm />];
+  const pages = [<UserDashboard setPage={setPage}/>, <CreateOrderForm />, <DeletedOrders />];
 
   return (
     <div className="w-100 user-page-container">

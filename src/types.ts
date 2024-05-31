@@ -38,6 +38,15 @@ export type DashboardListItemProps = {
   showOrderHandler: () => void;
 };
 
+export type DeletedListItemProps = {
+  title: string;
+  description: string;
+  orderId: string;
+  createdDate: string;
+  restoreOrder: (orderId: string) => void;
+  showOrderHandler: () => void;
+};
+
 export type LoginViewType = {
   isLoginView: boolean;
   loginViewHandler: () => void;
@@ -59,6 +68,7 @@ export type Order = {
   title: string;
   orderId: string;
   createdDate: string;
+  deleted: boolean;
 };
 
 export type EditOrderProps = {

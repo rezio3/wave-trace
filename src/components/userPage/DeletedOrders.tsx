@@ -22,8 +22,9 @@ import { updateOrdersView } from "./ordersManagement/updateOrderView";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { UserNavProps } from "../../types";
+import DeletedListItem from "./DeletedListItem";
 
-const UserDashboard: React.FC<UserNavProps> = (props) => {
+const DeletedOrders = () => {
   const [orders, setOrders] = useState<DashboardListItemType[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,25 +34,19 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
   const db = getFirestore(app);
 
   const showOrderHandler = async () => {
-    updateOrdersView(setLoading, setOrders, currentUser, "dashboard");
+    updateOrdersView(setLoading, setOrders, currentUser, "deletedOrders");
   };
   useEffect(() => {
     showOrderHandler();
   }, []);
-  const deleteOrder = async (id: string) => {
+  const restoreOrder = async (id: string) => {
     const deleted = {
-      deleted: true
-    }
-    await updateDoc(
-      doc(db, `orders_${currentUser.email}`, id),
-      deleted
-    );
+      deleted: false,
+    };
+    await updateDoc(doc(db, `orders_${currentUser.email}`, id), deleted);
     showOrderHandler();
   };
 
-  const placeAnOrderHandler = () => {
-    props.setPage(1);
-  };
   return (
     <>
       <CssBaseline />
@@ -72,20 +67,20 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                         <TableCell align="left">Description</TableCell>
                         <TableCell align="left">Price</TableCell>
                         <TableCell align="left">Created</TableCell>
-                        <TableCell align="left"></TableCell>
                         <TableCell align="left">Status</TableCell>
+
                         <TableCell align="left"></TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {orders.map((e) => (
-                        <DashboardListItem
+                        <DeletedListItem
                           title={e.title}
                           description={e.description}
                           orderId={e.orderId}
                           createdDate={e.createdDate}
                           key={uuidv4()}
-                          deleteOrder={deleteOrder}
+                          restoreOrder={restoreOrder}
                           showOrderHandler={showOrderHandler}
                         />
                       ))}
@@ -94,15 +89,8 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                 ) : (
                   <div className="d-flex flex-column align-items-center">
                     <span className="text-secondary">
-                      You don't have any orders yet.
+                      Your trash bin is empty. You have no deleted orders.
                     </span>
-                    <Button
-                      variant="text"
-                      className="mt-4"
-                      onClick={placeAnOrderHandler}
-                    >
-                      Place an order <AddIcon className="ms-2" />
-                    </Button>
                   </div>
                 )}
               </>
@@ -114,4 +102,4 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
   );
 };
 
-export default UserDashboard;
+export default DeletedOrders;
