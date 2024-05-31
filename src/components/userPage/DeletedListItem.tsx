@@ -123,17 +123,16 @@ const DeletedListItem: React.FC<DeletedListItemProps> = (props) => {
         </Popover>
         <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">{props.createdDate}</TableCell>
-
-        <TableCell align="left" className="d-table-cell">
+        <TableCell align="left" className="d-flex align-items-center">
           <Alert variant="outlined" severity="error" className="deleted-alert">
             Deleted
           </Alert>
-          {/* <div
+          <div
             onMouseEnter={handlePopoverDateOpen}
             onMouseLeave={handlePopoverDateClose}
-          > */}
+          >
             <InfoIcon className="ms-3" />
-          {/* </div> */}
+          </div>
           <Popover
             id="mouse-over-popover"
             sx={{
