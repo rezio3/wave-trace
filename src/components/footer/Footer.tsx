@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div className="container position-absolute footer-container mb-3 d-flex justify-content-between align-items-end">
       <span className="text-secondary">Wavetrace &copy; 2024</span>
-      <div>
+      <div className="position-absolute b-0 socials-container">
         <Button variant="text" className="social-icon">
           <InstagramIcon />
         </Button>
@@ -20,6 +20,7 @@ const Footer = () => {
         </Button>
       </div>
       <div>
+        <Button variant="text">Pricing</Button>
         <Button variant="text">FAQ</Button>
         <Button variant="text">Support</Button>
       </div>
