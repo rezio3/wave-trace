@@ -40,12 +40,9 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
   }, []);
   const deleteOrder = async (id: string) => {
     const deleted = {
-      deleted: true
-    }
-    await updateDoc(
-      doc(db, `orders_${currentUser.email}`, id),
-      deleted
-    );
+      deleted: true,
+    };
+    await updateDoc(doc(db, `orders_${currentUser.email}`, id), deleted);
     showOrderHandler();
   };
 
@@ -58,6 +55,7 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
       <div className="container">
         <div className="dashboard-container mx-0 px-0 w-100">
           <TableContainer component={Paper} className="p-5">
+            <h4>Dashboard</h4>
             {loading ? (
               <div className="w-100 d-flex justify-content-center align-items-center">
                 <div className="loader"></div>
@@ -65,14 +63,17 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
             ) : (
               <>
                 {orders.length > 0 ? (
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <Table
+                    sx={{ minWidth: 650 }}
+                    aria-label="simple table"
+                    className="mt-4"
+                  >
                     <TableHead>
                       <TableRow>
                         <TableCell>Order</TableCell>
                         <TableCell align="left">Description</TableCell>
                         <TableCell align="left">Price</TableCell>
                         <TableCell align="left">Created</TableCell>
-                        <TableCell align="left"></TableCell>
                         <TableCell align="left">Status</TableCell>
                         <TableCell align="left"></TableCell>
                       </TableRow>
@@ -115,3 +116,5 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
 };
 
 export default UserDashboard;
+
+// Floating Action Button - Animation - to manage created music

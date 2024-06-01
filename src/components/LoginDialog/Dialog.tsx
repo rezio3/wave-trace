@@ -8,6 +8,7 @@ import { UserDetails, UserReturnState } from "../../types";
 import { logoutUser } from "../../reducers/userSlice";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import { NavbarProps } from "../../types";
 import "./Dialog.scss";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
@@ -49,7 +50,7 @@ function SimpleDialog(props: SimpleDialogProps) {
   );
 }
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props: NavbarProps) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
   const user = useSelector<UserReturnState, UserDetails>(
@@ -76,6 +77,9 @@ export default function SimpleDialogDemo() {
   const handleLogout = () => {
     dispatch(logoutUser());
     signOut(auth);
+    if (props.setLandingPageSection) {
+      props.setLandingPageSection(0);
+    }
   };
 
   const handleClose = (value: string) => {
@@ -85,7 +89,9 @@ export default function SimpleDialogDemo() {
   return (
     <div className="d-flex justify-content-end align-items-center">
       {getUserName() ? (
-        <span className="me-3 welcome-nav-text text-secondary">Logged in as {getUserName()}</span>
+        <span className="me-3 welcome-nav-text text-secondary">
+          Logged in as {getUserName()}
+        </span>
       ) : null}
 
       {user.email ? (

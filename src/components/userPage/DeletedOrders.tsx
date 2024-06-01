@@ -47,7 +47,7 @@ const DeletedOrders = () => {
     <>
       <CssBaseline />
       <div className="container">
-        <div className="dashboard-container mx-0 px-0 w-100">
+        <div className="mx-0 px-0 w-100">
           <TableContainer component={Paper} className="p-5">
             {loading ? (
               <div className="w-100 d-flex justify-content-center align-items-center">
@@ -55,8 +55,13 @@ const DeletedOrders = () => {
               </div>
             ) : (
               <>
+                <h4>Trash</h4>
                 {orders.length > 0 ? (
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <Table
+                    sx={{ minWidth: 650 }}
+                    aria-label="simple table"
+                    className="mt-4"
+                  >
                     <TableHead>
                       <TableRow>
                         <TableCell>Order</TableCell>

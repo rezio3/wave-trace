@@ -1,27 +1,24 @@
 p {
-    font-size: 12px;
-    color: rgb(150, 150, 150);
+  font-size: 12px;
+  color: rgb(150, 150, 150);
 }
 
 .arrow-icon {
-    color: rgb(150, 150, 150);
+  color: rgb(150, 150, 150);
 }
-.create-order-container {
-    padding-top: 10px;
+.button-and-alert-height {
+  height: 50px;
 }
-.button-and-alert-height{
-    height: 50px;
-}
-.success-alert{
-    opacity: 0;
-    animation: success-alert .5s ease-out forwards;
+.success-alert {
+  opacity: 0;
+  animation: success-alert 0.5s ease-out forwards;
 }
 
 @keyframes success-alert {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

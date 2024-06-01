@@ -11,6 +11,7 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { checkTimeDifference } from "./ordersManagement/editCapability";
 import InfoIcon from "@mui/icons-material/Info";
+import Alert from "@mui/material/Alert";
 import "./dashboard.scss";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
@@ -135,7 +136,9 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
           onMouseEnter={handlePopoverDateOpen}
           onMouseLeave={handlePopoverDateClose}
         >
-          <InfoIcon className="ms-2" />
+          <Alert variant="outlined" severity="info" className="dashboard-alert">
+            In progress...
+          </Alert>
         </TableCell>
         <Popover
           id="mouse-over-popover"
@@ -158,13 +161,16 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
             style: { maxWidth: "500px" },
           }}
         >
-          <Typography sx={{ p: 3 }} variant="body2" className="pop-over-typography">
+          <Typography
+            sx={{ p: 3 }}
+            variant="body2"
+            className="pop-over-typography"
+          >
             Your composition will be ready within 24 hours of placing the order.
             Editing capability for the description will be disabled after 2
             hours.
           </Typography>
         </Popover>
-        <TableCell align="left">In progress...</TableCell>
         <TableCell align="right">
           <Tooltip title="Edit">
             <Button variant="text" onClick={handleClickEdit}>

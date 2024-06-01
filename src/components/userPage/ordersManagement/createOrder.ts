@@ -18,7 +18,7 @@ export const createOrder = async (
   }
   setError(false);
   const now = new Date();
-  const dateOfOrder = now.toLocaleString(); 
+  const dateOfOrder = now.toLocaleString();
   const db = getFirestore(app);
   setIsLoading(true);
   try {

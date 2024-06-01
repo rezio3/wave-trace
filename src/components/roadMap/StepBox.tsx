@@ -10,12 +10,8 @@ const StepBox: React.FC<StepBoxProps> = (e) => {
       <h3 className="position-absolute step-number-header">{e.number}</h3>
       <div className="glass-card position-relative w-75 d-flex flex-column justify-content-between">
         <CardContent>
-          <h5 className="text-uppercase step-header">
-            {e.header}
-          </h5>
-          <p className="step-txt">
-            {e.txt}
-          </p>
+          <h5 className="text-uppercase step-header">{e.header}</h5>
+          <p className="step-txt">{e.txt}</p>
         </CardContent>
         <CardActions className="step-box-buttons">
           <Button size="small">Learn More</Button>

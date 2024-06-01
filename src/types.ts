@@ -91,3 +91,12 @@ export type OrderForm = {
 export type UserNavProps = {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export type FooterProps = {
+  setLandingPageSection?: (value: number) => void;
+  isUserLoggedIn: boolean;
+};
+
+export type NavbarProps = {
+  setLandingPageSection?: (value: number) => void;
+};

@@ -10,38 +10,13 @@ import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import StraightenIcon from "@mui/icons-material/Straighten";
 import FormatIndentIncreaseIcon from "@mui/icons-material/FormatIndentIncrease";
 import EditIcon from "@mui/icons-material/Edit";
+import { stepBoxes } from "./stepBoxesData";
 
 const RoadMap: React.FC<ManageRoadMapProps> = (props) => {
   const handleBackButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     props.handleGetStartedBtn(e);
   };
-  const stepBoxes = [
-    {
-      number: "01",
-      header: "Login",
-      txt: "Create an account on the platform.",
-    },
-    {
-      number: "02",
-      header: "Order music for free",
-      txt: "Place a free order using the form. The more detailed the description, the more precisely the order will be executed.",
-    },
-    {
-      number: "03",
-      header: "Realization in 24 hours",
-      txt: "After 24h, you will receive a free one-minute sample of the music with a watermark to listen to.",
-    },
-    {
-      number: "04",
-      header: "Buy or edit",
-      txt: "You can purchase your music or edit it according to your preferences.",
-    },
-    {
-      number: "05",
-      header: "Extend",
-      txt: "Extend the music you ordered to a specific length.",
-    },
-  ];
+
   const features = [
     {
       header: "Music within 24 hours",
@@ -64,7 +39,7 @@ const RoadMap: React.FC<ManageRoadMapProps> = (props) => {
       icon: <FormatIndentIncreaseIcon className="feature-icon" />,
     },
     {
-      header: "Edit whenever you want",
+      header: "Modify and enhance your ordered music",
       icon: <EditIcon className="feature-icon" />,
     },
   ];

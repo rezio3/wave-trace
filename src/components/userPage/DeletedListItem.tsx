@@ -122,7 +122,11 @@ const DeletedListItem: React.FC<DeletedListItemProps> = (props) => {
         <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">{props.createdDate}</TableCell>
         <TableCell align="left" className="d-flex align-items-center">
-          <Alert variant="outlined" severity="error" className="deleted-alert">
+          <Alert
+            variant="outlined"
+            severity="error"
+            className="dashboard-alert"
+          >
             Deleted
           </Alert>
           <div

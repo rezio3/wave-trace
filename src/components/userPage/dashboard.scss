@@ -1,14 +1,11 @@
 .dashboard-spacer {
   width: 360px;
 }
-
-.dashboard-container {
-  padding-top: 10px;
-}
 .pop-over-typography {
   font-size: 8px;
 }
 
-.deleted-alert {
+.dashboard-alert {
   width: fit-content;
+  user-select: none;
 }

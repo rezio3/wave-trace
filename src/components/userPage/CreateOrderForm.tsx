@@ -59,7 +59,7 @@ const CreateOrderForm = () => {
     checkOrderLimit(currentUser, setIsLimit);
   }, []);
   return (
-    <div className="container create-order-container">
+    <div className="container">
       <Box
         sx={{
           width: "100%",
@@ -70,7 +70,7 @@ const CreateOrderForm = () => {
         className="p-5 d-flex flex-column align-items-start my-0"
       >
         <h4 className="mb-4">Place an order</h4>
-        <div className="w-100 d-flex flex-column align-items-start">
+        <form className="w-100 d-flex flex-column align-items-start">
           <div className="w-100 d-flex align-items-center">
             <TextField
               id="outlined-basic"
@@ -146,7 +146,7 @@ const CreateOrderForm = () => {
               </Alert>
             ) : null}
           </div>
-        </div>
+        </form>
       </Box>
     </div>
   );

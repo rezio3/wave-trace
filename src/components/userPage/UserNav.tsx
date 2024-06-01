@@ -22,13 +22,19 @@ const UserNav: React.FC<UserNavProps> = (props) => {
   const trashHandler = () => {
     props.setPage(2);
   };
+  const faqHandler = () => {
+    props.setPage(3);
+  };
+  const supportHandler = () => {
+    props.setPage(4);
+  };
   return (
     <Box
       sx={{
         width: "12%",
         maxWidth: 360,
         height: "fit-content",
-        marginTop: "10px",
+        marginTop: "0px",
         bgcolor: "divider",
       }}
       className="position-absolute nav-box"
@@ -51,12 +57,12 @@ const UserNav: React.FC<UserNavProps> = (props) => {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={trashHandler}>
             <ListItemButton>
               <ListItemIcon>
                 <DeleteIcon />
               </ListItemIcon>
-              <ListItemText primary="Trash" onClick={trashHandler} />
+              <ListItemText primary="Trash" />
             </ListItemButton>
           </ListItem>
         </List>
@@ -69,12 +75,12 @@ const UserNav: React.FC<UserNavProps> = (props) => {
               <ListItemText primary="Pricing" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={faqHandler}>
             <ListItemButton component="a" href="#simple-list">
               <ListItemText primary="FAQ" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={supportHandler}>
             <ListItemButton>
               <ListItemText primary="Support" />
             </ListItemButton>

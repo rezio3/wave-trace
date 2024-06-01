@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
@@ -14,8 +14,19 @@ import "./style/global.scss";
 import { loginAndRegisterUser } from "./services/loginAndRegisterUser";
 import Footer from "./components/footer/Footer";
 import "./components/footer/Footer.scss";
+import FaqPage from "./components/faq/FaqPage";
+import Support from "./components/support/Support";
 
 function App() {
+  const [ladingPageSection, setLandingPageSection] = useState(0);
+  const handleBackButton = () => {
+    setLandingPageSection(0);
+  };
+  const sections = [
+    <Landing />,
+    <FaqPage isUserLoggedIn={false} handleBackButton={handleBackButton} />,
+    <Support isUserLoggedIn={false} handleBackButton={handleBackButton} />,
+  ];
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -45,29 +56,30 @@ function App() {
         ) : null}
         {user.email ? (
           <>
-            <Navbar />
+            <Navbar setLandingPageSection={setLandingPageSection} />
             <UserPage />
-            <Footer />
+            <Footer isUserLoggedIn={true} />
             <VideoBG />
           </>
         ) : (
           <>
             <Navbar />
-            <div className="container h-75">
-              <Landing />
-            </div>
-            <Footer />
+            <div className="container h-75">{sections[ladingPageSection]}</div>
+            <Footer
+              setLandingPageSection={setLandingPageSection}
+              isUserLoggedIn={false}
+            />
             <VideoBG />
           </>
         )}
       </div>
-        <div className="small-screen-alert">
-          <span>
-            This is a desktop application. <br/>Please open the page on a larger
-            screen.
-          </span>
+      <div className="small-screen-alert">
+        <span>
+          This is a desktop application. <br />
+          Please open the page on a larger screen.
+        </span>
         <VideoBG />
-        </div>
+      </div>
     </ThemeProvider>
   );
 }
