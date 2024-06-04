@@ -22,14 +22,14 @@ const FaqPage = (props: {
   return (
     <div
       className={
-        !props.isUserLoggedIn ? "container w-100 mt-5" : "container w-100"
+        !props.isUserLoggedIn ? "container w-100 mt-5 p-0" : "container w-100"
       }
     >
-      <div className="pt-3 w-100 faq-glass-container">
+      <div className="p-5 w-100 glass-container">
         {!props.isUserLoggedIn ? (
           <Button
             variant="text"
-            className="mb-3 ms-2"
+            className="mb-4"
             name="back"
             onClick={handleBackButton}
           >
@@ -38,9 +38,9 @@ const FaqPage = (props: {
           </Button>
         ) : null}
 
-        <h4 className="ms-3 pb-3 faq-header">Frequently Asked Questions</h4>
+        <h4 className="pb-3 faq-header">Frequently Asked Questions</h4>
         <div className="d-flex">
-          <List className="w-25 pb-3">
+          <List className="pb-3 faq-list-item">
             {faqTxt.map((e) => {
               return (
                 <FaqItem

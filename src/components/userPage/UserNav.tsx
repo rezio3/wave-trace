@@ -22,11 +22,14 @@ const UserNav: React.FC<UserNavProps> = (props) => {
   const trashHandler = () => {
     props.setPage(2);
   };
-  const faqHandler = () => {
+  const pricingHandler = () => {
     props.setPage(3);
   };
-  const supportHandler = () => {
+  const faqHandler = () => {
     props.setPage(4);
+  };
+  const supportHandler = () => {
+    props.setPage(5);
   };
   return (
     <Box
@@ -70,7 +73,7 @@ const UserNav: React.FC<UserNavProps> = (props) => {
       <Divider />
       <nav aria-label="secondary mailbox folders">
         <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={pricingHandler}>
             <ListItemButton>
               <ListItemText primary="Pricing" />
             </ListItemButton>

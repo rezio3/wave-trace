@@ -1,6 +1,5 @@
 import { TextField, Button } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import "./support.scss";
 import { useEffect, useState } from "react";
 import ButtonLoading from "../ButtonLoading";
 import { addDoc, getFirestore, collection } from "firebase/firestore";
@@ -82,14 +81,14 @@ const Support = (props: {
   return (
     <div
       className={
-        !props.isUserLoggedIn ? "container w-100 mt-5" : "container w-100"
+        !props.isUserLoggedIn ? "container w-100 mt-5 p-0" : "container w-100"
       }
     >
-      <div className="p-5 w-100 faq-glass-container">
+      <div className="p-5 w-100 glass-container">
         {!props.isUserLoggedIn ? (
           <Button
             variant="text"
-            className="mb-3"
+            className="mb-4"
             name="back"
             onClick={handleBackButton}
           >

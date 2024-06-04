@@ -9,6 +9,7 @@ import FaqPage from "../faq/FaqPage";
 import Support from "../support/Support";
 import { useSelector } from "react-redux";
 import { UserReturnState, UserDetails } from "../../types";
+import Pricing from "../pricing/Pricing";
 
 const UserPage = () => {
   const [page, setPage] = useState(0);
@@ -19,6 +20,7 @@ const UserPage = () => {
     <UserDashboard setPage={setPage} />,
     <CreateOrderForm />,
     <DeletedOrders />,
+    <Pricing isUserLoggedIn={true} />,
     <FaqPage isUserLoggedIn={true} />,
     <Support isUserLoggedIn={true} user={currentUser} />,
   ];

@@ -70,11 +70,11 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                   >
                     <TableHead>
                       <TableRow>
-                        <TableCell>Order</TableCell>
-                        <TableCell align="left">Description</TableCell>
-                        <TableCell align="left">Price</TableCell>
-                        <TableCell align="left">Created</TableCell>
-                        <TableCell align="left">Status</TableCell>
+                        <TableCell><b>Order</b></TableCell>
+                        <TableCell align="left"><b>Description</b></TableCell>
+                        <TableCell align="left"><b>Price</b></TableCell>
+                        <TableCell align="left"><b>Created</b></TableCell>
+                        <TableCell align="left"><b>Status</b></TableCell>
                         <TableCell align="left"></TableCell>
                       </TableRow>
                     </TableHead>

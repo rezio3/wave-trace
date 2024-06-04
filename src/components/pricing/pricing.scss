@@ -1,0 +1,30 @@
+.pricing-item-box {
+  width: 150px;
+  .price-header {
+    font-size: 14px;
+  }
+
+  .price-span {
+  }
+}
+
+.pricing-table {
+  border-collapse: collapse;
+  width: 80%;
+  min-width: 300px;
+}
+
+.pricing-cell {
+  padding: 10px 20px;
+  border: 1px solid white;
+}
+
+.pricing-cell:first-child {
+  font-size: 14px;
+}
+
+.pricing-cell:last-child {
+  font-size: 30px;
+  font-weight: bold;
+  color: #90caf9;
+}

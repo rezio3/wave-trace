@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import { Tooltip } from "@mui/material";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
-import InfoIcon from "@mui/icons-material/Info";
 import "./dashboard.scss";
 import Alert from "@mui/material/Alert";
 
@@ -121,7 +120,12 @@ const DeletedListItem: React.FC<DeletedListItemProps> = (props) => {
         </Popover>
         <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">{props.createdDate}</TableCell>
-        <TableCell align="left" className="d-flex align-items-center">
+        <TableCell
+          align="left"
+          className="d-flex align-items-center"
+          onMouseEnter={handlePopoverDateOpen}
+          onMouseLeave={handlePopoverDateClose}
+        >
           <Alert
             variant="outlined"
             severity="error"
@@ -129,12 +133,6 @@ const DeletedListItem: React.FC<DeletedListItemProps> = (props) => {
           >
             Deleted
           </Alert>
-          <div
-            onMouseEnter={handlePopoverDateOpen}
-            onMouseLeave={handlePopoverDateClose}
-          >
-            <InfoIcon className="ms-3" />
-          </div>
           <Popover
             id="mouse-over-popover"
             sx={{
@@ -147,7 +145,7 @@ const DeletedListItem: React.FC<DeletedListItemProps> = (props) => {
               horizontal: "right",
             }}
             transformOrigin={{
-              vertical: -20,
+              vertical: 10,
               horizontal: "right",
             }}
             onClose={handlePopoverTitleClose}

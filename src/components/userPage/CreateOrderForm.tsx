@@ -60,15 +60,7 @@ const CreateOrderForm = () => {
   }, []);
   return (
     <div className="container">
-      <Box
-        sx={{
-          width: "100%",
-          height: "80%",
-          marginTop: "10px",
-          bgcolor: "divider",
-        }}
-        className="p-5 d-flex flex-column align-items-start my-0"
-      >
+      <div className="p-5 w-100 glass-container">
         <h4 className="mb-4">Place an order</h4>
         <form className="w-100 d-flex flex-column align-items-start">
           <div className="w-100 d-flex align-items-center">
@@ -147,7 +139,7 @@ const CreateOrderForm = () => {
             ) : null}
           </div>
         </form>
-      </Box>
+      </div>
     </div>
   );
 };
