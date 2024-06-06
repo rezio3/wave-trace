@@ -2,7 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  // apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: "AIzaSyBGAMk1VAPZZZhWySFcu6TmxvfIrdkd6hM",
   authDomain: "wavetrace-79ec7.firebaseapp.com",
   projectId: "wavetrace-79ec7",
   storageBucket: "wavetrace-79ec7.appspot.com",

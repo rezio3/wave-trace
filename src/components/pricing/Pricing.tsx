@@ -133,7 +133,12 @@ const Pricing = (props: {
             {oneMinuteVersion === "one-min-full-version" ? (
               <div className="d-flex flex-column align-items-start gap-3">
                 <FormControlLabel
-                  control={<Checkbox checked={modSampleVersionCheck} onChange={modSampleVersionCheckHandler} />}
+                  control={
+                    <Checkbox
+                      checked={modSampleVersionCheck}
+                      onChange={modSampleVersionCheckHandler}
+                    />
+                  }
                   label="Modify the sample version"
                 />
                 {modSampleVersionCheck ? (
@@ -156,7 +161,12 @@ const Pricing = (props: {
                   </div>
                 ) : null}
                 <FormControlLabel
-                  control={<Checkbox checked={extendCheck} onChange={extendCheckHandler} />}
+                  control={
+                    <Checkbox
+                      checked={extendCheck}
+                      onChange={extendCheckHandler}
+                    />
+                  }
                   label="Extend your music"
                 />
                 {extendCheck ? (
@@ -179,7 +189,12 @@ const Pricing = (props: {
                   </div>
                 ) : null}
                 <FormControlLabel
-                  control={<Checkbox checked={modExtendedMusicCheck} onChange={modExtendedMusicCheckHandler} />}
+                  control={
+                    <Checkbox
+                      checked={modExtendedMusicCheck}
+                      onChange={modExtendedMusicCheckHandler}
+                    />
+                  }
                   label="Modify the extended version"
                 />
               </div>
@@ -192,6 +207,5 @@ const Pricing = (props: {
 };
 
 export default Pricing;
-
 
 // NAPRAWIĆ CHECKBOXY !!!! VALUE MA BYĆ TAKIE JAK W STATE
