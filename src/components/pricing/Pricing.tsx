@@ -10,10 +10,9 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Slider from "@mui/material/Slider";
-
-function valuetext(value: number) {
-  return `${value}°C`;
-}
+import PricingTable from "./Table";
+import { priceCalculating } from "./priceCalculating";
+import { prices } from "./prices";
 
 const Pricing = (props: {
   isUserLoggedIn: boolean;
@@ -26,27 +25,78 @@ const Pricing = (props: {
     }
   };
 
-  const [oneMinuteVersion, setOneMinuteVersion] =
-    React.useState("free-version");
-
-  const [modSampleVersionCheck, setModSampleVersionCheck] =
+  const [version, setVersion] = React.useState({
+    value: "free-version",
+    isFree: true,
+  });
+  const [modifyVersionCheckbox, setModifyVersionCheckbox] =
     React.useState(false);
+  // const [modOneMinVersionSlider, setModOneMinVersionSlider] = React.useState(1);
+  // const [modExtendedVersionSlider, setModExtendedVersionSlider] =
+  //   React.useState(2);
   const [extendCheck, setExtendCheck] = React.useState(false);
-  const [modExtendedMusicCheck, setModExtendedMusicCheck] =
+  const [modExtendedVersionCheck, setModExtendedVersionCheck] =
     React.useState(false);
-  const handleChange = (event: SelectChangeEvent) => {
-    setOneMinuteVersion(event.target.value as string);
-  };
 
-  const modSampleVersionCheckHandler = () => {
-    setModSampleVersionCheck(!modSampleVersionCheck);
+  const [pricesCalc, setPricesCalc] = React.useState({
+    versionPrice: 0,
+    modifyVersionPrice: 0,
+    extendedVersion: 0,
+    modExtendedVersion: 0,
+    totalPrice: 0,
+  });
+
+  const versionCheckboxHandler = (event: SelectChangeEvent) => {
+    const price = !version.isFree ? 0 : prices.oneMinVersion;
+    setVersion({
+      value: event.target.value,
+      isFree: !version.isFree,
+    });
+    setPricesCalc({
+      ...pricesCalc,
+      versionPrice: price,
+      totalPrice: price,
+    });
+    // priceCalculating(pricesCalc, setPricesCalc);
   };
-  const extendCheckHandler = () => {
+  const modifyVersionCheckboxHandler = () => {
+    const price = modifyVersionCheckbox ? 0 : 5;
+    const versionPriceReduce = modifyVersionCheckbox ? -5 : 5;
+    setModifyVersionCheckbox(!modifyVersionCheckbox);
+    setPricesCalc({
+      ...pricesCalc,
+      versionPrice: pricesCalc.versionPrice - versionPriceReduce,
+      modifyVersionPrice: price,
+    });
+  };
+  const modVersionSliderHandler = (e: Event, value: number | number[]) => {
+    const modSliderValue = Array.isArray(value) ? value[0] : value;
+    const price = modSliderValue * prices.modOneMinVersion;
+    const versionPriceReduce =
+      prices.oneMinVersion - price <= 0 ? 0 : prices.oneMinVersion - price;
+    setPricesCalc({
+      ...pricesCalc,
+      versionPrice: versionPriceReduce,
+      modifyVersionPrice: price,
+    });
+  };
+  const extendCheckboxHandler = () => {
     setExtendCheck(!extendCheck);
+    // priceCalculating(pricesCalc, setPricesCalc);
   };
-  const modExtendedMusicCheckHandler = () => {
-    setModExtendedMusicCheck(!modExtendedMusicCheck);
-  };
+  // const modExtendedVersionCheckHandler = () => {
+  //   setModExtendedVersionCheck(!modExtendedVersionCheck);
+  //   priceCalculating(pricesCalc, setPricesCalc);
+  // };
+  // const modExtendedSliderHandler = (e: Event, value: number | number[]) => {
+  //   const modSliderValue = Array.isArray(value) ? value[0] : value;
+  //   const price = modSliderValue * prices.extendedVersion;
+  //   setPricesCalc({
+  //     ...pricesCalc,
+  //     modExtendedVersion: price,
+  //   });
+  //   priceCalculating(pricesCalc, setPricesCalc);
+  // };
   return (
     <div
       className={
@@ -67,94 +117,64 @@ const Pricing = (props: {
         ) : null}
         <div className="w-50">
           <h4 className="pb-4">Pricing</h4>
-          <table className="pricing-table">
-            <tr>
-              <td className="pricing-cell">
-                A one-minute version of the music as a sample for the client to
-                evaluate whether they like it or not. The music has a watermark
-                applied.
-              </td>
-              <td className="pricing-cell">Free</td>
-            </tr>
-            <tr>
-              <td className="pricing-cell">
-                Modification of the one-minute version of the music to better
-                suit the client's needs. The modification price is already
-                included and reduced from the total order amount. The version of
-                the music still with a watermark.
-              </td>
-              <td className="pricing-cell">$5</td>
-            </tr>
-            <tr>
-              <td className="pricing-cell">
-                A one-minute version of the ordered music, in full quality and
-                without a watermark. The product is ready to be downloaded and
-                used. The total price for the unmodified version.
-              </td>
-              <td className="pricing-cell">$49</td>
-            </tr>
-            <tr>
-              <td className="pricing-cell">
-                Extension of the track to a specific length based on the
-                proposed one-minute sample. Price is for each additional minute
-                excluding the first one.
-              </td>
-              <td className="pricing-cell">$39</td>
-            </tr>
-            <tr>
-              <td className="pricing-cell">
-                Modification of the extended track (longer than one minute). The
-                price is additional and does not reduce the total order amount.
-              </td>
-              <td className="pricing-cell">$15</td>
-            </tr>
-          </table>
+          <PricingTable />
         </div>
-        <div>
+        <div className="pricing-calc-container">
           <h4 className="pb-4">Pricing calculator</h4>
-          <div className="d-flex flex-column align-items-start gap-3">
-            <FormControl>
-              <InputLabel id="demo-simple-select-label">Version</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={oneMinuteVersion}
-                label="Version"
-                onChange={handleChange}
-              >
-                <MenuItem value="free-version">
-                  Free 1-minute version with watermark
-                </MenuItem>
-                <MenuItem value="one-min-full-version">
-                  1-minute version without watermark
-                </MenuItem>
-              </Select>
-            </FormControl>
-            {oneMinuteVersion === "one-min-full-version" ? (
-              <div className="d-flex flex-column align-items-start gap-3">
+          <div className="w-100 d-flex flex-column align-items-start gap-3">
+            <div className="w-100 d-flex justify-content-between align-items-center">
+              <FormControl>
+                <InputLabel id="demo-simple-select-label">Version</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  label="Version"
+                  value={version.value}
+                  onChange={versionCheckboxHandler}
+                >
+                  <MenuItem value="free-version">
+                    Free 1-minute version with watermark
+                  </MenuItem>
+                  <MenuItem value="paid-version">
+                    1-minute version without watermark
+                  </MenuItem>
+                </Select>
+              </FormControl>
+              <span className="price-span">${pricesCalc.versionPrice}</span>
+            </div>
+            {version.isFree ? null : (
+              <div className="w-100 d-flex flex-column align-items-start gap-3">
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={modSampleVersionCheck}
-                      onChange={modSampleVersionCheckHandler}
+                      checked={modifyVersionCheckbox}
+                      onChange={modifyVersionCheckboxHandler}
                     />
                   }
                   label="Modify the sample version"
                 />
-                {modSampleVersionCheck ? (
-                  <div>
-                    <Slider
-                      aria-label="modification-quantity"
-                      defaultValue={1}
-                      getAriaValueText={valuetext}
-                      valueLabelDisplay="auto"
-                      shiftStep={1}
-                      step={1}
-                      marks
-                      min={1}
-                      max={10}
-                      className="ms-2"
-                    />
+                {modifyVersionCheckbox ? (
+                  <div className="w-100">
+                    <div className="w-100 d-flex justify-content-between align-items-center">
+                      <div className="w-50">
+                        <Slider
+                          aria-label="modification-quantity"
+                          defaultValue={1}
+                          valueLabelDisplay="auto"
+                          shiftStep={1}
+                          step={1}
+                          marks
+                          min={1}
+                          max={12}
+                          className="ms-2"
+                          name="mod-one-min"
+                          onChange={modVersionSliderHandler}
+                        />
+                      </div>
+                      <span className="price-span">
+                        ${pricesCalc.modifyVersionPrice}
+                      </span>
+                    </div>
                     <span className="text-secondary">
                       Quantity of modifications
                     </span>
@@ -164,25 +184,31 @@ const Pricing = (props: {
                   control={
                     <Checkbox
                       checked={extendCheck}
-                      onChange={extendCheckHandler}
+                      onChange={extendCheckboxHandler}
                     />
                   }
                   label="Extend your music"
                 />
                 {extendCheck ? (
-                  <div>
-                    <Slider
-                      aria-label="modification-quantity"
-                      defaultValue={2}
-                      getAriaValueText={valuetext}
-                      valueLabelDisplay="auto"
-                      shiftStep={1}
-                      step={1}
-                      marks
-                      min={2}
-                      max={10}
-                      className="ms-2"
-                    />
+                  <div className="w-100">
+                    <div className="w-100 d-flex justify-content-between align-items-center">
+                      <div className="w-50">
+                        <Slider
+                          aria-label="modification-quantity"
+                          defaultValue={2}
+                          valueLabelDisplay="auto"
+                          shiftStep={1}
+                          step={1}
+                          marks
+                          min={2}
+                          max={10}
+                          className="ms-2"
+                          name="mod-extended"
+                          // onChange={modExtendedSliderHandler}
+                        />
+                      </div>
+                      <span className="price-span">$39</span>
+                    </div>
                     <span className="text-secondary">
                       Length of music extension (in minutes).
                     </span>
@@ -191,14 +217,16 @@ const Pricing = (props: {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={modExtendedMusicCheck}
-                      onChange={modExtendedMusicCheckHandler}
+                      checked={modExtendedVersionCheck}
+                      // onChange={modExtendedVersionCheckHandler}
                     />
                   }
                   label="Modify the extended version"
                 />
               </div>
-            ) : null}
+            )}
+            <span>Total Price: </span>
+            <span className="price-span">${pricesCalc.totalPrice}</span>
           </div>
         </div>
       </div>

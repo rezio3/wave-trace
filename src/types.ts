@@ -100,3 +100,11 @@ export type FooterProps = {
 export type NavbarProps = {
   setLandingPageSection?: (value: number) => void;
 };
+
+export type PricesCalcState = {
+  versionPrice: number;
+  modOneMinVersion: number;
+  extendedVersion: number;
+  modExtendedVersion: number;
+  totalPrice: number;
+};
