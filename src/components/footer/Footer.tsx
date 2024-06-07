@@ -32,11 +32,11 @@ const Footer: React.FC<FooterProps> = (props) => {
       </div>
       {!props.isUserLoggedIn ? (
         <div>
-          <Button variant="text">Pricing</Button>
-          <Button variant="text" data-pageindex={1} onClick={footerBtnHandler}>
+          <Button variant="text" data-pageindex={1} onClick={footerBtnHandler}>Pricing</Button>
+          <Button variant="text" data-pageindex={2} onClick={footerBtnHandler}>
             FAQ
           </Button>
-          <Button variant="text" data-pageindex={2} onClick={footerBtnHandler}>
+          <Button variant="text" data-pageindex={3} onClick={footerBtnHandler}>
             Support
           </Button>
         </div>

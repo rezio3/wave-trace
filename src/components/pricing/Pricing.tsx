@@ -23,7 +23,6 @@ import {
 const Pricing = (props: {
   isUserLoggedIn: boolean;
   handleBackButton?: () => void;
-  user?: UserDetails;
 }) => {
   const handleBackButton = () => {
     if (props.handleBackButton) {
@@ -108,7 +107,7 @@ const Pricing = (props: {
         !props.isUserLoggedIn ? "container w-100 mt-5 p-0" : "container w-100"
       }
     >
-      <div className="p-5 w-100 glass-container d-flex">
+      <div className="p-5 w-100 glass-container d-flex flex-column align-items-start">
         {!props.isUserLoggedIn ? (
           <Button
             variant="text"
@@ -120,130 +119,132 @@ const Pricing = (props: {
             Back
           </Button>
         ) : null}
-        <div className="w-50">
-          <h4 className="pb-4">Pricing</h4>
-          <PricingTable />
-        </div>
-        <div className="pricing-calc-container">
-          <h4 className="pb-4">Calculator</h4>
-          <div className="w-100 d-flex flex-column align-items-start gap-3">
-            <div className="w-100 d-flex justify-content-between align-items-center">
-              <FormControl>
-                <InputLabel id="demo-simple-select-label">Version</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Version"
-                  value={version.value}
-                  onChange={versionCheckboxHandler}
-                >
-                  <MenuItem value="free-version">
-                    Free 1-minute version with watermark
-                  </MenuItem>
-                  <MenuItem value="paid-version">
-                    1-minute version without watermark
-                  </MenuItem>
-                </Select>
-              </FormControl>
-              <span className="price-span">${pricesCalc.versionPrice}</span>
-            </div>
-            {version.isFree ? null : (
-              <div className="w-100 d-flex flex-column align-items-start gap-3">
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={modifyVersionCheckbox}
-                      onChange={modifyVersionCheckboxHandler}
-                    />
-                  }
-                  label="Modify the sample version"
-                />
-                {modifyVersionCheckbox ? (
-                  <div className="w-100">
-                    <div className="w-100 d-flex justify-content-between align-items-center">
-                      <div className="w-50">
-                        <Slider
-                          aria-label="modification-quantity"
-                          defaultValue={1}
-                          valueLabelDisplay="auto"
-                          shiftStep={1}
-                          step={1}
-                          marks
-                          min={1}
-                          max={12}
-                          className="ms-2"
-                          name="mod-one-min"
-                          onChange={modVersionSliderHandler}
-                        />
-                      </div>
-                      <span className="price-span">
-                        ${pricesCalc.modifyVersionPrice}
-                      </span>
-                    </div>
-                    <span className="text-secondary">
-                      Quantity of modifications
-                    </span>
-                  </div>
-                ) : null}
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={extendCheck}
-                      onChange={extendCheckboxHandler}
-                    />
-                  }
-                  label="Extend your music"
-                />
-                {extendCheck ? (
-                  <div className="w-100">
-                    <div className="w-100 d-flex justify-content-between align-items-center">
-                      <div className="w-50">
-                        <Slider
-                          aria-label="modification-quantity"
-                          defaultValue={2}
-                          valueLabelDisplay="auto"
-                          shiftStep={1}
-                          step={1}
-                          marks
-                          min={2}
-                          max={10}
-                          className="ms-2"
-                          name="mod-extended"
-                          onChange={extendedSliderHandler}
-                        />
-                      </div>
-                      <span className="price-span">
-                        ${pricesCalc.extendedVersion}
-                      </span>
-                    </div>
-                    <span className="text-secondary">
-                      Length of music extension (in minutes).
-                    </span>
-                  </div>
-                ) : null}
-                {checkboxes.extendCheck ? (
-                  <div className="w-100 d-flex justify-content-between align-items-center">
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={modExtendedVersionCheck}
-                          onChange={modExtendedVersionCheckHandler}
-                        />
-                      }
-                      label="Modify the extended version"
-                    />
-                    {checkboxes.modExtendedVersionCheck ? (
-                      <span className="price-span">
-                        ${pricesCalc.modExtendedVersion}
-                      </span>
-                    ) : null}
-                  </div>
-                ) : null}
+        <div className="w-100 d-flex">
+          <div className="w-50">
+            <h4 className="pb-4">Pricing</h4>
+            <PricingTable />
+          </div>
+          <div className="pricing-calc-container">
+            <h4 className="pb-4">Calculator</h4>
+            <div className="w-100 d-flex flex-column align-items-start gap-3">
+              <div className="w-100 d-flex justify-content-between align-items-center">
+                <FormControl>
+                  <InputLabel id="demo-simple-select-label">Version</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Version"
+                    value={version.value}
+                    onChange={versionCheckboxHandler}
+                  >
+                    <MenuItem value="free-version">
+                      Free 1-minute version with watermark
+                    </MenuItem>
+                    <MenuItem value="paid-version">
+                      1-minute version without watermark
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+                <span className="price-span">${pricesCalc.versionPrice}</span>
               </div>
-            )}
-            <div className="pt-3 w-100 d-flex justify-content-between align-items-center total-price-container">
-              <span>Total price: </span>
-              <span className="price-span">${totalPrice}</span>
+              {version.isFree ? null : (
+                <div className="w-100 d-flex flex-column align-items-start gap-3">
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={modifyVersionCheckbox}
+                        onChange={modifyVersionCheckboxHandler}
+                      />
+                    }
+                    label="Modify the sample version"
+                  />
+                  {modifyVersionCheckbox ? (
+                    <div className="w-100">
+                      <div className="w-100 d-flex justify-content-between align-items-center">
+                        <div className="w-50">
+                          <Slider
+                            aria-label="modification-quantity"
+                            defaultValue={1}
+                            valueLabelDisplay="auto"
+                            shiftStep={1}
+                            step={1}
+                            marks
+                            min={1}
+                            max={12}
+                            className="ms-2"
+                            name="mod-one-min"
+                            onChange={modVersionSliderHandler}
+                          />
+                        </div>
+                        <span className="price-span">
+                          ${pricesCalc.modifyVersionPrice}
+                        </span>
+                      </div>
+                      <span className="text-secondary">
+                        Quantity of modifications
+                      </span>
+                    </div>
+                  ) : null}
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={extendCheck}
+                        onChange={extendCheckboxHandler}
+                      />
+                    }
+                    label="Extend your music"
+                  />
+                  {extendCheck ? (
+                    <div className="w-100">
+                      <div className="w-100 d-flex justify-content-between align-items-center">
+                        <div className="w-50">
+                          <Slider
+                            aria-label="modification-quantity"
+                            defaultValue={2}
+                            valueLabelDisplay="auto"
+                            shiftStep={1}
+                            step={1}
+                            marks
+                            min={2}
+                            max={10}
+                            className="ms-2"
+                            name="mod-extended"
+                            onChange={extendedSliderHandler}
+                          />
+                        </div>
+                        <span className="price-span">
+                          ${pricesCalc.extendedVersion}
+                        </span>
+                      </div>
+                      <span className="text-secondary">
+                        Length of music extension (in minutes).
+                      </span>
+                    </div>
+                  ) : null}
+                  {checkboxes.extendCheck ? (
+                    <div className="w-100 d-flex justify-content-between align-items-center">
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={modExtendedVersionCheck}
+                            onChange={modExtendedVersionCheckHandler}
+                          />
+                        }
+                        label="Modify the extended version"
+                      />
+                      {checkboxes.modExtendedVersionCheck ? (
+                        <span className="price-span">
+                          ${pricesCalc.modExtendedVersion}
+                        </span>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
+              )}
+              <div className="pt-3 w-100 d-flex justify-content-between align-items-center total-price-container">
+                <span>Total price: </span>
+                <span className="price-span">${totalPrice}</span>
+              </div>
             </div>
           </div>
         </div>

@@ -16,6 +16,7 @@ import Footer from "./components/footer/Footer";
 import "./components/footer/Footer.scss";
 import FaqPage from "./components/faq/FaqPage";
 import Support from "./components/support/Support";
+import Pricing from "./components/pricing/Pricing";
 
 function App() {
   const [ladingPageSection, setLandingPageSection] = useState(0);
@@ -24,6 +25,7 @@ function App() {
   };
   const sections = [
     <Landing />,
+    <Pricing isUserLoggedIn={false} handleBackButton={handleBackButton} />,
     <FaqPage isUserLoggedIn={false} handleBackButton={handleBackButton} />,
     <Support isUserLoggedIn={false} handleBackButton={handleBackButton} />,
   ];
