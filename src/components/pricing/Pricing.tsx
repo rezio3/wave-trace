@@ -11,8 +11,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Slider from "@mui/material/Slider";
 import PricingTable from "./Table";
-import { priceCalculating } from "./priceCalculating";
-import { prices } from "./prices";
+import {
+  HandleVersionCheckbox,
+  handleModifyVersionCheckboxHandler,
+  handleModVersionSlider,
+  handleExtendCheckbox,
+  handleExtendedSlider,
+  handleModExtendedVersionCheck,
+} from "./priceCalculating";
 
 const Pricing = (props: {
   isUserLoggedIn: boolean;
@@ -29,74 +35,73 @@ const Pricing = (props: {
     value: "free-version",
     isFree: true,
   });
-  const [modifyVersionCheckbox, setModifyVersionCheckbox] =
-    React.useState(false);
-  // const [modOneMinVersionSlider, setModOneMinVersionSlider] = React.useState(1);
-  // const [modExtendedVersionSlider, setModExtendedVersionSlider] =
-  //   React.useState(2);
-  const [extendCheck, setExtendCheck] = React.useState(false);
-  const [modExtendedVersionCheck, setModExtendedVersionCheck] =
-    React.useState(false);
+  const [checkboxes, setCheckboxes] = React.useState({
+    modifyVersionCheckbox: false,
+    extendCheck: false,
+    modExtendedVersionCheck: false,
+  });
+  const { modifyVersionCheckbox, extendCheck, modExtendedVersionCheck } =
+    checkboxes;
 
   const [pricesCalc, setPricesCalc] = React.useState({
     versionPrice: 0,
     modifyVersionPrice: 0,
     extendedVersion: 0,
     modExtendedVersion: 0,
-    totalPrice: 0,
   });
+  const [totalPrice, setTotalPrice] = React.useState(0);
 
   const versionCheckboxHandler = (event: SelectChangeEvent) => {
-    const price = !version.isFree ? 0 : prices.oneMinVersion;
-    setVersion({
-      value: event.target.value,
-      isFree: !version.isFree,
-    });
-    setPricesCalc({
-      ...pricesCalc,
-      versionPrice: price,
-      totalPrice: price,
-    });
-    // priceCalculating(pricesCalc, setPricesCalc);
+    HandleVersionCheckbox(
+      event,
+      version,
+      setVersion,
+      pricesCalc,
+      setPricesCalc,
+      setCheckboxes
+    );
   };
+
   const modifyVersionCheckboxHandler = () => {
-    const price = modifyVersionCheckbox ? 0 : 5;
-    const versionPriceReduce = modifyVersionCheckbox ? -5 : 5;
-    setModifyVersionCheckbox(!modifyVersionCheckbox);
-    setPricesCalc({
-      ...pricesCalc,
-      versionPrice: pricesCalc.versionPrice - versionPriceReduce,
-      modifyVersionPrice: price,
-    });
+    handleModifyVersionCheckboxHandler(
+      modifyVersionCheckbox,
+      checkboxes,
+      setCheckboxes,
+      pricesCalc,
+      setPricesCalc
+    );
   };
   const modVersionSliderHandler = (e: Event, value: number | number[]) => {
-    const modSliderValue = Array.isArray(value) ? value[0] : value;
-    const price = modSliderValue * prices.modOneMinVersion;
-    const versionPriceReduce =
-      prices.oneMinVersion - price <= 0 ? 0 : prices.oneMinVersion - price;
-    setPricesCalc({
-      ...pricesCalc,
-      versionPrice: versionPriceReduce,
-      modifyVersionPrice: price,
-    });
+    handleModVersionSlider(value, pricesCalc, setPricesCalc);
   };
   const extendCheckboxHandler = () => {
-    setExtendCheck(!extendCheck);
-    // priceCalculating(pricesCalc, setPricesCalc);
+    handleExtendCheckbox(
+      extendCheck,
+      checkboxes,
+      setCheckboxes,
+      pricesCalc,
+      setPricesCalc
+    );
   };
-  // const modExtendedVersionCheckHandler = () => {
-  //   setModExtendedVersionCheck(!modExtendedVersionCheck);
-  //   priceCalculating(pricesCalc, setPricesCalc);
-  // };
-  // const modExtendedSliderHandler = (e: Event, value: number | number[]) => {
-  //   const modSliderValue = Array.isArray(value) ? value[0] : value;
-  //   const price = modSliderValue * prices.extendedVersion;
-  //   setPricesCalc({
-  //     ...pricesCalc,
-  //     modExtendedVersion: price,
-  //   });
-  //   priceCalculating(pricesCalc, setPricesCalc);
-  // };
+  const extendedSliderHandler = (e: Event, value: number | number[]) => {
+    handleExtendedSlider(value, pricesCalc, setPricesCalc);
+  };
+  const modExtendedVersionCheckHandler = () => {
+    handleModExtendedVersionCheck(
+      modExtendedVersionCheck,
+      checkboxes,
+      setCheckboxes,
+      pricesCalc,
+      setPricesCalc
+    );
+  };
+  React.useEffect(() => {
+    const price = Object.values(pricesCalc).reduce(
+      (total, value) => total + value,
+      0
+    );
+    setTotalPrice(price);
+  }, [pricesCalc]);
   return (
     <div
       className={
@@ -120,7 +125,7 @@ const Pricing = (props: {
           <PricingTable />
         </div>
         <div className="pricing-calc-container">
-          <h4 className="pb-4">Pricing calculator</h4>
+          <h4 className="pb-4">Calculator</h4>
           <div className="w-100 d-flex flex-column align-items-start gap-3">
             <div className="w-100 d-flex justify-content-between align-items-center">
               <FormControl>
@@ -204,29 +209,42 @@ const Pricing = (props: {
                           max={10}
                           className="ms-2"
                           name="mod-extended"
-                          // onChange={modExtendedSliderHandler}
+                          onChange={extendedSliderHandler}
                         />
                       </div>
-                      <span className="price-span">$39</span>
+                      <span className="price-span">
+                        ${pricesCalc.extendedVersion}
+                      </span>
                     </div>
                     <span className="text-secondary">
                       Length of music extension (in minutes).
                     </span>
                   </div>
                 ) : null}
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={modExtendedVersionCheck}
-                      // onChange={modExtendedVersionCheckHandler}
+                {checkboxes.extendCheck ? (
+                  <div className="w-100 d-flex justify-content-between align-items-center">
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          checked={modExtendedVersionCheck}
+                          onChange={modExtendedVersionCheckHandler}
+                        />
+                      }
+                      label="Modify the extended version"
                     />
-                  }
-                  label="Modify the extended version"
-                />
+                    {checkboxes.modExtendedVersionCheck ? (
+                      <span className="price-span">
+                        ${pricesCalc.modExtendedVersion}
+                      </span>
+                    ) : null}
+                  </div>
+                ) : null}
               </div>
             )}
-            <span>Total Price: </span>
-            <span className="price-span">${pricesCalc.totalPrice}</span>
+            <div className="pt-3 w-100 d-flex justify-content-between align-items-center total-price-container">
+              <span>Total price: </span>
+              <span className="price-span">${totalPrice}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -235,5 +253,3 @@ const Pricing = (props: {
 };
 
 export default Pricing;
-
-// NAPRAWIĆ CHECKBOXY !!!! VALUE MA BYĆ TAKIE JAK W STATE
