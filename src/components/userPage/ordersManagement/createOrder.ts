@@ -1,7 +1,7 @@
 import { OrderForm, UserDetails } from "../../../types";
 import { app } from "../../../firebase";
-import { doc, setDoc } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
+import { doc, setDoc, getFirestore, addDoc, collection } from "firebase/firestore";
+import {  } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 export const createOrder = async (
@@ -31,7 +31,13 @@ export const createOrder = async (
       createdDate: dateOfOrder,
       deleted: false,
     });
-
+    await addDoc(collection(db, "mail"), {
+      to: "jakub.rezler96@gmail.com",
+      message: {
+        subject: `WAVETRACE New Order from ${currentUser.email}`,
+        html: `<b>Title:</b><br/>${order.title}<br /><b>Description:</b><br />${order.description}`,
+      },
+    });
     setOrder({
       orderId: uuidv4(),
       title: "",
