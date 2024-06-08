@@ -10,9 +10,8 @@ import EditOrderDialog from "./EditOrderDialog";
 import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { checkTimeDifference } from "./ordersManagement/editCapability";
-import InfoIcon from "@mui/icons-material/Info";
-import Alert from "@mui/material/Alert";
 import "./dashboard.scss";
+import StatusAlert from "./StatusAlert";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
@@ -20,9 +19,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   );
   const [anchorElDescription, setAnchorElDescription] =
     React.useState<HTMLElement | null>(null);
-  const [anchorElDate, setAnchorElDate] = React.useState<HTMLElement | null>(
-    null
-  );
+
   const [isEditable, setIsEditable] = React.useState(true);
 
   const handlePopoverTitleOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,17 +38,9 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const handlePopoverDescriptionClose = () => {
     setAnchorElDescription(null);
   };
-  const handlePopoverDateOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElDate(event.currentTarget);
-  };
-
-  const handlePopoverDateClose = () => {
-    setAnchorElDate(null);
-  };
 
   const openTitle = Boolean(anchorElTitle);
   const openDescription = Boolean(anchorElDescription);
-  const openDate = Boolean(anchorElDate);
 
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
   const handleClickEdit = () => {
@@ -61,6 +50,13 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
 
   const name = props.title.slice(0, 26) + "...";
   const description = props.description.slice(0, 26) + "...";
+  const showStatusAlert = () => {
+    if (!props.status) {
+      return null;
+    } else {
+      return <StatusAlert status={props.status} />;
+    }
+  };
   return (
     <>
       <TableRow
@@ -131,46 +127,8 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         </Popover>
         <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">{props.createdDate}</TableCell>
-        <TableCell
-          align="left"
-          onMouseEnter={handlePopoverDateOpen}
-          onMouseLeave={handlePopoverDateClose}
-        >
-          <Alert variant="outlined" severity="info" className="dashboard-alert">
-            In progress...
-          </Alert>
-        </TableCell>
-        <Popover
-          id="mouse-over-popover"
-          sx={{
-            pointerEvents: "none",
-          }}
-          open={openDate}
-          anchorEl={anchorElDate}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "right",
-          }}
-          transformOrigin={{
-            vertical: 10,
-            horizontal: "right",
-          }}
-          onClose={handlePopoverTitleClose}
-          disableRestoreFocus
-          PaperProps={{
-            style: { maxWidth: "500px" },
-          }}
-        >
-          <Typography
-            sx={{ p: 3 }}
-            variant="body2"
-            className="pop-over-typography"
-          >
-            Your composition will be ready within 24 hours of placing the order.
-            Editing capability for the description will be disabled after 2
-            hours.
-          </Typography>
-        </Popover>
+        {showStatusAlert()}
+
         <TableCell align="right">
           <Tooltip title="Edit">
             <Button variant="text" onClick={handleClickEdit}>

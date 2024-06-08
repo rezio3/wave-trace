@@ -28,6 +28,7 @@ export type DashboardListItemType = {
   description: string;
   orderId: string;
   createdDate: string;
+  status: string;
 };
 export type DashboardListItemProps = {
   title: string;
@@ -35,6 +36,7 @@ export type DashboardListItemProps = {
   orderId: string;
   createdDate: string;
   deleteOrder: (orderId: string) => void;
+  status: string,
   showOrderHandler: () => void;
 };
 
@@ -69,6 +71,7 @@ export type Order = {
   orderId: string;
   createdDate: string;
   deleted: boolean;
+  status: string;
 };
 
 export type EditOrderProps = {

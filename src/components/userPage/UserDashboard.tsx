@@ -97,6 +97,7 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                           createdDate={e.createdDate}
                           key={uuidv4()}
                           deleteOrder={deleteOrder}
+                          status={e.status}
                           showOrderHandler={showOrderHandler}
                         />
                       ))}
