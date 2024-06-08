@@ -19,14 +19,21 @@ type CheckboxesType = {
   modExtendedVersionCheck: boolean;
 };
 
-export const HandleVersionCheckbox = (
-  event: SelectChangeEvent,
-  version: VersionType,
-  setVersion: (value: VersionType) => void,
-  pricesCalc: PricesCalcType,
-  setPricesCalc: (value: PricesCalcType) => void,
-  setCheckboxes: (value: CheckboxesType) => void
-) => {
+export const HandleVersionCheckbox = ({
+  version,
+  event,
+  setVersion,
+  pricesCalc,
+  setPricesCalc,
+  setCheckboxes,
+}: {
+  event: SelectChangeEvent;
+  version: VersionType;
+  setVersion: (value: VersionType) => void;
+  pricesCalc: PricesCalcType;
+  setPricesCalc: (value: PricesCalcType) => void;
+  setCheckboxes: (value: CheckboxesType) => void;
+}) => {
   const price = !version.isFree ? 0 : prices.oneMinVersion;
   setVersion({
     value: event.target.value,
@@ -52,13 +59,19 @@ export const HandleVersionCheckbox = (
   }
 };
 
-export const handleModifyVersionCheckboxHandler = (
-  modifyVersionCheckbox: boolean,
-  checkboxes: CheckboxesType,
-  setCheckboxes: (value: CheckboxesType) => void,
-  pricesCalc: PricesCalcType,
-  setPricesCalc: (value: PricesCalcType) => void
-) => {
+export const handleModifyVersionCheckboxHandler = ({
+  modifyVersionCheckbox,
+  checkboxes,
+  setCheckboxes,
+  pricesCalc,
+  setPricesCalc,
+}: {
+  modifyVersionCheckbox: boolean;
+  checkboxes: CheckboxesType;
+  setCheckboxes: (value: CheckboxesType) => void;
+  pricesCalc: PricesCalcType;
+  setPricesCalc: (value: PricesCalcType) => void;
+}) => {
   const price = modifyVersionCheckbox ? 0 : 5;
   const versionPriceReduce = !modifyVersionCheckbox
     ? prices.oneMinVersion - prices.modOneMinVersion
@@ -90,13 +103,19 @@ export const handleModVersionSlider = (
   });
 };
 
-export const handleExtendCheckbox = (
-  extendCheck: boolean,
-  checkboxes: CheckboxesType,
-  setCheckboxes: (value: CheckboxesType) => void,
-  pricesCalc: PricesCalcType,
-  setPricesCalc: (value: PricesCalcType) => void
-) => {
+export const handleExtendCheckbox = ({
+  extendCheck,
+  checkboxes,
+  setCheckboxes,
+  pricesCalc,
+  setPricesCalc,
+}: {
+  extendCheck: boolean;
+  checkboxes: CheckboxesType;
+  setCheckboxes: (value: CheckboxesType) => void;
+  pricesCalc: PricesCalcType;
+  setPricesCalc: (value: PricesCalcType) => void;
+}) => {
   const price = extendCheck ? 0 : 39;
   setCheckboxes({
     ...checkboxes,
@@ -121,13 +140,19 @@ export const handleExtendedSlider = (
   });
 };
 
-export const handleModExtendedVersionCheck = (
-  modExtendedVersionCheck: boolean,
-  checkboxes: CheckboxesType,
-  setCheckboxes: (value: CheckboxesType) => void,
-  pricesCalc: PricesCalcType,
-  setPricesCalc: (value: PricesCalcType) => void
-) => {
+export const handleModExtendedVersionCheck = ({
+  modExtendedVersionCheck,
+  checkboxes,
+  setCheckboxes,
+  pricesCalc,
+  setPricesCalc,
+}: {
+  modExtendedVersionCheck: boolean;
+  checkboxes: CheckboxesType;
+  setCheckboxes: (value: CheckboxesType) => void;
+  pricesCalc: PricesCalcType;
+  setPricesCalc: (value: PricesCalcType) => void;
+}) => {
   const price = modExtendedVersionCheck ? 0 : 15;
   setCheckboxes({
     ...checkboxes,

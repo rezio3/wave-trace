@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { UserDetails } from "../../types";
 import "./pricing.scss";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -51,48 +50,48 @@ const Pricing = (props: {
   const [totalPrice, setTotalPrice] = React.useState(0);
 
   const versionCheckboxHandler = (event: SelectChangeEvent) => {
-    HandleVersionCheckbox(
+    HandleVersionCheckbox({
       event,
       version,
       setVersion,
       pricesCalc,
       setPricesCalc,
-      setCheckboxes
-    );
+      setCheckboxes,
+    });
   };
 
   const modifyVersionCheckboxHandler = () => {
-    handleModifyVersionCheckboxHandler(
+    handleModifyVersionCheckboxHandler({
       modifyVersionCheckbox,
       checkboxes,
       setCheckboxes,
       pricesCalc,
-      setPricesCalc
-    );
+      setPricesCalc,
+    });
   };
   const modVersionSliderHandler = (e: Event, value: number | number[]) => {
     handleModVersionSlider(value, pricesCalc, setPricesCalc);
   };
   const extendCheckboxHandler = () => {
-    handleExtendCheckbox(
+    handleExtendCheckbox({
       extendCheck,
       checkboxes,
       setCheckboxes,
       pricesCalc,
-      setPricesCalc
-    );
+      setPricesCalc,
+    });
   };
   const extendedSliderHandler = (e: Event, value: number | number[]) => {
     handleExtendedSlider(value, pricesCalc, setPricesCalc);
   };
   const modExtendedVersionCheckHandler = () => {
-    handleModExtendedVersionCheck(
+    handleModExtendedVersionCheck({
       modExtendedVersionCheck,
       checkboxes,
       setCheckboxes,
       pricesCalc,
-      setPricesCalc
-    );
+      setPricesCalc,
+    });
   };
   React.useEffect(() => {
     const price = Object.values(pricesCalc).reduce(
