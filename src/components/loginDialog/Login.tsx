@@ -9,6 +9,7 @@ import { LoginViewType } from "../../types";
 import ChangeDialogWindowBtn from "./ChangeDialogWindowBtn";
 import GoogleIcon from "@mui/icons-material/Google";
 import { loginWithGoogleHandler } from "./loginWithGoogle";
+import { useNavigate } from "react-router";
 
 const Login: React.FC<LoginViewType> = (props) => {
   const [loginInputs, setLoginInputs] = React.useState({
@@ -31,15 +32,16 @@ const Login: React.FC<LoginViewType> = (props) => {
       password: e.target.value,
     });
   };
+  const navigate = useNavigate();
   const loginHandler = () => {
-    signInWithEmailAndPassword(
-      auth,
-      loginInputs.email,
-      loginInputs.password
-    ).catch(() => {
-      setIsAlert(true);
-      console.log("Invalid login data");
-    });
+    signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password)
+      .then(() => {
+        navigate("/userdashboard");
+      })
+      .catch(() => {
+        setIsAlert(true);
+        console.log("Invalid login data");
+      });
   };
 
   const enterKey: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
@@ -103,7 +105,11 @@ const Login: React.FC<LoginViewType> = (props) => {
         >
           Login
         </Button>
-        <Button variant="outlined" onClick={loginWithGoogleHandler} className="mb-3">
+        <Button
+          variant="outlined"
+          onClick={loginWithGoogleHandler}
+          className="mb-3"
+        >
           <GoogleIcon className="me-2" />
           Login with Google
         </Button>

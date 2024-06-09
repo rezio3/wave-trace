@@ -17,18 +17,20 @@ import "./components/footer/Footer.scss";
 import FaqPage from "./components/faq/FaqPage";
 import Support from "./components/support/Support";
 import Pricing from "./components/pricing/Pricing";
+import { Routes, Route } from "react-router";
+import { HashRouter } from "react-router-dom";
 
 function App() {
   const [ladingPageSection, setLandingPageSection] = useState(0);
   const handleBackButton = () => {
     setLandingPageSection(0);
   };
-  const sections = [
-    <Landing />,
-    <Pricing isUserLoggedIn={false} handleBackButton={handleBackButton} />,
-    <FaqPage isUserLoggedIn={false} handleBackButton={handleBackButton} />,
-    <Support isUserLoggedIn={false} handleBackButton={handleBackButton} />,
-  ];
+  // const sections = [
+  //   <Landing />,
+  //   <Pricing isUserLoggedIn={false} handleBackButton={handleBackButton} />,
+  //   <FaqPage isUserLoggedIn={false} handleBackButton={handleBackButton} />,
+  //   <Support isUserLoggedIn={false} handleBackButton={handleBackButton} />,
+  // ];
   const darkTheme = createTheme({
     palette: {
       mode: "dark",
@@ -48,41 +50,72 @@ function App() {
     (state) => state.data.user.isLoading
   );
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <div className="App position-absolute">
-        {isLoading === true ? (
-          <div className="loader-overlay">
-            <div className="loader"></div>
-          </div>
-        ) : null}
-        {user.email ? (
-          <>
-            <Navbar setLandingPageSection={setLandingPageSection} />
-            <UserPage />
-            <Footer isUserLoggedIn={true} />
-            <VideoBG />
-          </>
-        ) : (
-          <>
-            <Navbar />
-            <div className="container h-75">{sections[ladingPageSection]}</div>
-            <Footer
-              setLandingPageSection={setLandingPageSection}
-              isUserLoggedIn={false}
-            />
-            <VideoBG />
-          </>
-        )}
-      </div>
-      <div className="small-screen-alert">
-        <span>
-          This is a desktop application. <br />
-          Please open the page on a larger screen.
-        </span>
-        <VideoBG />
-      </div>
-    </ThemeProvider>
+    <HashRouter>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <div className="App position-absolute">
+          {isLoading === true ? (
+            <div className="loader-overlay">
+              <div className="loader"></div>
+            </div>
+          ) : null}
+          {user.email ? (
+            <>
+              <Navbar setLandingPageSection={setLandingPageSection} />
+              <UserPage />
+              <Footer isUserLoggedIn={true} />
+              <VideoBG />
+            </>
+          ) : (
+            <>
+              <Navbar />
+              <div className="container">
+                <Routes>
+                  <Route path="/" element={<Landing />} />
+                  <Route
+                    path="/pricing"
+                    element={
+                      <Pricing
+                        isUserLoggedIn={false}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/faq"
+                    element={
+                      <FaqPage
+                        isUserLoggedIn={false}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/support"
+                    element={
+                      <Support
+                        isUserLoggedIn={false}
+                      />
+                    }
+                  />
+                </Routes>
+              </div>
+              {/* <div className="container h-75">{sections[ladingPageSection]}</div> */}
+              <Footer
+                setLandingPageSection={setLandingPageSection}
+                isUserLoggedIn={false}
+              />
+              <VideoBG />
+            </>
+          )}
+        </div>
+        <div className="small-screen-alert">
+          <span>
+            This is a desktop application. <br />
+            Please open the page on a larger screen.
+          </span>
+          <VideoBG />
+        </div>
+      </ThemeProvider>
+    </HashRouter>
   );
 }
 

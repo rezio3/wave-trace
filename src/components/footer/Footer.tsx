@@ -4,6 +4,7 @@ import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Button } from "@mui/material";
 import { FooterProps } from "../../types";
+import { NavLink } from "react-router-dom";
 
 const Footer: React.FC<FooterProps> = (props) => {
   const footerBtnHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -32,13 +33,33 @@ const Footer: React.FC<FooterProps> = (props) => {
       </div>
       {!props.isUserLoggedIn ? (
         <div>
-          <Button variant="text" data-pageindex={1} onClick={footerBtnHandler}>Pricing</Button>
-          <Button variant="text" data-pageindex={2} onClick={footerBtnHandler}>
-            FAQ
-          </Button>
-          <Button variant="text" data-pageindex={3} onClick={footerBtnHandler}>
-            Support
-          </Button>
+          <NavLink to="/pricing">
+            <Button
+              variant="text"
+              data-pageindex={1}
+              onClick={footerBtnHandler}
+            >
+              Pricing
+            </Button>
+          </NavLink>
+          <NavLink to="/faq">
+            <Button
+              variant="text"
+              data-pageindex={2}
+              onClick={footerBtnHandler}
+            >
+              FAQ
+            </Button>
+          </NavLink>
+          <NavLink to="/support">
+            <Button
+              variant="text"
+              data-pageindex={3}
+              onClick={footerBtnHandler}
+            >
+              Support
+            </Button>
+          </NavLink>
         </div>
       ) : null}
     </div>

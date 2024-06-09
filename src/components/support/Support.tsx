@@ -6,12 +6,9 @@ import { addDoc, getFirestore, collection } from "firebase/firestore";
 import { app } from "../../firebase";
 import Alert from "@mui/material/Alert";
 import { UserDetails } from "../../types";
+import { NavLink } from "react-router-dom";
 
-const Support = (props: {
-  isUserLoggedIn: boolean;
-  handleBackButton?: () => void;
-  user?: UserDetails;
-}) => {
+const Support = (props: { isUserLoggedIn: boolean; user?: UserDetails }) => {
   const [formInputs, setFormInputs] = useState({
     email: "",
     message: "",
@@ -73,11 +70,6 @@ const Support = (props: {
     setIsLoading(false);
   };
 
-  const handleBackButton = () => {
-    if (props.handleBackButton) {
-      props.handleBackButton();
-    }
-  };
   return (
     <div
       className={
@@ -86,15 +78,12 @@ const Support = (props: {
     >
       <div className="p-5 w-100 glass-container">
         {!props.isUserLoggedIn ? (
-          <Button
-            variant="text"
-            className="mb-4"
-            name="back"
-            onClick={handleBackButton}
-          >
-            <ArrowBackIosIcon />
-            Back
-          </Button>
+          <NavLink to="/">
+            <Button variant="text" className="mb-4" name="back">
+              <ArrowBackIosIcon />
+              Back
+            </Button>
+          </NavLink>
         ) : null}
 
         <h4 className="pb-3">Support</h4>

@@ -4,20 +4,12 @@ import "./faq.scss";
 import { useState } from "react";
 import FaqItem from "./FaqItem";
 import { faqTxt } from "./faqData";
+import { NavLink } from "react-router-dom";
 
-const FaqPage = (props: {
-  isUserLoggedIn: boolean;
-  handleBackButton?: () => void;
-}) => {
+const FaqPage = (props: { isUserLoggedIn: boolean }) => {
   const [response, setResponse] = useState(`What would you like to know?`);
   const faqBtnHandler = (response: string) => {
     setResponse(response);
-  };
-
-  const handleBackButton = () => {
-    if (props.handleBackButton) {
-      props.handleBackButton();
-    }
   };
   return (
     <div
@@ -27,15 +19,12 @@ const FaqPage = (props: {
     >
       <div className="p-5 w-100 glass-container">
         {!props.isUserLoggedIn ? (
-          <Button
-            variant="text"
-            className="mb-4"
-            name="back"
-            onClick={handleBackButton}
-          >
-            <ArrowBackIosIcon />
-            Back
-          </Button>
+          <NavLink to="/">
+            <Button variant="text" className="mb-4" name="back">
+              <ArrowBackIosIcon />
+              Back
+            </Button>
+          </NavLink>
         ) : null}
 
         <h4 className="pb-3 faq-header">Frequently Asked Questions</h4>

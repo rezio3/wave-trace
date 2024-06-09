@@ -18,17 +18,9 @@ import {
   handleExtendedSlider,
   handleModExtendedVersionCheck,
 } from "./priceCalculating";
+import { NavLink } from "react-router-dom";
 
-const Pricing = (props: {
-  isUserLoggedIn: boolean;
-  handleBackButton?: () => void;
-}) => {
-  const handleBackButton = () => {
-    if (props.handleBackButton) {
-      props.handleBackButton();
-    }
-  };
-
+const Pricing = (props: { isUserLoggedIn: boolean }) => {
   const [version, setVersion] = React.useState({
     value: "free-version",
     isFree: true,
@@ -108,15 +100,12 @@ const Pricing = (props: {
     >
       <div className="p-5 w-100 glass-container d-flex flex-column align-items-start">
         {!props.isUserLoggedIn ? (
-          <Button
-            variant="text"
-            className="mb-4"
-            name="back"
-            onClick={handleBackButton}
-          >
-            <ArrowBackIosIcon />
-            Back
-          </Button>
+          <NavLink to="/">
+            <Button variant="text" className="mb-4" name="back">
+              <ArrowBackIosIcon />
+              Back
+            </Button>
+          </NavLink>
         ) : null}
         <div className="w-100 d-flex">
           <div className="w-50">
