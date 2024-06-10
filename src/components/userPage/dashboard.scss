@@ -10,6 +10,10 @@
   user-select: none;
 }
 
-.green-dashboard-alert{
+.green-dashboard-alert {
+  transition: 0.2s !important;
   cursor: pointer;
+}
+.green-dashboard-alert:hover {
+  filter: brightness(1.25);
 }

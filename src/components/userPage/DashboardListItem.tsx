@@ -130,11 +130,14 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         {showStatusAlert()}
 
         <TableCell align="right">
-          <Tooltip title="Edit">
-            <Button variant="text" onClick={handleClickEdit}>
-              <EditIcon className="text-white" />
-            </Button>
-          </Tooltip>
+          {props.status === "inProgress" ? (
+            <Tooltip title="Edit">
+              <Button variant="text" onClick={handleClickEdit}>
+                <EditIcon className="text-white" />
+              </Button>
+            </Tooltip>
+          ) : null}
+
           <Tooltip title="Delete">
             <Button
               variant="text"
