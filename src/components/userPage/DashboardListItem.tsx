@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { checkTimeDifference } from "./ordersManagement/editCapability";
 import "./dashboard.scss";
 import StatusAlert from "./StatusAlert";
+import DialogProceedWindow from "./proceedWindow/DialogProceedWindow";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
@@ -43,6 +44,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const openDescription = Boolean(anchorElDescription);
 
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
+  const [openProceedDialog, setOpenProceedDialog] = React.useState(false);
   const handleClickEdit = () => {
     checkTimeDifference(props.createdDate, setIsEditable);
     setOpenEditDialog(true);
@@ -54,7 +56,12 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
     if (!props.status) {
       return null;
     } else {
-      return <StatusAlert status={props.status} />;
+      return (
+        <StatusAlert
+          status={props.status}
+          setOpenProceedDialog={setOpenProceedDialog}
+        />
+      );
     }
   };
   return (
@@ -158,6 +165,10 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
         orderId={props.orderId}
         showOrderHandler={props.showOrderHandler}
         isEditable={isEditable}
+      />
+      <DialogProceedWindow
+        openProceedDialog={openProceedDialog}
+        setOpenProceedDialog={setOpenProceedDialog}
       />
     </>
   );

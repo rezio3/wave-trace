@@ -4,7 +4,10 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import TableCell from "@mui/material/TableCell";
 
-const StatusAlert = (props: { status: string }) => {
+const StatusAlert = (props: {
+  status: string;
+  setOpenProceedDialog?: (value: boolean) => void;
+}) => {
   const [anchorElDate, setAnchorElDate] = useState<HTMLElement | null>(null);
   const handlePopoverDateOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElDate(event.currentTarget);
@@ -13,6 +16,12 @@ const StatusAlert = (props: { status: string }) => {
     setAnchorElDate(null);
   };
   const openDate = Boolean(anchorElDate);
+
+  const openProceedDialog = () => {
+    if (props.setOpenProceedDialog) {
+      props.setOpenProceedDialog(true);
+    }
+  };
 
   if (props.status === "inProgress") {
     return (
@@ -66,6 +75,7 @@ const StatusAlert = (props: { status: string }) => {
           variant="outlined"
           severity="success"
           className="dashboard-alert green-dashboard-alert"
+          onClick={openProceedDialog}
         >
           Done, click to proceed
         </Alert>
