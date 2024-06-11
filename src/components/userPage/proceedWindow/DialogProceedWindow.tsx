@@ -7,6 +7,7 @@ import FloatingActionButtonZoom from "./ProceedWindow";
 type DialogProceedDialogProps = {
   openProceedDialog: boolean;
   setOpenProceedDialog: (value: boolean) => void;
+  modifications: number,
 };
 
 const DialogProceedWindow = (props: DialogProceedDialogProps) => {
@@ -33,7 +34,7 @@ const DialogProceedWindow = (props: DialogProceedDialogProps) => {
           },
         }}
       >
-        <FloatingActionButtonZoom />
+        <FloatingActionButtonZoom modifications={props.modifications}/>
       </Dialog>
     </React.Fragment>
   );

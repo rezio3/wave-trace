@@ -30,7 +30,8 @@ export const createOrder = async (
       orderId: order.orderId,
       createdDate: dateOfOrder,
       deleted: false,
-      status: "inProgress"
+      status: "inProgress",
+      modifications: 0,
     });
     await addDoc(collection(db, "mail"), {
       to: "jakub.rezler96@gmail.com",

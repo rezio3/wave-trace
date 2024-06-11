@@ -1,8 +1,10 @@
-.tab-panel{
-    height: 300px;
+.tab-panel {
+  height: 360px;
 }
 .proceed-price {
-    position: absolute;
-    bottom: 0;
-
+  position: relative;
+  width: 100%;
+  padding-left: 69%;
+  font-weight: bold;
+  font-size: 24px;
 }

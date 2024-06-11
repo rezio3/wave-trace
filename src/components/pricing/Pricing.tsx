@@ -188,12 +188,12 @@ const Pricing = (props: { isUserLoggedIn: boolean }) => {
                         <div className="w-50">
                           <Slider
                             aria-label="modification-quantity"
-                            defaultValue={2}
+                            defaultValue={1}
                             valueLabelDisplay="auto"
                             shiftStep={1}
                             step={1}
                             marks
-                            min={2}
+                            min={1}
                             max={10}
                             className="ms-2"
                             name="mod-extended"

@@ -15,6 +15,10 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { TextField } from "@mui/material";
 import "./proceedWindow.scss";
+import { getDownloadURL, getStorage, ref } from "@firebase/storage";
+import { app } from "../../../firebase";
+import Slider from "@mui/material/Slider";
+import { getFirestore } from "firebase/firestore";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -36,7 +40,10 @@ function TabPanel(props: TabPanelProps) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }} className="tab-panel">
+        <Box
+          sx={{ p: 3 }}
+          className="tab-panel d-flex flex-column justify-content-between"
+        >
           {children}
         </Box>
       )}
@@ -65,13 +72,9 @@ const fabGreenStyle = {
   },
 };
 
-export default function FloatingActionButtonZoom() {
-  //   const storage = getStorage(app);
-  //   const music = ref(storage, `aoal.mp3`);
-  //   const musicUrl = getDownloadURL(ref(storage, "aoal.mp3")).then(async () => {
-  //     ;
-  //   });
-  //   console.log(musicUrl);
+export default function FloatingActionButtonZoom(props: {
+  modifications: number;
+}) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -110,12 +113,32 @@ export default function FloatingActionButtonZoom() {
   ];
   const [modDesc, setModDesc] = React.useState("");
   const [extendDesc, setExtendDesc] = React.useState("");
+  const [musicUrl, setMusicUrl] = React.useState("");
+  const [priceForOneMin, setPriceForOneMin] = React.useState(49);
   const modifyDescriptionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setModDesc(e.target.value);
   };
   const extendDescriptionHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setExtendDesc(e.target.value);
   };
+
+  React.useEffect(() => {
+    const storage = getStorage(app);
+    getDownloadURL(ref(storage, "music/aoal.mp3"))
+      .then((url) => {
+        setMusicUrl(url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    const db = getFirestore(app);
+    const priceReducer = 5 * props.modifications;
+    let updatedPriceForOneMin = 49 - priceReducer;
+    if (updatedPriceForOneMin <= 0) {
+      updatedPriceForOneMin = 0;
+    }
+    setPriceForOneMin(updatedPriceForOneMin);
+  }, []);
 
   return (
     <Box
@@ -144,67 +167,107 @@ export default function FloatingActionButtonZoom() {
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
-        className="mb-5"
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Listen to a minute-long version with a watermark. If you like what you
-          hear, purchase the version without the watermark and in full quality.
-          {/* <audio controls>
-            <source src="horse.ogg" type="audio/ogg" />
-            <source src="horse.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio> */}
-          <h3 className="mt-5 proceed-price">$49</h3>
+          <div>
+            <span>
+              Listen to a one-minute sample with a watermark. If you enjoy it,
+              you can buy the full-quality version without the watermark.
+            </span>
+            <audio controls src={musicUrl} className="mt-5" />
+            <p className="mt-5">
+              After purchase, you will still have the option to extend or modify
+              the track.
+            </p>
+            <p>
+              {props.modifications > 0
+                ? `You have already made ${props.modifications} modifications
+              to this track.`
+                : "You haven't made any modifications to this track yet."}
+            </p>
+          </div>
+          <span className="proceed-price mb-1">Cost: ${priceForOneMin}</span>
         </TabPanel>
 
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Tell us what changes you'd like in the proposed music. The editing
-          cost will be deducted from the total price of the track.
-          <TextField
-            id="outlined-multiline-static"
-            label="Description of modification"
-            multiline
-            rows={4}
-            onChange={modifyDescriptionHandler}
-            value={modDesc}
-            className="w-75 mt-3"
-          />
-          <h3 className="mt-5">$5</h3>
+          <div>
+            <span>
+              Tell us what changes you'd like in the proposed music. The editing
+              cost will be deducted from the total price of the track.
+            </span>
+            <TextField
+              id="outlined-multiline-static"
+              label="Description of modification"
+              multiline
+              rows={3}
+              onChange={modifyDescriptionHandler}
+              value={modDesc}
+              className="w-75 mt-3"
+            />
+          </div>
+          <p className="mt-2">
+            The modification fee is included in the price of a one-minute track.
+            After paying $5 for the modification, it will be deducted from the
+            price of the one-minute track.
+          </p>
+          <h3 className="proceed-price mb-1">Cost: $5</h3>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           Extend the ordered music to a specific length. If you have any
-          additional comments, feel free to suggest them. Payment for the order
-          is upfront.
+          additional comments, feel free to suggest them.
           <TextField
             id="outlined-multiline-static"
             label="Description of extension (optional)"
             multiline
-            rows={4}
+            rows={2}
             onChange={extendDescriptionHandler}
             value={extendDesc}
-            className="w-75 mt-3"
+            className="w-75 mt-2"
           />
-          <h3 className="mt-5 proceed-price">$39</h3>
+          <Slider
+            aria-label="modification-quantity"
+            defaultValue={1}
+            valueLabelDisplay="auto"
+            shiftStep={1}
+            step={1}
+            marks
+            min={1}
+            max={9}
+            className="ms-2 w-50 mt-3"
+            name="mod-one-min"
+            // onChange={modVersionSliderHandler}
+          />
+          <p className="">
+            Specify by how many minutes you want to extend the music.
+            <br />
+            $39 for each additional minute. Currently, your track will be 2
+            minutes long.
+          </p>
+          <h3 className="proceed-price">Cost: $88</h3>
         </TabPanel>
       </SwipeableViews>
 
-      {fabs.map((fab, index) => (
-        <Zoom
-          key={fab.color}
-          in={value === index}
-          timeout={transitionDuration}
-          style={{
-            transitionDelay: `${
-              value === index ? transitionDuration.exit : 0
-            }ms`,
-          }}
-          unmountOnExit
-        >
-          <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
-            {fab.icon}
-          </Fab>
-        </Zoom>
-      ))}
+      {fabs.map((fab, index) => {
+        return (
+          <>
+            <Zoom
+              key={fab.color}
+              in={value === index}
+              timeout={transitionDuration}
+              style={{
+                transitionDelay: `${
+                  value === index ? transitionDuration.exit : 0
+                }ms`,
+              }}
+              unmountOnExit
+            >
+              <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+                {fab.icon}
+              </Fab>
+            </Zoom>
+          </>
+        );
+      })}
     </Box>
   );
 }

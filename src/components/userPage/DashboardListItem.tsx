@@ -169,6 +169,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
       <DialogProceedWindow
         openProceedDialog={openProceedDialog}
         setOpenProceedDialog={setOpenProceedDialog}
+        modifications={props.modifications}
       />
     </>
   );

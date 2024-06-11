@@ -98,6 +98,7 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
                           key={uuidv4()}
                           deleteOrder={deleteOrder}
                           status={e.status}
+                          modifications={e.modifications}
                           showOrderHandler={showOrderHandler}
                         />
                       ))}

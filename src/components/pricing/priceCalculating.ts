@@ -132,7 +132,7 @@ export const handleExtendedSlider = (
   pricesCalc: PricesCalcType,
   setPricesCalc: (value: PricesCalcType) => void
 ) => {
-  const modSliderValue = Array.isArray(value) ? value[0] - 1 : value - 1;
+  const modSliderValue = Array.isArray(value) ? value[0] : value;
   const price = modSliderValue * prices.extendedVersion;
   setPricesCalc({
     ...pricesCalc,
