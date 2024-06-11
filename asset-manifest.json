@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/wave-trace/static/css/main.3d28c37f.css",
-    "main.js": "/wave-trace/static/js/main.21654f6a.js",
+    "main.css": "/wave-trace/static/css/main.332e300a.css",
+    "main.js": "/wave-trace/static/js/main.421fb8a2.js",
     "static/media/waves-bg.mp4": "/wave-trace/static/media/waves-bg.3cb6d0662abd47e052a4.mp4",
     "static/media/hz.png": "/wave-trace/static/media/hz.549d19ce4948e08f72d7.png",
     "static/media/pigments.png": "/wave-trace/static/media/pigments.08431fe5642a472a8507.png",
     "index.html": "/wave-trace/index.html",
-    "main.3d28c37f.css.map": "/wave-trace/static/css/main.3d28c37f.css.map",
-    "main.21654f6a.js.map": "/wave-trace/static/js/main.21654f6a.js.map"
+    "main.332e300a.css.map": "/wave-trace/static/css/main.332e300a.css.map",
+    "main.421fb8a2.js.map": "/wave-trace/static/js/main.421fb8a2.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d28c37f.css",
-    "static/js/main.21654f6a.js"
+    "static/css/main.332e300a.css",
+    "static/js/main.421fb8a2.js"
   ]
 }
