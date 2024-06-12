@@ -1,13 +1,13 @@
 import * as React from "react";
 import Dialog from "@mui/material/Dialog";
-import { getFirestore, updateDoc, doc } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 import { app } from "../../../firebase";
 import FloatingActionButtonZoom from "./ProceedWindow";
 
 type DialogProceedDialogProps = {
   openProceedDialog: boolean;
   setOpenProceedDialog: (value: boolean) => void;
-  modifications: number,
+  modifications: number;
 };
 
 const DialogProceedWindow = (props: DialogProceedDialogProps) => {
@@ -34,7 +34,7 @@ const DialogProceedWindow = (props: DialogProceedDialogProps) => {
           },
         }}
       >
-        <FloatingActionButtonZoom modifications={props.modifications}/>
+        <FloatingActionButtonZoom modifications={props.modifications} />
       </Dialog>
     </React.Fragment>
   );

@@ -21,6 +21,3 @@ export const userSlice = createSlice({
     },
   },
 });
-
-
-export const { loginUser, logoutUser, setLoading } = userSlice.actions;

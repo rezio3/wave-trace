@@ -174,7 +174,7 @@ export default function FloatingActionButtonZoom(props: {
               Listen to a one-minute sample with a watermark. If you enjoy it,
               you can buy the full-quality version without the watermark.
             </span>
-            <audio controls src={musicUrl} className="mt-5" />
+            <audio controls src={musicUrl} className="mt-5" preload="none" />
             <p className="mt-5">
               After purchase, you will still have the option to extend or modify
               the track.
