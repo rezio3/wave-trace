@@ -26,9 +26,7 @@ const UserNav = () => {
     setIsNavRevealed(!isNavRevealed);
   };
   const is1700screen = useMediaQuery("(max-width: 1700px)");
-  // useEffect(()=>{
 
-  // },[is1700screen])
   return (
     <Box
       sx={{
