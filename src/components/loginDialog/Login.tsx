@@ -36,7 +36,7 @@ const Login: React.FC<LoginViewType> = (props) => {
   const loginHandler = () => {
     signInWithEmailAndPassword(auth, loginInputs.email, loginInputs.password)
       .then(() => {
-        navigate("/userdashboard");
+        navigate("/dashboard");
       })
       .catch(() => {
         setIsAlert(true);
@@ -50,9 +50,9 @@ const Login: React.FC<LoginViewType> = (props) => {
       loginHandler();
     }
   };
-  const forgetPasswordHandler = () => {
-    console.log("");
-  };
+  // const forgetPasswordHandler = () => {
+  //   console.log("");
+  // };
   return (
     <>
       <div className="d-flex flex-column align-items-center h-100">
@@ -107,7 +107,7 @@ const Login: React.FC<LoginViewType> = (props) => {
         </Button>
         <Button
           variant="outlined"
-          onClick={loginWithGoogleHandler}
+          onClick={()=>{loginWithGoogleHandler(navigate)}}
           className="mb-3"
         >
           <GoogleIcon className="me-2" />

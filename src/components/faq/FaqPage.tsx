@@ -1,12 +1,25 @@
-import { List, Button } from "@mui/material";
+import { List, Button, useMediaQuery } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import "./faq.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FaqItem from "./FaqItem";
 import { faqTxt } from "./faqData";
 import { NavLink } from "react-router-dom";
 
 const FaqPage = (props: { isUserLoggedIn: boolean }) => {
+  const [paddings, setPaddings] = useState(5);
+  const is1700screen = useMediaQuery("(max-width: 1700px)");
+  const is1400screen = useMediaQuery("(max-width: 1400px)");
+  useEffect(() => {
+    if (is1400screen) {
+      setPaddings(4);
+    } else if (is1700screen) {
+      setPaddings(4);
+    } else {
+      setPaddings(5);
+    }
+  }, [is1700screen, is1400screen]);
+
   const [response, setResponse] = useState(`What would you like to know?`);
   const faqBtnHandler = (response: string) => {
     setResponse(response);
@@ -14,10 +27,10 @@ const FaqPage = (props: { isUserLoggedIn: boolean }) => {
   return (
     <div
       className={
-        !props.isUserLoggedIn ? "container w-100 mt-5 p-0" : "container w-100"
+        !props.isUserLoggedIn ? "container w-100 mt-5 p-0" : "container w-100 "
       }
     >
-      <div className="p-5 w-100 glass-container">
+      <div className={`p-${paddings} w-100 glass-container`}>
         {!props.isUserLoggedIn ? (
           <NavLink to="/">
             <Button variant="text" className="mb-4" name="back">

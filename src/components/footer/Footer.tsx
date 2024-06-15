@@ -14,7 +14,7 @@ const Footer: React.FC<FooterProps> = (props) => {
     }
   };
   return (
-    <div className="container position-absolute footer-container mb-3 d-flex justify-content-between align-items-end">
+    <div className="container mb-3 mt-4 d-flex justify-content-between align-items-end">
       <span className="text-secondary">Wavetrace &copy; 2024</span>
       <div
         className={

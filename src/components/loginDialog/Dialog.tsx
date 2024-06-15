@@ -10,6 +10,7 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import { NavbarProps } from "../../types";
 import "./Dialog.scss";
+import { NavLink } from "react-router-dom";
 
 const emails = ["username@gmail.com", "user02@gmail.com"];
 
@@ -95,9 +96,11 @@ export default function SimpleDialogDemo(props: NavbarProps) {
       ) : null}
 
       {user.email ? (
-        <Button variant="outlined" onClick={handleLogout} className="log-btn">
-          Logout
-        </Button>
+        <NavLink to="/">
+          <Button variant="outlined" onClick={handleLogout} className="log-btn">
+            Logout
+          </Button>
+        </NavLink>
       ) : (
         <Button
           variant="outlined"

@@ -6,6 +6,12 @@
 .faq-text {
   font-size: 14px;
 }
-.faq-list-item{
+.faq-list-item {
   width: 30%;
+}
+
+@media (max-width: 1400px) {
+  li {
+    max-height: 40px;
+  }
 }

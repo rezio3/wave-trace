@@ -103,9 +103,9 @@ export type FooterProps = {
   isUserLoggedIn: boolean;
 };
 
-export type NavbarProps = {
-  setLandingPageSection?: (value: number) => void;
-};
+  export type NavbarProps = {
+    setLandingPageSection?: (value: number) => void;
+  };
 
 export type PricesCalcState = {
   versionPrice: number;

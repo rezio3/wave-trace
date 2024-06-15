@@ -1,4 +1,4 @@
-@mixin blue-price ($size){
+@mixin blue-price($size) {
   font-size: $size;
   font-weight: bold;
   color: #90caf9;
@@ -8,9 +8,6 @@
   width: 150px;
   .price-header {
     font-size: 14px;
-  }
-
-  .price-span {
   }
 }
 
@@ -47,6 +44,18 @@
     @include blue-price(24px);
   }
 }
-.total-price-container{
+.total-price-container {
   border-top: 1px solid rgb(75, 75, 75);
+}
+
+@media (max-width: 1700px) {
+  .pricing-cell:last-child {
+    font-size: 12px;
+  }
+  .pricing-cell:first-child {
+    @include blue-price(26px);
+  }
+  .pricing-row:first-child .pricing-cell {
+    padding-top: 0;
+  }
 }

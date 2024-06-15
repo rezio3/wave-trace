@@ -60,43 +60,35 @@ function App() {
             </div>
           ) : null}
           {user.email ? (
-            <>
-              <Navbar setLandingPageSection={setLandingPageSection} />
-              <UserPage />
+            <div className="app-container">
+              <div>
+                <Navbar setLandingPageSection={setLandingPageSection} />
+                <UserPage />
+              </div>
               <Footer isUserLoggedIn={true} />
               <VideoBG />
-            </>
+            </div>
           ) : (
-            <>
-              <Navbar />
-              <div className="container">
-                <Routes>
-                  <Route path="/" element={<Landing />} />
-                  <Route
-                    path="/pricing"
-                    element={
-                      <Pricing
-                        isUserLoggedIn={false}
-                      />
-                    }
-                  />
-                  <Route
-                    path="/faq"
-                    element={
-                      <FaqPage
-                        isUserLoggedIn={false}
-                      />
-                    }
-                  />
-                  <Route
-                    path="/support"
-                    element={
-                      <Support
-                        isUserLoggedIn={false}
-                      />
-                    }
-                  />
-                </Routes>
+            <div className="app-container">
+              <div>
+                <Navbar />
+                <div className="container">
+                  <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route
+                      path="/pricing"
+                      element={<Pricing isUserLoggedIn={false} />}
+                    />
+                    <Route
+                      path="/faq"
+                      element={<FaqPage isUserLoggedIn={false} />}
+                    />
+                    <Route
+                      path="/support"
+                      element={<Support isUserLoggedIn={false} />}
+                    />
+                  </Routes>
+                </div>
               </div>
               {/* <div className="container h-75">{sections[ladingPageSection]}</div> */}
               <Footer
@@ -104,7 +96,7 @@ function App() {
                 isUserLoggedIn={false}
               />
               <VideoBG />
-            </>
+            </div>
           )}
         </div>
         <div className="small-screen-alert">

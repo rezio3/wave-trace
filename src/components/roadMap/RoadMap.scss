@@ -12,8 +12,8 @@
   width: 240px;
   max-width: 240px;
   min-width: 240px;
-  min-height: 200px;
-  height: 200px;
+  min-height: 180px;
+  height: 180px;
   margin-top: 10px;
 }
 .step-number-header {
@@ -29,12 +29,13 @@
 }
 
 .step-txt {
+  padding-bottom: 0;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
 }
 
 .feature-header {
-  font-size: 20px;
+  font-size: 18px;
   font-family: "DM Sans", sans-serif;
   font-weight: 700;
 }
@@ -52,8 +53,8 @@
     width: 350px;
     min-width: 350px;
     max-width: 350px;
-    min-height: 180px;
-    height: 180px;
+    min-height: 160px;
+    height: 160px;
     margin-top: 10px;
 }
 
@@ -61,15 +62,15 @@
     font-size: 40px !important; 
 }
 
-@media (max-width: 1750px) {
+@media (max-width: 1800px) {
     .features-card{
         width: 200px;
         min-width: 200px;
         max-width: 200px;
-        min-height: 150px;
-        height: 150px;
+        min-height: 130px;
+        height: 130px;
     }
     .feature-header {
-        font-size: 16px;
+        font-size: 14px;
       }
 }

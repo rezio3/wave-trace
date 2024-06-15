@@ -5,7 +5,7 @@ const provider = new GoogleAuthProvider();
 
 auth.languageCode = "en";
 
-export const loginWithGoogleHandler = () => {
+export const loginWithGoogleHandler = (navigate: any) => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
@@ -13,6 +13,7 @@ export const loginWithGoogleHandler = () => {
       const token = credential?.accessToken;
       // The signed-in user info.
       const user = result.user;
+      navigate("/dashboard");
       // IdP data available using getAdditionalUserInfo(result)
       // ...
     })

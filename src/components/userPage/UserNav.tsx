@@ -8,29 +8,27 @@ import Divider from "@mui/material/Divider";
 import InboxIcon from "@mui/icons-material/Inbox";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import React from "react";
 import "./userNav.scss";
-import { UserNavProps } from "../../types";
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { useMediaQuery } from "@mui/material";
 
-const UserNav: React.FC<UserNavProps> = (props) => {
-  const dashboardHandler = () => {
-    props.setPage(0);
+const UserNav = () => {
+  const [isNavRevealed, setIsNavRevealed] = useState(false);
+  const navigate = useNavigate();
+  const navigationHandler = (path: string) => {
+    navigate(path);
   };
-  const newOrderHandler = () => {
-    props.setPage(1);
+
+  const revealButtonHandler = () => {
+    setIsNavRevealed(!isNavRevealed);
   };
-  const trashHandler = () => {
-    props.setPage(2);
-  };
-  const pricingHandler = () => {
-    props.setPage(3);
-  };
-  const faqHandler = () => {
-    props.setPage(4);
-  };
-  const supportHandler = () => {
-    props.setPage(5);
-  };
+  const is1700screen = useMediaQuery("(max-width: 1700px)");
+  // useEffect(()=>{
+
+  // },[is1700screen])
   return (
     <Box
       sx={{
@@ -38,13 +36,22 @@ const UserNav: React.FC<UserNavProps> = (props) => {
         maxWidth: 360,
         height: "fit-content",
         marginTop: "0px",
-        bgcolor: "divider",
+        bgcolor: "grey.800",
       }}
-      className="position-absolute nav-box"
+      className={
+        isNavRevealed
+          ? "position-absolute nav-box nav-hidden"
+          : "position-absolute nav-box"
+      }
     >
       <nav aria-label="main mailbox folders">
         <List>
-          <ListItem disablePadding onClick={newOrderHandler}>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              navigationHandler("/newOrder");
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <AddIcon />
@@ -52,7 +59,12 @@ const UserNav: React.FC<UserNavProps> = (props) => {
               <ListItemText primary="New order" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={dashboardHandler}>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              navigationHandler("/dashboard");
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <InboxIcon />
@@ -60,7 +72,12 @@ const UserNav: React.FC<UserNavProps> = (props) => {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={trashHandler}>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              navigationHandler("/trash");
+            }}
+          >
             <ListItemButton>
               <ListItemIcon>
                 <DeleteIcon />
@@ -73,23 +90,46 @@ const UserNav: React.FC<UserNavProps> = (props) => {
       <Divider />
       <nav aria-label="secondary mailbox folders">
         <List>
-          <ListItem disablePadding onClick={pricingHandler}>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              navigationHandler("/pricing");
+            }}
+          >
             <ListItemButton>
               <ListItemText primary="Pricing" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={faqHandler}>
-            <ListItemButton component="a" href="#simple-list">
+          <ListItem
+            disablePadding
+            onClick={() => {
+              navigationHandler("/faq");
+            }}
+          >
+            <ListItemButton>
               <ListItemText primary="FAQ" />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding onClick={supportHandler}>
+          <ListItem
+            disablePadding
+            onClick={() => {
+              navigationHandler("/support");
+            }}
+          >
             <ListItemButton>
               <ListItemText primary="Support" />
             </ListItemButton>
           </ListItem>
         </List>
       </nav>
+      {is1700screen ? (
+        <button
+          className="position-absolute reveal-nav-btn"
+          onClick={revealButtonHandler}
+        >
+          {isNavRevealed ? <ArrowForwardIosIcon /> : <ArrowBackIosNewIcon />}
+        </button>
+      ) : null}
     </Box>
   );
 };

@@ -1,3 +1,30 @@
 .nav-box {
   height: 20px;
+  z-index: 3;
+}
+
+@media (max-width: 1700px) {
+  .nav-box {
+    transition: 0.2s;
+    transform: translateX(0%);
+  }
+  .nav-hidden {
+    transform: translateX(-100%);
+  }
+  .reveal-nav-btn {
+    padding: 15px 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    top: 0;
+    right: 0;
+    transform: translateX(98%);
+    background-color: #424242;
+    border: none;
+    color: white;
+    font-size: 24px;
+    transition: 0.2s;
+  }
+  .reveal-nav-btn:hover {
+    background-color: #515151;
+  }
 }

@@ -21,9 +21,9 @@ import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { updateOrdersView } from "./ordersManagement/updateOrderView";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { UserNavProps } from "../../types";
+import { useNavigate } from "react-router";
 
-const UserDashboard: React.FC<UserNavProps> = (props) => {
+const UserDashboard = () => {
   const [orders, setOrders] = useState<DashboardListItemType[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -45,9 +45,9 @@ const UserDashboard: React.FC<UserNavProps> = (props) => {
     await updateDoc(doc(db, `orders_${currentUser.email}`, id), deleted);
     showOrderHandler();
   };
-
+  const navigate = useNavigate();
   const placeAnOrderHandler = () => {
-    props.setPage(1);
+    navigate("/newOrder");
   };
   return (
     <>

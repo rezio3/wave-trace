@@ -19,8 +19,21 @@ import {
   handleModExtendedVersionCheck,
 } from "./priceCalculating";
 import { NavLink } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 
 const Pricing = (props: { isUserLoggedIn: boolean }) => {
+  const [paddings, setPaddings] = React.useState(5);
+  const is1700screen = useMediaQuery("(max-width: 1700px)");
+  const is1400screen = useMediaQuery("(max-width: 1400px)");
+  React.useEffect(() => {
+    if (is1400screen) {
+      setPaddings(4);
+    } else if (is1700screen) {
+      setPaddings(4);
+    } else {
+      setPaddings(5);
+    }
+  }, [is1700screen, is1400screen]);
   const [version, setVersion] = React.useState({
     value: "free-version",
     isFree: true,
@@ -98,7 +111,9 @@ const Pricing = (props: { isUserLoggedIn: boolean }) => {
         !props.isUserLoggedIn ? "container w-100 mt-5 p-0" : "container w-100"
       }
     >
-      <div className="p-5 w-100 glass-container d-flex flex-column align-items-start">
+      <div
+        className={`p-${paddings} w-100 glass-container d-flex flex-column align-items-start`}
+      >
         {!props.isUserLoggedIn ? (
           <NavLink to="/">
             <Button variant="text" className="mb-4" name="back">
