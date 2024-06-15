@@ -10,7 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import "./userNav.scss";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useMediaQuery } from "@mui/material";
@@ -20,6 +20,7 @@ const UserNav = () => {
   const navigate = useNavigate();
   const navigationHandler = (path: string) => {
     navigate(path);
+    setIsNavRevealed(!isNavRevealed);
   };
 
   const revealButtonHandler = () => {
@@ -34,7 +35,7 @@ const UserNav = () => {
         maxWidth: 360,
         height: "fit-content",
         marginTop: "0px",
-        bgcolor: "grey.800",
+        bgcolor: is1700screen ? "grey.800" : "divider",
       }}
       className={
         isNavRevealed
