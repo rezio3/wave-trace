@@ -235,7 +235,6 @@ export default function FloatingActionButtonZoom(props: {
             max={9}
             className="ms-2 w-50 mt-3"
             name="mod-one-min"
-            // onChange={modVersionSliderHandler}
           />
           <p className="">
             Specify by how many minutes you want to extend the music.
