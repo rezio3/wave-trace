@@ -8,6 +8,7 @@ type DialogProceedDialogProps = {
   openProceedDialog: boolean;
   setOpenProceedDialog: (value: boolean) => void;
   modifications: number;
+  musicDemoName: string;
 };
 
 const DialogProceedWindow = (props: DialogProceedDialogProps) => {
@@ -34,7 +35,10 @@ const DialogProceedWindow = (props: DialogProceedDialogProps) => {
           },
         }}
       >
-        <FloatingActionButtonZoom modifications={props.modifications} />
+        <FloatingActionButtonZoom
+          modifications={props.modifications}
+          musicDemoName={props.musicDemoName}
+        />
       </Dialog>
     </React.Fragment>
   );

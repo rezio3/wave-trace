@@ -77,9 +77,6 @@ const UserDashboard = () => {
                           <b>Description</b>
                         </TableCell>
                         <TableCell align="left">
-                          <b>Price</b>
-                        </TableCell>
-                        <TableCell align="left">
                           <b>Created</b>
                         </TableCell>
                         <TableCell align="left">
@@ -91,15 +88,10 @@ const UserDashboard = () => {
                     <TableBody>
                       {orders.map((e) => (
                         <DashboardListItem
-                          title={e.title}
-                          description={e.description}
-                          orderId={e.orderId}
-                          createdDate={e.createdDate}
                           key={uuidv4()}
                           deleteOrder={deleteOrder}
-                          status={e.status}
-                          modifications={e.modifications}
                           showOrderHandler={showOrderHandler}
+                          order={e}
                         />
                       ))}
                     </TableBody>
@@ -128,5 +120,3 @@ const UserDashboard = () => {
 };
 
 export default UserDashboard;
-
-// Floating Action Button - Animation - to manage created music

@@ -13,11 +13,10 @@ export const faqTxt = [
     delay.`,
   },
   {
-    question: "Disable 3 orders per day limit.",
-    response: `By default, each user has a limit of 3 orders per day. The limit is lifted
-    upon the user's first purchase. In cases of high volume of unrestricted
+    question: "Can I disable 3 orders per day limit?",
+    response: `By default, each user has a limit of 3 orders per day. In cases of high volume of unrestricted
     orders, delays may occur. All orders, which are delayed for various
-    reasons, are eligible for a discount based on the extent of the delay.`,
+    reasons, are eligible for a discount based on the extent of the delay. Currently, there is no option to disable the limit of 3 orders per day.`,
   },
   {
     question: "I would like to request a refund.",

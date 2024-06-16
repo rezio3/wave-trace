@@ -30,16 +30,33 @@ export type DashboardListItemType = {
   createdDate: string;
   status: string;
   modifications: number;
+  musicDemoName: string;
 };
 export type DashboardListItemProps = {
-  title: string;
+  deleteOrder: (orderId: string) => void;
+  showOrderHandler: () => void;
+  order: {
+    title: string;
+    description: string;
+    status: string;
+    createdDate: string;
+    orderId: string;
+    modifications: number;
+    musicDemoName: string;
+  };
+};
+
+export type Order = {
+  userId: string;
   description: string;
+  userEmail: string;
+  title: string;
   orderId: string;
   createdDate: string;
-  deleteOrder: (orderId: string) => void;
+  deleted: boolean;
   status: string;
-  showOrderHandler: () => void;
   modifications: number;
+  musicDemoName: string;
 };
 
 export type DeletedListItemProps = {
@@ -63,18 +80,6 @@ export type StepBoxProps = {
   number: string;
   header: string;
   txt: string;
-};
-
-export type Order = {
-  userId: string;
-  description: string;
-  userEmail: string;
-  title: string;
-  orderId: string;
-  createdDate: string;
-  deleted: boolean;
-  status: string;
-  modifications: number;
 };
 
 export type EditOrderProps = {
@@ -103,9 +108,9 @@ export type FooterProps = {
   isUserLoggedIn: boolean;
 };
 
-  export type NavbarProps = {
-    setLandingPageSection?: (value: number) => void;
-  };
+export type NavbarProps = {
+  setLandingPageSection?: (value: number) => void;
+};
 
 export type PricesCalcState = {
   versionPrice: number;

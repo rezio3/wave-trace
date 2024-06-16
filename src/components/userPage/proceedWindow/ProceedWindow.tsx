@@ -74,6 +74,7 @@ const fabGreenStyle = {
 
 export default function FloatingActionButtonZoom(props: {
   modifications: number;
+  musicDemoName: string;
 }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -124,7 +125,7 @@ export default function FloatingActionButtonZoom(props: {
 
   React.useEffect(() => {
     const storage = getStorage(app);
-    getDownloadURL(ref(storage, "music/aoal.mp3"))
+    getDownloadURL(ref(storage, `music/${props.musicDemoName}`))
       .then((url) => {
         setMusicUrl(url);
       })

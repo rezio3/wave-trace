@@ -15,6 +15,15 @@ import StatusAlert from "./StatusAlert";
 import DialogProceedWindow from "./proceedWindow/DialogProceedWindow";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
+  const {
+    title,
+    description,
+    status,
+    createdDate,
+    orderId,
+    modifications,
+    musicDemoName,
+  } = props.order;
   const [anchorElTitle, setAnchorElTitle] = React.useState<HTMLElement | null>(
     null
   );
@@ -46,19 +55,18 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const [openEditDialog, setOpenEditDialog] = React.useState(false);
   const [openProceedDialog, setOpenProceedDialog] = React.useState(false);
   const handleClickEdit = () => {
-    checkTimeDifference(props.createdDate, setIsEditable);
+    checkTimeDifference(createdDate, setIsEditable);
     setOpenEditDialog(true);
   };
-
-  const name = props.title.slice(0, 26) + "...";
-  const description = props.description.slice(0, 26) + "...";
+  const name = title.slice(0, 26) + "...";
+  const descriptionTxt = description.slice(0, 26) + "...";
   const showStatusAlert = () => {
-    if (!props.status) {
+    if (!status) {
       return null;
     } else {
       return (
         <StatusAlert
-          status={props.status}
+          status={status}
           setOpenProceedDialog={setOpenProceedDialog}
         />
       );
@@ -76,7 +84,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
           onMouseEnter={handlePopoverTitleOpen}
           onMouseLeave={handlePopoverTitleClose}
         >
-          {props.title.length > 26 ? name : props.title}
+          {title.length > 26 ? name : title}
         </TableCell>
         <Popover
           id="mouse-over-popover"
@@ -99,7 +107,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
             style: { maxWidth: "300px" },
           }}
         >
-          <Typography sx={{ p: 3 }}>{props.title}</Typography>
+          <Typography sx={{ p: 3 }}>{title}</Typography>
         </Popover>
 
         <TableCell
@@ -107,7 +115,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
           onMouseEnter={handlePopoverDescriptionOpen}
           onMouseLeave={handlePopoverDescriptionClose}
         >
-          {props.description.length > 26 ? description : props.description}
+          {description.length > 26 ? descriptionTxt : description}
         </TableCell>
         <Popover
           id="mouse-over-popover"
@@ -130,14 +138,13 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
             style: { maxWidth: "500px" },
           }}
         >
-          <Typography sx={{ p: 3 }}>{props.description}</Typography>
+          <Typography sx={{ p: 3 }}>{description}</Typography>
         </Popover>
-        <TableCell align="left">0.00$</TableCell>
-        <TableCell align="left">{props.createdDate}</TableCell>
+        <TableCell align="left">{createdDate}</TableCell>
         {showStatusAlert()}
 
         <TableCell align="right">
-          {props.status === "inProgress" ? (
+          {status === "inProgress" ? (
             <Tooltip title="Edit">
               <Button variant="text" onClick={handleClickEdit}>
                 <EditIcon className="text-white" />
@@ -149,7 +156,7 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
             <Button
               variant="text"
               onClick={() => {
-                props.deleteOrder(props.orderId);
+                props.deleteOrder(orderId);
               }}
             >
               <DeleteIcon className="text-white" />
@@ -160,16 +167,17 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
       <EditOrderDialog
         openEditDialog={openEditDialog}
         setOpenEditDialog={setOpenEditDialog}
-        title={props.title}
-        description={props.description}
-        orderId={props.orderId}
+        title={title}
+        description={description}
+        orderId={orderId}
         showOrderHandler={props.showOrderHandler}
         isEditable={isEditable}
       />
       <DialogProceedWindow
         openProceedDialog={openProceedDialog}
         setOpenProceedDialog={setOpenProceedDialog}
-        modifications={props.modifications}
+        modifications={modifications}
+        musicDemoName={musicDemoName}
       />
     </>
   );
