@@ -19,6 +19,8 @@ import { getDownloadURL, getStorage, ref } from "@firebase/storage";
 import { app } from "../../../firebase";
 import Slider from "@mui/material/Slider";
 import { getFirestore } from "firebase/firestore";
+import { Link } from "react-router-dom";
+import { link } from "fs";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -50,7 +52,6 @@ function TabPanel(props: TabPanelProps) {
     </Typography>
   );
 }
-
 function a11yProps(index: any) {
   return {
     id: `action-tab-${index}`,
@@ -75,6 +76,7 @@ const fabGreenStyle = {
 export default function FloatingActionButtonZoom(props: {
   modifications: number;
   musicDemoName: string;
+  orderId: string;
 }) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -248,6 +250,18 @@ export default function FloatingActionButtonZoom(props: {
       </SwipeableViews>
 
       {fabs.map((fab, index) => {
+        let url;
+        switch (index) {
+          case 0:
+            url = props.orderId;
+            break;
+          case 1:
+            url = "/faq";
+            break;
+          case 2:
+            url = "/support";
+            break;
+        }
         return (
           <>
             <Zoom
@@ -261,9 +275,11 @@ export default function FloatingActionButtonZoom(props: {
               }}
               unmountOnExit
             >
-              <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
-                {fab.icon}
-              </Fab>
+              <Link to={`${url}`}>
+                <Fab sx={fab.sx} aria-label={fab.label} color={fab.color}>
+                  {fab.icon}
+                </Fab>
+              </Link>
             </Zoom>
           </>
         );
