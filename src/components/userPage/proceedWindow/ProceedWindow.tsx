@@ -251,8 +251,10 @@ export default function FloatingActionButtonZoom(props: {
 
       {fabs.map((fab, index) => {
         let url;
+
         switch (index) {
           case 0:
+            // Here will be the payment link
             url = props.orderId;
             break;
           case 1:
