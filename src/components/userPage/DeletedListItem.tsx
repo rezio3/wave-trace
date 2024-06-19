@@ -118,7 +118,6 @@ const DeletedListItem: React.FC<DeletedListItemProps> = (props) => {
         >
           <Typography sx={{ p: 3 }}>{props.description}</Typography>
         </Popover>
-        <TableCell align="left">0.00$</TableCell>
         <TableCell align="left">{props.createdDate}</TableCell>
         <TableCell
           align="left"

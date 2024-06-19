@@ -13,7 +13,6 @@ import { checkTimeDifference } from "./ordersManagement/editCapability";
 import "./dashboard.scss";
 import StatusAlert from "./StatusAlert";
 import DialogProceedWindow from "./proceedWindow/DialogProceedWindow";
-import { useLocation } from "react-router";
 
 const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
   const {
@@ -73,12 +72,6 @@ const DashboardListItem: React.FC<DashboardListItemProps> = (props) => {
       );
     }
   };
-  const location = useLocation();
-  if (location.pathname.includes(orderId)) {
-    console.log("DZIAŁA - w URL jest orderId");
-  } else {
-    console.log("Nie ma orderId :(");
-  }
   return (
     <>
       <TableRow

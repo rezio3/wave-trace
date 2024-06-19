@@ -21,7 +21,7 @@ const UserPage = () => {
       <UserNav />
       <Routes>
         <Route path="/newOrder" element={<CreateOrderForm />} />
-        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/dashboard/*" element={<UserDashboard />} />
         <Route path="/trash" element={<DeletedOrders />} />
         <Route path="/pricing" element={<Pricing isUserLoggedIn />} />
         <Route path="/faq" element={<FaqPage isUserLoggedIn />} />

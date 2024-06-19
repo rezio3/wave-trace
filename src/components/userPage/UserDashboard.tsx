@@ -21,8 +21,7 @@ import { doc, getFirestore, updateDoc } from "firebase/firestore";
 import { updateOrdersView } from "./ordersManagement/updateOrderView";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router";
-import { Routes, Route } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 const UserDashboard = () => {
   const [orders, setOrders] = useState<DashboardListItemType[]>([]);
@@ -50,6 +49,29 @@ const UserDashboard = () => {
   const placeAnOrderHandler = () => {
     navigate("/newOrder");
   };
+  const location = useLocation();
+  const path = location.pathname;
+  const orderIdFromUrl = path.startsWith("/dashboard/")
+    ? path.replace("/dashboard/", "")
+    : "";
+  useEffect(() => {
+    const orderBought = orders.find(
+      (order) => order.orderId === orderIdFromUrl
+    );
+    const updatedOrder = {
+      bought: true,
+    };
+    const updateOrder = async () => {
+      if (orderBought) {
+        await updateDoc(
+          doc(db, `orders_${currentUser.email}`, orderBought?.orderId),
+          updatedOrder
+        );
+      }
+    };
+    updateOrder();
+  });
+
   return (
     <>
       <CssBaseline />
